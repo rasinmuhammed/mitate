@@ -1,0 +1,284 @@
+{
+ "best_params": {
+  "factors": 256,
+  "learning_rate": 0.19548954064855983,
+  "regularization": 0.12970373654402717,
+  "iterations": 169
+ },
+ "best_value": 0.03133780703727964,
+ "n_trials": 30,
+ "seconds": 19.862881288000153,
+ "trials": [
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.0005641172472639663,
+    "regularization": 0.7609783021777685,
+    "iterations": 10
+   },
+   "value": 0.016853932584269662
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.2626657193762498,
+    "regularization": 6.59494544069207e-05,
+    "iterations": 75
+   },
+   "value": 0.01593048875003228
+  },
+  {
+   "params": {
+    "factors": 128,
+    "learning_rate": 0.19939265841263773,
+    "regularization": 0.08541417090993096,
+    "iterations": 189
+   },
+   "value": 0.02247191011235955
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.0026315330421667394,
+    "regularization": 0.004360578579698507,
+    "iterations": 242
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 128,
+    "learning_rate": 0.016483450645259214,
+    "regularization": 0.001017365996196631,
+    "iterations": 90
+   },
+   "value": 0.007891209932812027
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.005589441071022261,
+    "regularization": 0.027122854835765684,
+    "iterations": 23
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.00046310807531644454,
+    "regularization": 0.0030829790467631676,
+    "iterations": 18
+   },
+   "value": 0.009743758190490602
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.002556385629639059,
+    "regularization": 0.000452764654041971,
+    "iterations": 69
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.0007136286990582938,
+    "regularization": 0.04602218596263657,
+    "iterations": 209
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.013705962379061364,
+    "regularization": 0.0006580391538141431,
+    "iterations": 135
+   },
+   "value": 0.023220356279459942
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.16283391518594037,
+    "regularization": 4.147905692420249e-05,
+    "iterations": 194
+   },
+   "value": 0.021201049222470094
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.19548954064855983,
+    "regularization": 0.12970373654402717,
+    "iterations": 169
+   },
+   "value": 0.03133780703727964
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.031673652349962035,
+    "regularization": 0.6780813008115603,
+    "iterations": 60
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.042587785271158266,
+    "regularization": 0.0009070071468013306,
+    "iterations": 171
+   },
+   "value": 0.020527613768308847
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.0006983406736516122,
+    "regularization": 0.786406971082295,
+    "iterations": 133
+   },
+   "value": 0.0037453183520599247
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.22915610193280037,
+    "regularization": 0.04520662446396868,
+    "iterations": 36
+   },
+   "value": 0.018325053410915254
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.0002774414625346651,
+    "regularization": 0.0005654355143531576,
+    "iterations": 175
+   },
+   "value": 0.0056179775280898875
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.05362350467195574,
+    "regularization": 0.017803052342416328,
+    "iterations": 202
+   },
+   "value": 0.018325053410915254
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.00924305331768354,
+    "regularization": 1.5236630528356753e-05,
+    "iterations": 230
+   },
+   "value": 0.01754613833308821
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.24102213287298832,
+    "regularization": 0.2592375926770846,
+    "iterations": 104
+   },
+   "value": 0.0037453183520599247
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.039507438123236656,
+    "regularization": 6.849246970644847e-05,
+    "iterations": 95
+   },
+   "value": 0.02367813504712616
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.02709872236262842,
+    "regularization": 7.561861996493497e-05,
+    "iterations": 39
+   },
+   "value": 0.003544549177367739
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.10870367498584667,
+    "regularization": 0.00023882986627848186,
+    "iterations": 124
+   },
+   "value": 0.014683678507009967
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.005500868068888567,
+    "regularization": 0.001864553792364973,
+    "iterations": 135
+   },
+   "value": 0.011235955056179775
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.003814753784340817,
+    "regularization": 4.378313036064935e-05,
+    "iterations": 86
+   },
+   "value": 0.015582615811624062
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.006854326216621489,
+    "regularization": 0.4482349235440992,
+    "iterations": 120
+   },
+   "value": 0.0
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.2903892878910006,
+    "regularization": 0.0006982798900609412,
+    "iterations": 61
+   },
+   "value": 0.012707075882825365
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.10676715211214428,
+    "regularization": 0.002022439405860816,
+    "iterations": 98
+   },
+   "value": 0.019027262961991805
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.17299923819422136,
+    "regularization": 0.0002753861517170844,
+    "iterations": 288
+   },
+   "value": 0.011928160804998322
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.17429869235786324,
+    "regularization": 1.4973172225275767e-05,
+    "iterations": 56
+   },
+   "value": 0.01627482156044261
+  }
+ ],
+ "shared_from": null
+}

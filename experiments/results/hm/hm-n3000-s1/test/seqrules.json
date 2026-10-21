@@ -1,0 +1,51 @@
+{
+ "summary": {
+  "ndcg@5": 0.0,
+  "recall@5": 0.0,
+  "mrr@5": 0.0,
+  "hit@5": 0.0,
+  "ndcg@10": 0.0,
+  "recall@10": 0.0,
+  "mrr@10": 0.0,
+  "hit@10": 0.0,
+  "ndcg@20": 0.0,
+  "recall@20": 0.0,
+  "mrr@20": 0.0,
+  "hit@20": 0.0,
+  "recall_rep@10": 0.0,
+  "hit_rep@10": 0.0,
+  "recall_rep@20": 0.0,
+  "hit_rep@20": 0.0,
+  "recall_expl@10": 0.0,
+  "hit_expl@10": 0.0,
+  "recall_expl@20": 0.0,
+  "hit_expl@20": 0.0,
+  "repr@10": 0.05555555555555555,
+  "novelty@10": 6.408897448248583,
+  "arp@10": 36.07777777777777,
+  "aplt@10": 0.08888888888888889
+ },
+ "store_level": {
+  "coverage@10": 0.05357142857142857,
+  "coverage@20": 0.08418367346938775,
+  "gini@10": 0.9686507936507935,
+  "entropy@10": 2.6835153412539197,
+  "n_queries": 9,
+  "n_units": 9,
+  "n_rep_targets": 1,
+  "n_expl_targets": 8
+ },
+ "params": {
+  "window": 3,
+  "rule_kernel": "log",
+  "idf": false,
+  "prune": 0,
+  "max_len": 20,
+  "hist_kernel": "log"
+ },
+ "tune_s": 6.069296319000159,
+ "fit_s": 0.0006552039999405679,
+ "predict_s": 0.0005509909999545926,
+ "total_s": 6.071393178000108,
+ "val_ndcg@10": 0.0
+}

@@ -1,0 +1,23 @@
+{
+  "protocol": "Liang et al. 2018 strong generalisation, ML-20M, seed 98765",
+  "data_stats": {
+    "train_users": 116677,
+    "items": 20108,
+    "train_nnz": 8538846
+  },
+  "validation": "see ease_ml20m_validation_sweep.log",
+  "chosen_lambda": 800.0,
+  "test": {
+    "recall_capped@20": 0.39049144113153783,
+    "recall_capped@50": 0.5214972345916195,
+    "ndcg@100": 0.4202016016846105,
+    "n_users": 10000,
+    "se_ndcg@100": 0.0021395537038720706
+  },
+  "published": {
+    "recall_capped@20": 0.391,
+    "recall_capped@50": 0.521,
+    "ndcg@100": 0.42
+  },
+  "seconds": 169.7
+}

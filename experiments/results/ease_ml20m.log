@@ -1,0 +1,26 @@
+train users 116677, items 20108, nnz 8538846, val 10000, test 10000 (7s)
+lambda= 100.0: {'recall_capped@20': 0.39287954475907644, 'recall_capped@50': 0.5171711253779545, 'ndcg@100': 0.4241007072373205, 'n_users': 10000, 'se_ndcg@100': 0.002146026607648642}  (150s)
+lambda= 200.0: {'recall_capped@20': 0.39539790715261686, 'recall_capped@50': 0.5195635582333491, 'ndcg@100': 0.42627583065147456, 'n_users': 10000, 'se_ndcg@100': 0.0021436186683256066}  (160s)
+lambda= 300.0: {'recall_capped@20': 0.395984128904721, 'recall_capped@50': 0.5204843242190522, 'ndcg@100': 0.42716357491991785, 'n_users': 10000, 'se_ndcg@100': 0.0021443641919580182}  (142s)
+lambda= 500.0: {'recall_capped@20': 0.39613884885668166, 'recall_capped@50': 0.5210205714532246, 'ndcg@100': 0.4283602873194716, 'n_users': 10000, 'se_ndcg@100': 0.0021443205391502955}  (255s)
+lambda= 800.0: {'recall_capped@20': 0.39625241717776544, 'recall_capped@50': 0.5213842150562619, 'ndcg@100': 0.42865471484412027, 'n_users': 10000, 'se_ndcg@100': 0.0021427913564823985}  (349s)
+lambda=1200.0: {'recall_capped@20': 0.39509663989347427, 'recall_capped@50': 0.5203963670371858, 'ndcg@100': 0.42800490000030084, 'n_users': 10000, 'se_ndcg@100': 0.0021425611982894975}  (439s)
+lambda=2000.0: {'recall_capped@20': 0.39269171040045264, 'recall_capped@50': 0.5180796303175602, 'ndcg@100': 0.4261714868541825, 'n_users': 10000, 'se_ndcg@100': 0.0021400306556664398}  (1486s)
+     5402.75 real      1205.35 user       887.84 sys
+          3680239616  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+           140675497  page reclaims
+               37885  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+             1937782  voluntary context switches
+            13719014  involuntary context switches
+           134189693  instructions retired
+            62117510  cycles elapsed
+            10961664  peak memory footprint

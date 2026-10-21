@@ -1,0 +1,345 @@
+{
+ "best_params": {
+  "window": 5,
+  "rule_kernel": "div",
+  "idf": false,
+  "prune": 20,
+  "max_len": 20,
+  "hist_kernel": "same"
+ },
+ "best_value": 0.24711774327804098,
+ "n_trials": 30,
+ "seconds": 2.420303374994546,
+ "trials": [
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.22830889090158746
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.20975150954904037
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "div"
+   },
+   "value": 0.226644769915777
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.24711774327804098
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 3,
+    "hist_kernel": "div"
+   },
+   "value": 0.21093548516484326
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 0,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.23139317296114426
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "div"
+   },
+   "value": 0.22573811244014888
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.2149202671062145
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.22961438333007017
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 200,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.23398078788474694
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.2335795412602819
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 200,
+    "max_len": 10,
+    "hist_kernel": "log"
+   },
+   "value": 0.23588355853000173
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 200,
+    "max_len": 1,
+    "hist_kernel": "same"
+   },
+   "value": 0.18381862323154197
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "log",
+    "idf": false,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.24040041348163693
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.24711774327804098
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.23115217157544204
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.24711774327804098
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "same"
+   },
+   "value": 0.21780679557569815
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.22385337967668043
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "same"
+   },
+   "value": 0.23287280154559672
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.23483546367232153
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.24711774327804098
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 1,
+    "hist_kernel": "log"
+   },
+   "value": 0.18883562586686622
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "quadratic",
+    "idf": false,
+    "prune": 100,
+    "max_len": 3,
+    "hist_kernel": "same"
+   },
+   "value": 0.2328835632876874
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "div"
+   },
+   "value": 0.22188960247649203
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 200,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.24066200623159562
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.22193628576389954
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.2298528485927467
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.24207002119009036
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.22602083746664872
+  }
+ ]
+}

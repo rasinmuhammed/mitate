@@ -1,0 +1,194 @@
+{
+ "best_params": {
+  "neighbours": 924,
+  "shrink": 257.8916739395157,
+  "alpha": 0.6827075664134403,
+  "decay_half_life_days": 7.0
+ },
+ "best_value": 0.02711650512746633,
+ "n_trials": 20,
+ "seconds": 42.260143604000405,
+ "trials": [
+  {
+   "params": {
+    "neighbours": 87,
+    "shrink": 715.1893663724195,
+    "alpha": 0.6027633760716439,
+    "decay_half_life_days": 180.0
+   },
+   "value": 0.025421968265104886
+  },
+  {
+   "params": {
+    "neighbours": 822,
+    "shrink": 383.4415188257777,
+    "alpha": 0.7917250380826646,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.02649445624108167
+  },
+  {
+   "params": {
+    "neighbours": 5,
+    "shrink": 832.619845547938,
+    "alpha": 0.7781567509498505,
+    "decay_half_life_days": 1.0
+   },
+   "value": 0.019730178369429568
+  },
+  {
+   "params": {
+    "neighbours": 9,
+    "shrink": 639.9210213275238,
+    "alpha": 0.1433532874090464,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.01913067794555412
+  },
+  {
+   "params": {
+    "neighbours": 53,
+    "shrink": 568.4339488686485,
+    "alpha": 0.018789800436355142,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.021710775781456512
+  },
+  {
+   "params": {
+    "neighbours": 31,
+    "shrink": 437.03195379934147,
+    "alpha": 0.6976311959272649,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.0266891894543578
+  },
+  {
+   "params": {
+    "neighbours": 25,
+    "shrink": 363.7107709426226,
+    "alpha": 0.5701967704178796,
+    "decay_half_life_days": 1.0
+   },
+   "value": 0.020167391717882132
+  },
+  {
+   "params": {
+    "neighbours": 153,
+    "shrink": 253.2916025397821,
+    "alpha": 0.4663107728563063,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.02541994830021421
+  },
+  {
+   "params": {
+    "neighbours": 13,
+    "shrink": 368.7251706609641,
+    "alpha": 0.8209932298479351,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.02619537615662263
+  },
+  {
+   "params": {
+    "neighbours": 882,
+    "shrink": 604.845519745046,
+    "alpha": 0.7392635793983017,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.02629285375716912
+  },
+  {
+   "params": {
+    "neighbours": 19,
+    "shrink": 639.9868207943869,
+    "alpha": 0.98867223635193,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.025965279304313117
+  },
+  {
+   "params": {
+    "neighbours": 924,
+    "shrink": 257.8916739395157,
+    "alpha": 0.6827075664134403,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.02711650512746633
+  },
+  {
+   "params": {
+    "neighbours": 171,
+    "shrink": 139.64731251433457,
+    "alpha": 0.44711970738897033,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.023789864570488675
+  },
+  {
+   "params": {
+    "neighbours": 89,
+    "shrink": 455.73349023568716,
+    "alpha": 0.49772940502649826,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.027070633546087266
+  },
+  {
+   "params": {
+    "neighbours": 52,
+    "shrink": 560.8648579549046,
+    "alpha": 0.3591003247455809,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.025793495659391045
+  },
+  {
+   "params": {
+    "neighbours": 309,
+    "shrink": 135.78051331220533,
+    "alpha": 0.871064799740036,
+    "decay_half_life_days": 180.0
+   },
+   "value": 0.025661517070107998
+  },
+  {
+   "params": {
+    "neighbours": 318,
+    "shrink": 664.1744702004386,
+    "alpha": 0.24495890269728188,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.024969912040458862
+  },
+  {
+   "params": {
+    "neighbours": 868,
+    "shrink": 337.243569953028,
+    "alpha": 0.24737411080296762,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.02376460690698085
+  },
+  {
+   "params": {
+    "neighbours": 649,
+    "shrink": 666.8784567012433,
+    "alpha": 0.9437226514150758,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.02638158754089224
+  },
+  {
+   "params": {
+    "neighbours": 106,
+    "shrink": 293.82857098740146,
+    "alpha": 0.6994375483376039,
+    "decay_half_life_days": 180.0
+   },
+   "value": 0.02545672910650098
+  }
+ ],
+ "shared_from": null
+}

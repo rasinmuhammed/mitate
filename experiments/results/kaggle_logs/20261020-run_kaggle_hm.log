@@ -1,0 +1,19 @@
+=== kaggle run 2026-10-20 19:25:31 hm stage=2 buckets=[] ===
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/tmp/mitate/bench/run.py", line 613, in <module>
+    main()
+  File "/tmp/mitate/bench/run.py", line 606, in main
+    else recorded_stores(ds, buckets)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/mitate/bench/run.py", line 407, in recorded_stores
+    rows = json.loads((RESULTS / ds.name / "stores.json").read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1029, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/pathlib.py", line 1015, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'experiments/results/hm/stores.json'

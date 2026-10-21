@@ -1,0 +1,283 @@
+{
+ "best_params": {
+  "factors": 16,
+  "learning_rate": 0.046693566372623854,
+  "regularization": 0.001757715854365964,
+  "iterations": 82
+ },
+ "best_value": 0.24138705049730946,
+ "n_trials": 30,
+ "seconds": 3.096295082999859,
+ "trials": [
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.00020944620249529295,
+    "regularization": 8.536916958038759e-05,
+    "iterations": 31
+   },
+   "value": 0.05713616646751816
+  },
+  {
+   "params": {
+    "factors": 128,
+    "learning_rate": 0.11306307742964851,
+    "regularization": 1.3706859653339884e-05,
+    "iterations": 96
+   },
+   "value": 0.21784556054549242
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.23268206267199365,
+    "regularization": 0.000369080321967301,
+    "iterations": 104
+   },
+   "value": 0.2083068817942832
+  },
+  {
+   "params": {
+    "factors": 32,
+    "learning_rate": 0.11308577100559938,
+    "regularization": 3.1026598745141294e-05,
+    "iterations": 41
+   },
+   "value": 0.2154097350764579
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.07981686457176777,
+    "regularization": 1.2343587123306428e-05,
+    "iterations": 127
+   },
+   "value": 0.22290274576673377
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.003608943638977896,
+    "regularization": 0.3491222400606539,
+    "iterations": 26
+   },
+   "value": 0.04525243635878684
+  },
+  {
+   "params": {
+    "factors": 128,
+    "learning_rate": 0.000838181234414773,
+    "regularization": 0.0028698936042268093,
+    "iterations": 11
+   },
+   "value": 0.03508771929824561
+  },
+  {
+   "params": {
+    "factors": 128,
+    "learning_rate": 0.0027524717855366538,
+    "regularization": 0.029648367733895967,
+    "iterations": 40
+   },
+   "value": 0.018884093467998193
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.010952745549226383,
+    "regularization": 0.32885888232073546,
+    "iterations": 15
+   },
+   "value": 0.01106894304511329
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.0016189150580143096,
+    "regularization": 0.0567623694005326,
+    "iterations": 117
+   },
+   "value": 0.02046783625730994
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.00033866160867153443,
+    "regularization": 1.919914476011825e-05,
+    "iterations": 106
+   },
+   "value": 0.02095941139438806
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.026543266427093624,
+    "regularization": 0.0006753084817081504,
+    "iterations": 136
+   },
+   "value": 0.21942779639196897
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.04169867555604138,
+    "regularization": 0.00020386111571200002,
+    "iterations": 176
+   },
+   "value": 0.21691442514681497
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.03408722955956623,
+    "regularization": 0.025406462429541442,
+    "iterations": 211
+   },
+   "value": 0.18571155085649219
+  },
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.004859464059083302,
+    "regularization": 0.00012890316139636723,
+    "iterations": 127
+   },
+   "value": 0.023391812865497075
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.027938683203916147,
+    "regularization": 5.3086094459497664e-05,
+    "iterations": 58
+   },
+   "value": 0.13607284612830334
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.007497920353611014,
+    "regularization": 0.006228588493375384,
+    "iterations": 185
+   },
+   "value": 0.11281888698374373
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.046693566372623854,
+    "regularization": 0.001757715854365964,
+    "iterations": 82
+   },
+   "value": 0.24138705049730946
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.08969946300100023,
+    "regularization": 0.011267131759354813,
+    "iterations": 61
+   },
+   "value": 0.1920015731277524
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.1118586901578646,
+    "regularization": 0.00035436718376181253,
+    "iterations": 34
+   },
+   "value": 0.22010028855926048
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.006029288053253376,
+    "regularization": 0.0014961023053693245,
+    "iterations": 44
+   },
+   "value": 0.04114109592193263
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.04941234264359286,
+    "regularization": 0.0002692682232570488,
+    "iterations": 23
+   },
+   "value": 0.047722563869611836
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.24048507892617516,
+    "regularization": 3.526504346781096e-05,
+    "iterations": 139
+   },
+   "value": 0.19218704932503367
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.028766645202123728,
+    "regularization": 2.5614278347329858e-05,
+    "iterations": 149
+   },
+   "value": 0.22283836898424686
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.057747957653276547,
+    "regularization": 3.0387026211818336e-05,
+    "iterations": 291
+   },
+   "value": 0.21003821286254776
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.021955777637967324,
+    "regularization": 0.00042019040374197825,
+    "iterations": 254
+   },
+   "value": 0.1976176808313228
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.018724437577404596,
+    "regularization": 0.0006458798666647802,
+    "iterations": 86
+   },
+   "value": 0.10705874775380954
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.04480925100423039,
+    "regularization": 1.577462800649985e-05,
+    "iterations": 136
+   },
+   "value": 0.21836031421518926
+  },
+  {
+   "params": {
+    "factors": 16,
+    "learning_rate": 0.05189935609876959,
+    "regularization": 1.039673168506586e-05,
+    "iterations": 52
+   },
+   "value": 0.2142523353428862
+  },
+  {
+   "params": {
+    "factors": 64,
+    "learning_rate": 0.01054470070473124,
+    "regularization": 5.365060550504131e-05,
+    "iterations": 150
+   },
+   "value": 0.11236202400071124
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "neighbours": 924,
+  "shrink": 257.8916739395157,
+  "alpha": 0.6827075664134403,
+  "decay_half_life_days": 7.0
+ },
+ "best_value": 0.02898272214325506,
+ "n_trials": 1,
+ "seconds": 2.32946771800016,
+ "trials": [
+  {
+   "params": {
+    "neighbours": 924,
+    "shrink": 257.8916739395157,
+    "alpha": 0.6827075664134403,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.02898272214325506
+  }
+ ],
+ "shared_from": "hm-n1000000-s0"
+}

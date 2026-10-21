@@ -1,0 +1,13 @@
+{
+ "best_params": {},
+ "best_value": 0.14931652307091803,
+ "n_trials": 1,
+ "seconds": 0.004460831000869803,
+ "trials": [
+  {
+   "params": {},
+   "value": 0.14931652307091803
+  }
+ ],
+ "shared_from": null
+}

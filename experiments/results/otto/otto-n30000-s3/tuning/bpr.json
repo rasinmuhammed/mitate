@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "factors": 256,
+  "learning_rate": 0.13390761620865302,
+  "regularization": 0.001919743933833468,
+  "iterations": 160
+ },
+ "best_value": 0.25214339646857514,
+ "n_trials": 1,
+ "seconds": 1.4726057749994652,
+ "trials": [
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.13390761620865302,
+    "regularization": 0.001919743933833468,
+    "iterations": 160
+   },
+   "value": 0.25214339646857514
+  }
+ ],
+ "shared_from": "otto-n30000-s0"
+}

@@ -1,0 +1,13 @@
+{
+ "best_params": {},
+ "best_value": 0.0333140015152528,
+ "n_trials": 1,
+ "seconds": 0.02471698799990918,
+ "trials": [
+  {
+   "params": {},
+   "value": 0.0333140015152528
+  }
+ ],
+ "shared_from": "hm-n100000-s0"
+}

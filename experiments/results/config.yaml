@@ -1,0 +1,39 @@
+# Benchmark of record. Every reported number comes from `python -m bench.run <this file>`.
+# Size buckets are pre-test interaction volumes (what a deployed model has seen); the catalog
+# grows with the store. Five independently sampled stores per bucket.
+results_dir: experiments/results
+seeds: [0, 1, 2, 3, 4]
+buckets:
+  - {n: 1000, items: 200}
+  - {n: 3000, items: 400}
+  - {n: 10000, items: 800}
+  - {n: 30000, items: 1500}
+  - {n: 100000, items: 3000}
+  - {n: 300000, items: 6000}
+  - {n: 1000000, items: 12000}
+
+tuning:
+  trials: 30            # identical for every tunable model (equal budget)
+  val_units: 2000       # validation shoppers (Last target before t_test)
+  neural_trial_budget_s: 900
+  neural_device: mps    # training only; serving and efficiency runs are CPU. MPS kernels are not
+                        # bitwise deterministic, so neural results reproduce up to float noise.
+test:
+  units: 5000           # test shoppers (Successive targets), sampled if more
+  k: 20
+blend:
+  n_cand: 30            # per source
+  ltr_val_units: 1000   # validation shoppers contributing LTR training groups per store
+  ltr_trials: 30
+  variants:             # ablations evaluated with the same pooled-training recipe
+    - {name: full}
+    - {name: rrf, rrf: true}
+    - {name: no_volume, drop_groups: [store]}
+
+datasets:
+  otto:
+    task: next_item
+    exclude_seen: false   # re-viewing/re-carting is legitimate in sessions; repeat vs explore reported
+    models: [pop, recpop, itemknn, rp3beta, ease, ials, bpr, markov, pctm, seqrules, vstan,
+             sasrec_ce, gsasrec, esasrec]
+    blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]

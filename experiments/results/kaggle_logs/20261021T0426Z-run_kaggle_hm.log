@@ -1,0 +1,246 @@
+=== kaggle run 2026-10-21 02:13:05 hm stage=2 buckets=[] ===
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+[LightGBM] [Fatal] Reducing `min_data_in_leaf` with `feature_pre_filter=true` may cause unexpected behaviour for features that were pre-filtered by the larger `min_data_in_leaf`.
+You need to set `feature_pre_filter=false` to dynamically change the `min_data_in_leaf`.
+/tmp/mitate/.venv/lib/python3.12/site-packages/implicit/cpu/als.py:96: RuntimeWarning: OpenBLAS is configured to use 4 threads. It is highly recommended to disable its internal threadpool by setting the environment variable 'OPENBLAS_NUM_THREADS=1' or by calling 'threadpoolctl.threadpool_limits(1, "blas")'. Having OpenBLAS use a threadpool can lead to severe performance issues here.
+  check_blas_config()
+[hm-n1000-s0] mitate variants done
+[hm-n1000-s2] mitate variants done
+[hm-n1000-s3] mitate variants done
+[hm-n1000-s4] mitate variants done
+[hm-n1000-s5] mitate variants done
+[hm-n3000-s0] mitate variants done
+[hm-n3000-s1] mitate variants done
+[hm-n3000-s2] mitate variants done
+[hm-n3000-s3] mitate variants done
+[hm-n3000-s4] mitate variants done
+[hm-n10000-s0] mitate variants done
+[hm-n10000-s1] mitate variants done
+[hm-n10000-s2] mitate variants done
+[hm-n10000-s3] mitate variants done
+[hm-n10000-s4] mitate variants done
+[hm-n30000-s0] mitate variants done
+[hm-n30000-s1] mitate variants done
+[hm-n30000-s2] mitate variants done
+[hm-n30000-s3] mitate variants done
+[hm-n30000-s4] mitate variants done
+[hm-n100000-s0] mitate variants done
+[hm-n100000-s1] mitate variants done
+[hm-n100000-s2] mitate variants done
+[hm-n100000-s3] mitate variants done
+[hm-n100000-s4] mitate variants done
+[hm-n300000-s0] mitate variants done
+[hm-n300000-s1] mitate variants done
+[hm-n300000-s2] mitate variants done
+[hm-n300000-s3] mitate variants done
+[hm-n300000-s4] mitate variants done
+[hm-n1000000-s0] mitate variants done
+[hm-n1000000-s1] mitate variants done
+[hm-n1000000-s2] mitate variants done
+[hm-n1000000-s3] mitate variants done
+[hm-n1000000-s4] mitate variants done

@@ -1,0 +1,13 @@
+{
+ "best_params": {},
+ "best_value": 0.01690218731228137,
+ "n_trials": 1,
+ "seconds": 0.03289264399973035,
+ "trials": [
+  {
+   "params": {},
+   "value": 0.01690218731228137
+  }
+ ],
+ "shared_from": "otto-n100000-s0"
+}

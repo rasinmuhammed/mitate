@@ -1,0 +1,27 @@
+{
+ "best_params": {
+  "window": 3,
+  "rule_kernel": "linear",
+  "idf": true,
+  "prune": 20,
+  "max_len": 10,
+  "hist_kernel": "same"
+ },
+ "best_value": 0.20200440367936082,
+ "n_trials": 1,
+ "seconds": 0.218220361000931,
+ "trials": [
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.20200440367936082
+  }
+ ],
+ "shared_from": "otto-n300000-s0"
+}

@@ -1,0 +1,50 @@
+{
+ "summary": {
+  "ndcg@5": 0.0,
+  "recall@5": 0.0,
+  "mrr@5": 0.0,
+  "hit@5": 0.0,
+  "ndcg@10": 0.0,
+  "recall@10": 0.0,
+  "mrr@10": 0.0,
+  "hit@10": 0.0,
+  "ndcg@20": 0.0,
+  "recall@20": 0.0,
+  "mrr@20": 0.0,
+  "hit@20": 0.0,
+  "recall_rep@10": NaN,
+  "hit_rep@10": NaN,
+  "recall_rep@20": NaN,
+  "hit_rep@20": NaN,
+  "recall_expl@10": 0.0,
+  "hit_expl@10": 0.0,
+  "recall_expl@20": 0.0,
+  "hit_expl@20": 0.0,
+  "repr@10": 0.0,
+  "novelty@10": 10.257981193468677,
+  "arp@10": 1.0166666666666666,
+  "aplt@10": 1.0
+ },
+ "store_level": {
+  "coverage@10": 0.031746031746031744,
+  "coverage@20": 0.06084656084656084,
+  "gini@10": 0.973427395649618,
+  "entropy@10": 2.3454969240293266,
+  "n_queries": 18,
+  "n_units": 18,
+  "n_rep_targets": 0,
+  "n_expl_targets": 18
+ },
+ "params": {
+  "window": 3,
+  "count_kernel": "inv:0.5",
+  "tau_rel": 0.6169300530668231,
+  "hist_kernel": "tail:7:0.8:0.6",
+  "lam": -0.6973851606025521
+ },
+ "tune_s": 5.967137064000099,
+ "fit_s": 0.0008299649998662062,
+ "predict_s": 0.000759689000005892,
+ "total_s": 5.969699993999939,
+ "val_ndcg@10": 0.12339025419740704
+}

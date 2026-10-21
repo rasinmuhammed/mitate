@@ -1,0 +1,31 @@
+{
+ "best_params": {
+  "d": 128,
+  "n_blocks": 3,
+  "heads": 2,
+  "max_len": 20,
+  "dropout": 0.3353189348090797,
+  "lr": 0.0002277370342677345,
+  "weight_decay": 4.411959206764395e-06,
+  "epochs": 61
+ },
+ "best_value": 0.17742209697006586,
+ "n_trials": 1,
+ "seconds": 23.57586144799916,
+ "trials": [
+  {
+   "params": {
+    "d": 128,
+    "n_blocks": 3,
+    "heads": 2,
+    "max_len": 20,
+    "dropout": 0.3353189348090797,
+    "lr": 0.0002277370342677345,
+    "weight_decay": 4.411959206764395e-06
+   },
+   "value": 0.17742209697006586,
+   "epochs": 61
+  }
+ ],
+ "shared_from": "otto-n30000-s0"
+}

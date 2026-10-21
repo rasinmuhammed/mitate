@@ -1,0 +1,17 @@
+{
+ "best_params": {
+  "half_life_days": 1.1644814042408844
+ },
+ "best_value": 0.0055501655541609135,
+ "n_trials": 1,
+ "seconds": 0.12666024600184755,
+ "trials": [
+  {
+   "params": {
+    "half_life_days": 1.1644814042408844
+   },
+   "value": 0.0055501655541609135
+  }
+ ],
+ "shared_from": "otto-n1000000-s0"
+}

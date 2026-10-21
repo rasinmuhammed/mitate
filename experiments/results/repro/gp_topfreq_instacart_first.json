@@ -1,0 +1,25 @@
+{
+  "tiebreak": "first",
+  "users": 19435,
+  "items": 13897,
+  "measured": {
+    "recall@10": 0.3304239840921,
+    "ndcg_li2023@10": 0.341747374943503,
+    "ndcg@10": 0.3866040522194184,
+    "phr@10": 0.8422433753537433,
+    "recall@20": 0.43608501202596567,
+    "g_topfreq_recall_rep@10": 0.10020874819235397
+  },
+  "expected": {
+    "recall@10": 0.3304,
+    "ndcg_li2023@10": 0.3417,
+    "phr@10": 0.8422,
+    "g_topfreq_recall_rep@10": 0.1002
+  },
+  "abs_diff": {
+    "recall@10": 2e-05,
+    "ndcg_li2023@10": 5e-05,
+    "phr@10": 4e-05,
+    "g_topfreq_recall_rep@10": 1e-05
+  }
+}

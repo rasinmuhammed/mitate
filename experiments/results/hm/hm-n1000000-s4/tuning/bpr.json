@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "factors": 256,
+  "learning_rate": 0.06008571445079265,
+  "regularization": 0.002029536243043473,
+  "iterations": 141
+ },
+ "best_value": 0.019611261262117177,
+ "n_trials": 1,
+ "seconds": 119.46790392399998,
+ "trials": [
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.06008571445079265,
+    "regularization": 0.002029536243043473,
+    "iterations": 141
+   },
+   "value": 0.019611261262117177
+  }
+ ],
+ "shared_from": "hm-n1000000-s0"
+}

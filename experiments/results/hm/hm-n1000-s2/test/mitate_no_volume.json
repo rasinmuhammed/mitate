@@ -1,0 +1,41 @@
+{
+ "summary": {
+  "ndcg@5": 0.0,
+  "recall@5": 0.0,
+  "mrr@5": 0.0,
+  "hit@5": 0.0,
+  "ndcg@10": 0.07886621919643219,
+  "recall@10": 0.25,
+  "mrr@10": 0.03125,
+  "hit@10": 0.25,
+  "ndcg@20": 0.11373408740282342,
+  "recall@20": 0.375,
+  "mrr@20": 0.04261363636363637,
+  "hit@20": 0.375,
+  "recall_rep@10": NaN,
+  "hit_rep@10": NaN,
+  "recall_rep@20": NaN,
+  "hit_rep@20": NaN,
+  "recall_expl@10": 0.25,
+  "hit_expl@10": 0.25,
+  "recall_expl@20": 0.375,
+  "hit_expl@20": 0.375,
+  "repr@10": 0.0,
+  "novelty@10": 7.251420544857955,
+  "arp@10": 9.8,
+  "aplt@10": 0.5
+ },
+ "store_level": {
+  "coverage@10": 0.055865921787709494,
+  "coverage@20": 0.11173184357541899,
+  "gini@10": 0.9441340782122905,
+  "entropy@10": 2.3025850929940455,
+  "n_queries": 8,
+  "n_units": 8,
+  "n_rep_targets": 0,
+  "n_expl_targets": 8
+ },
+ "variant": "no_volume",
+ "fit_s": 0.20807213799980673,
+ "predict_s": 0.07469867300005717
+}

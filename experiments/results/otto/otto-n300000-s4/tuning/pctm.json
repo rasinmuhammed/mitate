@@ -1,0 +1,25 @@
+{
+ "best_params": {
+  "window": 10,
+  "count_kernel": "exp:0.7",
+  "tau_rel": 0.1488974784375703,
+  "hist_kernel": "exp:0.8",
+  "lam": 0.028368352743357472
+ },
+ "best_value": 0.17696921365036142,
+ "n_trials": 1,
+ "seconds": 0.17412377999971795,
+ "trials": [
+  {
+   "params": {
+    "window": 10,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 0.1488974784375703,
+    "hist_kernel": "exp:0.8",
+    "lam": 0.028368352743357472
+   },
+   "value": 0.17696921365036142
+  }
+ ],
+ "shared_from": "otto-n300000-s0"
+}

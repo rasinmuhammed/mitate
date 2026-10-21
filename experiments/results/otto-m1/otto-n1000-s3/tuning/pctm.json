@@ -1,0 +1,314 @@
+{
+ "best_params": {
+  "window": 3,
+  "count_kernel": "u",
+  "tau_rel": 0.019454378135241118,
+  "hist_kernel": "tail:7:0.8:0.6",
+  "lam": 0.28562905951567463
+ },
+ "best_value": 0.18330724939182025,
+ "n_trials": 30,
+ "seconds": 3.3230601249997562,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "inv:1",
+    "tau_rel": 0.21010168283379807,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": -0.11370577387547376
+   },
+   "value": 0.12558489180104487
+  },
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "inv:1",
+    "tau_rel": 2.1925236847600367,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.008575513869220508
+   },
+   "value": 0.13331698768020736
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "inv:0.5",
+    "tau_rel": 0.2551647899337834,
+    "hist_kernel": "exp:0.8",
+    "lam": -0.5747682063516852
+   },
+   "value": 0.0986553802719503
+  },
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "u",
+    "tau_rel": 1.7387561107593505,
+    "hist_kernel": "last",
+    "lam": -0.14080919519668744
+   },
+   "value": 0.11590170653384714
+  },
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "inv:0.5",
+    "tau_rel": 0.2662354189690001,
+    "hist_kernel": "last",
+    "lam": -0.849843483127833
+   },
+   "value": 0.09087062720418584
+  },
+  {
+   "params": {
+    "window": 20,
+    "count_kernel": "u",
+    "tau_rel": 3.2929047866544248,
+    "hist_kernel": "exp:0.6",
+    "lam": 0.3709629005089067
+   },
+   "value": 0.0705889202351513
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 0.42734928314193926,
+    "hist_kernel": "exp:0.6",
+    "lam": -0.3170809577786705
+   },
+   "value": 0.13199845189367074
+  },
+  {
+   "params": {
+    "window": 20,
+    "count_kernel": "inv:0.5",
+    "tau_rel": 1.5564112897481026,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": -0.3467191657372108
+   },
+   "value": 0.05003961521784543
+  },
+  {
+   "params": {
+    "window": 20,
+    "count_kernel": "inv:1",
+    "tau_rel": 4.860836176712234,
+    "hist_kernel": "exp:0.6",
+    "lam": -0.762949517947759
+   },
+   "value": 0.035516467512123166
+  },
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "u",
+    "tau_rel": 0.028921487482134023,
+    "hist_kernel": "exp:0.6",
+    "lam": -0.6391445194981015
+   },
+   "value": 0.12764663678730695
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.019454378135241118,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.28562905951567463
+   },
+   "value": 0.18330724939182025
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.29401854485186213,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.29328360572302226
+   },
+   "value": 0.17946228546670004
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.08884520022713102,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.3001088120378125
+   },
+   "value": 0.18330724939182025
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 0.06642779705837237,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.10158233460739652
+   },
+   "value": 0.1607175405346706
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.017161195978606752,
+    "hist_kernel": "last",
+    "lam": 0.31714114445865765
+   },
+   "value": 0.1568995720173404
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "inv:1",
+    "tau_rel": 0.0355330279261296,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.4693336741275708
+   },
+   "value": 0.1635817471102618
+  },
+  {
+   "params": {
+    "window": 10,
+    "count_kernel": "u",
+    "tau_rel": 0.014315613082589487,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.06613582813417951
+   },
+   "value": 0.1690361401914686
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.04406917325049089,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": -0.3825554023136415
+   },
+   "value": 0.14066296856815397
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.06990169294914617,
+    "hist_kernel": "exp:0.4",
+    "lam": 0.4097042282879344
+   },
+   "value": 0.16842829526741482
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "inv:1",
+    "tau_rel": 0.03414095128468885,
+    "hist_kernel": "exp:0.6",
+    "lam": 0.1416087641003731
+   },
+   "value": 0.1461375005007202
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "exp:0.5",
+    "tau_rel": 0.010667370217465952,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": -0.05080018311983148
+   },
+   "value": 0.13670276973634826
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.5070829422429018,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.17633974591382967
+   },
+   "value": 0.18330724939182025
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.11173670170573821,
+    "hist_kernel": "exp:0.6",
+    "lam": 0.16880226653869282
+   },
+   "value": 0.17109458149536125
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 1.1886943491495796,
+    "hist_kernel": "exp:0.8",
+    "lam": 0.2594018990563016
+   },
+   "value": 0.12581076065984678
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "u",
+    "tau_rel": 0.9650673151158322,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": -0.26379818253738624
+   },
+   "value": 0.11986518740191193
+  },
+  {
+   "params": {
+    "window": 10,
+    "count_kernel": "exp:0.5",
+    "tau_rel": 0.29517122754894176,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.05107873519468867
+   },
+   "value": 0.14489506443651434
+  },
+  {
+   "params": {
+    "window": 10,
+    "count_kernel": "u",
+    "tau_rel": 0.047601793009764644,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.23134403988224833
+   },
+   "value": 0.18185665301198145
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 3.311812610543807,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.4440027738010742
+   },
+   "value": 0.050100069902508024
+  },
+  {
+   "params": {
+    "window": 10,
+    "count_kernel": "u",
+    "tau_rel": 0.40962857463449515,
+    "hist_kernel": "tail:7:0.8:0.6",
+    "lam": 0.4645436092414914
+   },
+   "value": 0.14864233830119375
+  },
+  {
+   "params": {
+    "window": 3,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 0.02210660475869903,
+    "hist_kernel": "last",
+    "lam": -0.18301197971364863
+   },
+   "value": 0.13001611031210888
+  }
+ ]
+}

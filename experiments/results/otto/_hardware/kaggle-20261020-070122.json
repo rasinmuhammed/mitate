@@ -1,0 +1,19 @@
+{
+ "started_utc": "2026-10-20T07:01:22Z",
+ "buckets": [
+  30000
+ ],
+ "gpu": "Tesla T4, 15360 MiB, 580.178.04\nTesla T4, 15360 MiB, 580.178.04",
+ "cpu": "Intel(R) Xeon(R) CPU @ 2.00GHz",
+ "cpu_count": 4,
+ "ram_gb": 31.3,
+ "torch": "2.14.1+cu130 True Tesla T4",
+ "python": "Python 3.12.3",
+ "config_changes": {
+  "tuning.neural_device": [
+   "mps",
+   "cuda"
+  ]
+ },
+ "store_fingerprint_otto-n1000-s1": "d5376154c1bb020cd8884ea8db67a72d2cd5515fbe454de2e26348d6e7bee4b2"
+}

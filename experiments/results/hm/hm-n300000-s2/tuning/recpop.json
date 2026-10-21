@@ -1,0 +1,17 @@
+{
+ "best_params": {
+  "half_life_days": 4.085867452415996
+ },
+ "best_value": 0.038463276253222684,
+ "n_trials": 1,
+ "seconds": 0.11794592699970963,
+ "trials": [
+  {
+   "params": {
+    "half_life_days": 4.085867452415996
+   },
+   "value": 0.038463276253222684
+  }
+ ],
+ "shared_from": "hm-n300000-s0"
+}

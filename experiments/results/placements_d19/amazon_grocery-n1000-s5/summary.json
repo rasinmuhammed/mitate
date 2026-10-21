@@ -1,0 +1,590 @@
+{
+ "store": "amazon_grocery-n1000-s5",
+ "stats": {
+  "n_items": 272,
+  "n_items_target": 300,
+  "n_events_pre_test": 1002,
+  "n_events_test": 35,
+  "n_users_known": 955,
+  "n_sessions": 999,
+  "anon_share": 0.0,
+  "cold_test_items": 3
+ },
+ "also_view": {
+  "anchors": {
+   "dev": 5,
+   "test": 5
+  },
+  "targets_per_anchor": 1.8,
+  "params": {
+   "itemknn": {
+    "neighbours": 15,
+    "shrink": 870.7323061773764,
+    "alpha": 0.20671915533942642,
+    "decay_half_life_days": 0.0,
+    "dev": 0.0
+   },
+   "ease": {
+    "lam": 12.881482725481,
+    "dev": 0.0
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.10286743589899472,
+    "recall@10": 0.15,
+    "hit@10": 0.2,
+    "recall@20": 0.15,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.5585186451010365,
+    "recall@10": 0.7,
+    "hit@10": 0.8,
+    "recall@20": 0.95,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.03903800499921017,
+    "recall@10": 0.05,
+    "hit@10": 0.2,
+    "recall@20": 0.05,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.5103965969692051,
+    "recall@10": 0.9,
+    "hit@10": 1.0,
+    "recall@20": 0.95,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.03362550725422349,
+    "recall@10": 0.05,
+    "hit@10": 0.2,
+    "recall@20": 0.1,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.15280197828134529,
+    "recall@10": 0.4,
+    "hit@10": 0.4,
+    "recall@20": 0.7,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.10286743589899472,
+    "recall@10": 0.15,
+    "hit@10": 0.2,
+    "recall@20": 0.15,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.5103965969692051,
+    "recall@10": 0.9,
+    "hit@10": 1.0,
+    "recall@20": 0.95,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.5103965969692051,
+    "recall@10": 0.9,
+    "hit@10": 1.0,
+    "recall@20": 0.95,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.11666832210298664,
+    "recall@10": 0.2,
+    "hit@10": 0.4,
+    "recall@20": 0.2,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.48901833739847744,
+    "recall@10": 0.7333333333333333,
+    "hit@10": 0.8,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.6198355961137398,
+    "recall@10": 0.9333333333333332,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.3071338717350719,
+    "recall@10": 0.4666666666666666,
+    "hit@10": 0.6,
+    "recall@20": 0.8,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.11666832210298664,
+    "recall@10": 0.2,
+    "hit@10": 0.4,
+    "recall@20": 0.2,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.6198355961137398,
+    "recall@10": 0.9333333333333332,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.6198355961137398,
+    "recall@10": 0.9333333333333332,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "also_buy": {
+  "anchors": {
+   "dev": 4,
+   "test": 5
+  },
+  "targets_per_anchor": 1.6,
+  "params": {
+   "itemknn": {
+    "neighbours": 15,
+    "shrink": 870.7323061773764,
+    "alpha": 0.20671915533942642,
+    "decay_half_life_days": 0.0,
+    "dev": 0.0
+   },
+   "ease": {
+    "lam": 12.881482725481,
+    "dev": 0.0
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.4753617445708407,
+    "recall@10": 0.6041666666666666,
+    "hit@10": 1.0,
+    "recall@20": 0.6041666666666666,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.8121535712619188,
+    "recall@10": 0.875,
+    "hit@10": 1.0,
+    "recall@20": 0.9375,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.042031884067779364,
+    "recall@10": 0.0625,
+    "hit@10": 0.25,
+    "recall@20": 0.0625,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.4731988127570678,
+    "recall@10": 0.7916666666666666,
+    "hit@10": 1.0,
+    "recall@20": 0.875,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.23546031562428266,
+    "recall@10": 0.4375,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.4753617445708407,
+    "recall@10": 0.6041666666666666,
+    "hit@10": 1.0,
+    "recall@20": 0.6041666666666666,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.2544841398037816,
+    "recall@10": 0.5666666666666667,
+    "hit@10": 0.8,
+    "recall@20": 0.5666666666666667,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.5031943636544824,
+    "recall@10": 0.6333333333333333,
+    "hit@10": 0.8,
+    "recall@20": 0.8,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.5573770480065964,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0861353116146786,
+    "recall@10": 0.2,
+    "hit@10": 0.2,
+    "recall@20": 0.2,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.12691771847337902,
+    "recall@10": 0.2333333333333333,
+    "hit@10": 0.4,
+    "recall@20": 0.4,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.33343209099324045,
+    "recall@10": 0.5666666666666667,
+    "hit@10": 0.8,
+    "recall@20": 0.5666666666666667,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.12262943855309168,
+    "recall@10": 0.1,
+    "hit@10": 0.2,
+    "recall@20": 0.1,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.12262943855309168,
+    "recall@10": 0.1,
+    "hit@10": 0.2,
+    "recall@20": 0.1,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.0861353116146786,
+    "recall@10": 0.2,
+    "hit@10": 0.2,
+    "recall@20": 0.2,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.0861353116146786,
+    "recall@10": 0.2,
+    "hit@10": 0.2,
+    "recall@20": 0.2,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "also_buy_cross": {
+  "anchors": {
+   "dev": 1,
+   "test": 1
+  },
+  "targets_per_anchor": 1.0,
+  "params": {
+   "itemknn": {
+    "neighbours": 15,
+    "shrink": 870.7323061773764,
+    "alpha": 0.20671915533942642,
+    "decay_half_life_days": 0.0,
+    "dev": 0.0
+   },
+   "ease": {
+    "lam": 12.881482725481,
+    "dev": 0.0
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.38685280723454163,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.43067655807339306,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.43067655807339306,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.43067655807339306,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.38685280723454163,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.43067655807339306,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.38685280723454163,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "seconds": 60.44100704199809
+}

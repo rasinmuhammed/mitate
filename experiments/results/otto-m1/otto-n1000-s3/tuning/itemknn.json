@@ -1,0 +1,283 @@
+{
+ "best_params": {
+  "neighbours": 5,
+  "shrink": 681.5045069490388,
+  "alpha": 0.5337830649422949,
+  "decay_half_life_days": 0.0
+ },
+ "best_value": 0.1590900739145352,
+ "n_trials": 30,
+ "seconds": 47.16508487500323,
+ "trials": [
+  {
+   "params": {
+    "neighbours": 88,
+    "shrink": 708.1478226181048,
+    "alpha": 0.2909047389129443,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 440.8098436506365,
+    "alpha": 0.029876210878566956,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.1519787668511021
+  },
+  {
+   "params": {
+    "neighbours": 5,
+    "shrink": 558.854087990882,
+    "alpha": 0.2592524469074654,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.15253395458655394
+  },
+  {
+   "params": {
+    "neighbours": 85,
+    "shrink": 780.314764511367,
+    "alpha": 0.30636353237617975,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 592,
+    "shrink": 845.7508712931793,
+    "alpha": 0.37799404132888914,
+    "decay_half_life_days": 1.0
+   },
+   "value": 0.1441617662838972
+  },
+  {
+   "params": {
+    "neighbours": 40,
+    "shrink": 468.94024869916905,
+    "alpha": 0.26923557825106126,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 20,
+    "shrink": 454.6220755219468,
+    "alpha": 0.20541034460498753,
+    "decay_half_life_days": 1.0
+   },
+   "value": 0.14210332498000458
+  },
+  {
+   "params": {
+    "neighbours": 206,
+    "shrink": 746.7462231020046,
+    "alpha": 0.6910929218557643,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15130862452914018
+  },
+  {
+   "params": {
+    "neighbours": 26,
+    "shrink": 445.14504926353203,
+    "alpha": 0.061528930829939266,
+    "decay_half_life_days": 1.0
+   },
+   "value": 0.14141607665125056
+  },
+  {
+   "params": {
+    "neighbours": 225,
+    "shrink": 475.0886106344313,
+    "alpha": 0.5966637746018628,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14210332498000458
+  },
+  {
+   "params": {
+    "neighbours": 11,
+    "shrink": 117.62005648615849,
+    "alpha": 0.6342031301171644,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14141607665125056
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 395.49724334816125,
+    "alpha": 0.019158353231604794,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.1519787668511021
+  },
+  {
+   "params": {
+    "neighbours": 10,
+    "shrink": 147.7106666863471,
+    "alpha": 0.3093006966327046,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 64,
+    "shrink": 265.3877214720389,
+    "alpha": 0.009756992087091607,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 519.7520556829523,
+    "alpha": 0.5326845157548857,
+    "decay_half_life_days": 30.0
+   },
+   "value": 0.15243896567210571
+  },
+  {
+   "params": {
+    "neighbours": 5,
+    "shrink": 485.61179767713594,
+    "alpha": 0.40379960707642193,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.15253395458655394
+  },
+  {
+   "params": {
+    "neighbours": 19,
+    "shrink": 765.2619233359917,
+    "alpha": 0.06701277602421901,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 8,
+    "shrink": 438.7009929562213,
+    "alpha": 0.39898390522351634,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.1515185680300985
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 617.1594741165853,
+    "alpha": 0.32508954863366546,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.1519787668511021
+  },
+  {
+   "params": {
+    "neighbours": 12,
+    "shrink": 807.7560154946144,
+    "alpha": 0.6650984014913734,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14210332498000458
+  },
+  {
+   "params": {
+    "neighbours": 16,
+    "shrink": 204.4752858016834,
+    "alpha": 0.18791306778851585,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.14040069009479514
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 265.6879088496113,
+    "alpha": 0.5811916426322223,
+    "decay_half_life_days": 7.0
+   },
+   "value": 0.15243896567210571
+  },
+  {
+   "params": {
+    "neighbours": 5,
+    "shrink": 681.5045069490388,
+    "alpha": 0.5337830649422949,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.1590900739145352
+  },
+  {
+   "params": {
+    "neighbours": 12,
+    "shrink": 600.6183431827217,
+    "alpha": 0.42174743177931756,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15029323797268473
+  },
+  {
+   "params": {
+    "neighbours": 11,
+    "shrink": 283.6700160215254,
+    "alpha": 0.450991409682849,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15029323797268473
+  },
+  {
+   "params": {
+    "neighbours": 12,
+    "shrink": 665.9409180069633,
+    "alpha": 0.6343518493284187,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15075343679368836
+  },
+  {
+   "params": {
+    "neighbours": 5,
+    "shrink": 905.1428436446608,
+    "alpha": 0.47717122736425527,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.1586298750935316
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 778.7657343775195,
+    "alpha": 0.5147176249120882,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15680102074645774
+  },
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 916.7256261518428,
+    "alpha": 0.6331828975739429,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15680102074645774
+  },
+  {
+   "params": {
+    "neighbours": 26,
+    "shrink": 869.8111398908184,
+    "alpha": 0.38819623424558597,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15029323797268473
+  }
+ ]
+}

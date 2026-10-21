@@ -1,0 +1,11 @@
+{
+ "n_items": 5975,
+ "n_items_target": 6000,
+ "n_items_requested": 6000,
+ "n_events_pre_test": 300002,
+ "n_events_test": 2206,
+ "n_users_known": 70430,
+ "n_sessions": 207978,
+ "anon_share": 0.0,
+ "cold_test_items": 1
+}

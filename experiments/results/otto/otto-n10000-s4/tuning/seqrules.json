@@ -1,0 +1,346 @@
+{
+ "best_params": {
+  "window": 5,
+  "rule_kernel": "linear",
+  "idf": true,
+  "prune": 20,
+  "max_len": 20,
+  "hist_kernel": "log"
+ },
+ "best_value": 0.20291449810314915,
+ "n_trials": 30,
+ "seconds": 7.1617858659992635,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "div"
+   },
+   "value": 0.18396418384162835
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 5,
+    "hist_kernel": "div"
+   },
+   "value": 0.18656859377149243
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 200,
+    "max_len": 1,
+    "hist_kernel": "log"
+   },
+   "value": 0.1308031581464901
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 100,
+    "max_len": 1,
+    "hist_kernel": "div"
+   },
+   "value": 0.1552668921622978
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "log",
+    "idf": false,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.19156753878280688
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "linear"
+   },
+   "value": 0.16738994022627915
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.1939567834018344
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "quadratic",
+    "idf": false,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "log"
+   },
+   "value": 0.18518994060401564
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "div"
+   },
+   "value": 0.18345289167771636
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "div"
+   },
+   "value": 0.1831380196656559
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.19578107972813577
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.17161568125575555
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 200,
+    "max_len": 20,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.17031132342933683
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.19578107972813577
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "linear"
+   },
+   "value": 0.19199028975283564
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 0,
+    "max_len": 3,
+    "hist_kernel": "same"
+   },
+   "value": 0.1862004829342747
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 200,
+    "max_len": 1,
+    "hist_kernel": "same"
+   },
+   "value": 0.1399412732067629
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.19133445981306113
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.18680317002168853
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.1693092929055179
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.19173692546848553
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "same"
+   },
+   "value": 0.1939567834018344
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.1925542210972435
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.20046419555436912
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.20291449810314915
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.20291449810314915
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.20290426465595005
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.19907996292455313
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.20290426465595005
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 20,
+    "max_len": 20,
+    "hist_kernel": "log"
+   },
+   "value": 0.19907801326801197
+  }
+ ],
+ "shared_from": null
+}

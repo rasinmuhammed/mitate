@@ -1,0 +1,284 @@
+{
+ "best_params": {
+  "factors": 16,
+  "regularization": 0.203027755554432,
+  "alpha": 3.0448310042703133,
+  "iterations": 17
+ },
+ "best_value": 0.2704437551874314,
+ "n_trials": 30,
+ "seconds": 24.262985369000035,
+ "trials": [
+  {
+   "params": {
+    "factors": 32,
+    "regularization": 0.750524162234955,
+    "alpha": 2.0547625125911337,
+    "iterations": 28
+   },
+   "value": 0.24126616561378816
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 35.775015430826976,
+    "alpha": 0.16334587611069498,
+    "iterations": 7
+   },
+   "value": 0.03516574214203849
+  },
+  {
+   "params": {
+    "factors": 256,
+    "regularization": 6.236650188352657,
+    "alpha": 2.4234724484675927,
+    "iterations": 25
+   },
+   "value": 0.25511113816195274
+  },
+  {
+   "params": {
+    "factors": 128,
+    "regularization": 0.030758959477348594,
+    "alpha": 0.6218230782016851,
+    "iterations": 25
+   },
+   "value": 0.2156336929761586
+  },
+  {
+   "params": {
+    "factors": 128,
+    "regularization": 0.5030416925289531,
+    "alpha": 67.80227021579829,
+    "iterations": 22
+   },
+   "value": 0.2032725300061955
+  },
+  {
+   "params": {
+    "factors": 64,
+    "regularization": 1.0563971422974847,
+    "alpha": 0.42770830499620704,
+    "iterations": 8
+   },
+   "value": 0.24789617876776207
+  },
+  {
+   "params": {
+    "factors": 256,
+    "regularization": 0.00040951410463904096,
+    "alpha": 0.423282455862012,
+    "iterations": 9
+   },
+   "value": 0.17214329692763716
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0004594633206288106,
+    "alpha": 9.310837957239837,
+    "iterations": 8
+   },
+   "value": 0.2566695547844865
+  },
+  {
+   "params": {
+    "factors": 256,
+    "regularization": 0.0003772162969353184,
+    "alpha": 84.99206771743685,
+    "iterations": 17
+   },
+   "value": 0.18309409025780876
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0005262345608214047,
+    "alpha": 0.7734292502064646,
+    "iterations": 8
+   },
+   "value": 0.23702322067272077
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 11.549501543656692,
+    "alpha": 84.83309920685099,
+    "iterations": 11
+   },
+   "value": 0.2408561275777215
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0016939528813217691,
+    "alpha": 10.613262434230492,
+    "iterations": 19
+   },
+   "value": 0.25966204812224664
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0005255683151264338,
+    "alpha": 19.47127271726605,
+    "iterations": 5
+   },
+   "value": 0.2383599186661352
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0020253723880092555,
+    "alpha": 5.419525855779166,
+    "iterations": 20
+   },
+   "value": 0.25160277705512846
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.2518603389372168,
+    "alpha": 4.544298894123082,
+    "iterations": 8
+   },
+   "value": 0.25360436834033595
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.04116776993071063,
+    "alpha": 36.42850269279381,
+    "iterations": 15
+   },
+   "value": 0.24180823339901275
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.009084894815938733,
+    "alpha": 36.27046457151592,
+    "iterations": 29
+   },
+   "value": 0.24150625794040764
+  },
+  {
+   "params": {
+    "factors": 128,
+    "regularization": 0.00032916535445140786,
+    "alpha": 7.062901532896519,
+    "iterations": 15
+   },
+   "value": 0.219097024876149
+  },
+  {
+   "params": {
+    "factors": 256,
+    "regularization": 0.0006369267768558362,
+    "alpha": 2.296135140578268,
+    "iterations": 26
+   },
+   "value": 0.17599825492168675
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.005563044011316961,
+    "alpha": 26.230755203400932,
+    "iterations": 23
+   },
+   "value": 0.24264373272814085
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.01981794469173751,
+    "alpha": 4.882144834544567,
+    "iterations": 29
+   },
+   "value": 0.2576534697092499
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.00027752869947833124,
+    "alpha": 11.294185574135035,
+    "iterations": 27
+   },
+   "value": 0.25590929444281973
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.012200062649855995,
+    "alpha": 8.579878931886793,
+    "iterations": 29
+   },
+   "value": 0.255619681105058
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.0017666750619653978,
+    "alpha": 1.1096169595069678,
+    "iterations": 16
+   },
+   "value": 0.2541348535895508
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.006394228555771553,
+    "alpha": 1.8356422348932222,
+    "iterations": 21
+   },
+   "value": 0.2628803406245253
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.13129258111398429,
+    "alpha": 3.9570921082188932,
+    "iterations": 18
+   },
+   "value": 0.26165448050318
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.7535000054406563,
+    "alpha": 1.953542201759099,
+    "iterations": 20
+   },
+   "value": 0.2664290929940305
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.203027755554432,
+    "alpha": 3.0448310042703133,
+    "iterations": 17
+   },
+   "value": 0.2704437551874314
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 3.4328549797844343,
+    "alpha": 4.083030280816892,
+    "iterations": 15
+   },
+   "value": 0.26671538309888365
+  },
+  {
+   "params": {
+    "factors": 16,
+    "regularization": 0.23923713275525957,
+    "alpha": 3.145680325464952,
+    "iterations": 13
+   },
+   "value": 0.2683509623497733
+  }
+ ],
+ "shared_from": null
+}

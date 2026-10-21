@@ -1,0 +1,26 @@
+train users 116677, items 20108, nnz 8538846, val 10000, test 10000 (6s)
+{
+  "recall_capped@20": 0.39049144113153783,
+  "recall_capped@50": 0.5214972345916195,
+  "ndcg@100": 0.4202016016846105,
+  "n_users": 10000,
+  "se_ndcg@100": 0.0021395537038720706
+}
+      170.55 real       110.27 user        41.87 sys
+          3312533504  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+            12080848  page reclaims
+               33743  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                4436  voluntary context switches
+              611767  involuntary context switches
+           141351294  instructions retired
+            63262771  cycles elapsed
+            11633472  peak memory footprint

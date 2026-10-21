@@ -1,0 +1,25 @@
+{
+ "best_params": {
+  "window": 5,
+  "count_kernel": "exp:0.7",
+  "tau_rel": 0.10300972341138989,
+  "hist_kernel": "exp:0.6",
+  "lam": 0.02222535916169105
+ },
+ "best_value": 0.07077052895162643,
+ "n_trials": 1,
+ "seconds": 0.6129246189993864,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "count_kernel": "exp:0.7",
+    "tau_rel": 0.10300972341138989,
+    "hist_kernel": "exp:0.6",
+    "lam": 0.02222535916169105
+   },
+   "value": 0.07077052895162643
+  }
+ ],
+ "shared_from": "hm-n1000000-s0"
+}

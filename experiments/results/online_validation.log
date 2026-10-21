@@ -1,0 +1,11 @@
+rare_buyers 5000 {"true_rel_lift": 0.10000000000000009, "mean_estimate": 0.12181752309669323, "bias": 0.021817523096693138, "sd_estimate": 0.2474320997500017, "ci95_coverage": 0.95, "mean_variance_reduction": 0.008009478648121135}
+rare_buyers 20000 {"true_rel_lift": 0.1000000000000001, "mean_estimate": 0.10028235807580387, "bias": 0.0002823580758037707, "sd_estimate": 0.12366024336096679, "ci95_coverage": 0.944, "mean_variance_reduction": 0.0048768242361924095}
+{'regime': 'rare_buyers', 'rel_mde': 0.05, 'visitors_required_formula': 729354, 'simulated_power_at_that_n': np.float64(0.779), 'target_power': 0.8}
+{'regime': 'rare_buyers', 'rel_mde': 0.1, 'visitors_required_formula': 182339, 'simulated_power_at_that_n': np.float64(0.772), 'target_power': 0.8}
+repeat_grocery 5000 {"true_rel_lift": 0.10000000000000009, "mean_estimate": 0.09970021297667243, "bias": -0.00029978702332765695, "sd_estimate": 0.04365918678245674, "ci95_coverage": 0.95, "mean_variance_reduction": 0.4399503040088736}
+repeat_grocery 20000 {"true_rel_lift": 0.10000000000000009, "mean_estimate": 0.09830987367375398, "bias": -0.0016901263262461164, "sd_estimate": 0.02228283812050586, "ci95_coverage": 0.952, "mean_variance_reduction": 0.44033095600538286}
+{'regime': 'repeat_grocery', 'rel_mde': 0.05, 'visitors_required_formula': 48332, 'simulated_power_at_that_n': np.float64(0.773), 'target_power': 0.8}
+{'regime': 'repeat_grocery', 'rel_mde': 0.1, 'visitors_required_formula': 12083, 'simulated_power_at_that_n': np.float64(0.778), 'target_power': 0.8}
+300 {'power_detect_better_A': 0.265, 'wrong_direction_significant': 0.01, 'mean_delta_when_A_better': 0.018897103538710224, 'null_false_positive_rate': 0.055, 'null_ci95_coverage': 0.945, 'clt_rule_satisfied': 0.8525}
+1000 {'power_detect_better_A': 0.54, 'wrong_direction_significant': 0.0, 'mean_delta_when_A_better': 0.019051372833755978, 'null_false_positive_rate': 0.07, 'null_ci95_coverage': 0.93, 'clt_rule_satisfied': 0.955}
+3000 {'power_detect_better_A': 0.935, 'wrong_direction_significant': 0.0, 'mean_delta_when_A_better': 0.019575858893825727, 'null_false_positive_rate': 0.035, 'null_ci95_coverage': 0.965, 'clt_rule_satisfied': 0.9975}

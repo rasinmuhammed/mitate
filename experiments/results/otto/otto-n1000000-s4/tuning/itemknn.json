@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "neighbours": 9,
+  "shrink": 801.4892575913191,
+  "alpha": 0.0565324265981831,
+  "decay_half_life_days": 0.0
+ },
+ "best_value": 0.15203229290621692,
+ "n_trials": 1,
+ "seconds": 0.8374071739999636,
+ "trials": [
+  {
+   "params": {
+    "neighbours": 9,
+    "shrink": 801.4892575913191,
+    "alpha": 0.0565324265981831,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.15203229290621692
+  }
+ ],
+ "shared_from": "otto-n1000000-s0"
+}

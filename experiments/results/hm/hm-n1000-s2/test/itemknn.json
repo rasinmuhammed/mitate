@@ -1,0 +1,49 @@
+{
+ "summary": {
+  "ndcg@5": 0.0,
+  "recall@5": 0.0,
+  "mrr@5": 0.0,
+  "hit@5": 0.0,
+  "ndcg@10": 0.0,
+  "recall@10": 0.0,
+  "mrr@10": 0.0,
+  "hit@10": 0.0,
+  "ndcg@20": 0.0,
+  "recall@20": 0.0,
+  "mrr@20": 0.0,
+  "hit@20": 0.0,
+  "recall_rep@10": NaN,
+  "hit_rep@10": NaN,
+  "recall_rep@20": NaN,
+  "hit_rep@20": NaN,
+  "recall_expl@10": 0.0,
+  "hit_expl@10": 0.0,
+  "recall_expl@20": 0.0,
+  "hit_expl@20": 0.0,
+  "repr@10": 0.0,
+  "novelty@10": 7.478882447794367,
+  "arp@10": 10.4,
+  "aplt@10": 0.7
+ },
+ "store_level": {
+  "coverage@10": 0.055865921787709494,
+  "coverage@20": 0.11173184357541899,
+  "gini@10": 0.9441340782122905,
+  "entropy@10": 2.3025850929940455,
+  "n_queries": 8,
+  "n_units": 8,
+  "n_rep_targets": 0,
+  "n_expl_targets": 8
+ },
+ "params": {
+  "neighbours": 47,
+  "shrink": 25.926231827891332,
+  "alpha": 0.5496624778787091,
+  "decay_half_life_days": 180.0
+ },
+ "tune_s": 6.081501978000006,
+ "fit_s": 0.0022089100000357575,
+ "predict_s": 0.000530675000049996,
+ "total_s": 6.085192982999956,
+ "val_ndcg@10": 0.0
+}

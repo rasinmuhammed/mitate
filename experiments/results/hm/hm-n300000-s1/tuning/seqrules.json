@@ -1,0 +1,27 @@
+{
+ "best_params": {
+  "window": 20,
+  "rule_kernel": "same",
+  "idf": true,
+  "prune": 0,
+  "max_len": 20,
+  "hist_kernel": "linear"
+ },
+ "best_value": 0.025233808168707676,
+ "n_trials": 1,
+ "seconds": 0.12995373400008248,
+ "trials": [
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.025233808168707676
+  }
+ ],
+ "shared_from": "hm-n300000-s0"
+}

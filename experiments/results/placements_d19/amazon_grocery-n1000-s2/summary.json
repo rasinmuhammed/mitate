@@ -1,0 +1,590 @@
+{
+ "store": "amazon_grocery-n1000-s2",
+ "stats": {
+  "n_items": 271,
+  "n_items_target": 300,
+  "n_events_pre_test": 1000,
+  "n_events_test": 22,
+  "n_users_known": 944,
+  "n_sessions": 988,
+  "anon_share": 0.0,
+  "cold_test_items": 0
+ },
+ "also_view": {
+  "anchors": {
+   "dev": 3,
+   "test": 4
+  },
+  "targets_per_anchor": 1.75,
+  "params": {
+   "itemknn": {
+    "neighbours": 47,
+    "shrink": 25.926231827891332,
+    "alpha": 0.5496624778787091,
+    "decay_half_life_days": 180.0,
+    "dev": 0.0
+   },
+   "ease": {
+    "lam": 151.34724182275528,
+    "dev": 0.0
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.08802270752419696,
+    "recall@10": 0.16666666666666666,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.22092692783025045,
+    "recall@10": 0.5,
+    "hit@10": 0.6666666666666666,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.3333333333333333,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.07906590425643208,
+    "recall@10": 0.16666666666666666,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.16666666666666666,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.3333333333333333,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.22092692783025045,
+    "recall@10": 0.5,
+    "hit@10": 0.6666666666666666,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.22092692783025045,
+    "recall@10": 0.5,
+    "hit@10": 0.6666666666666666,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.032531670832675136,
+    "recall@10": 0.0625,
+    "hit@10": 0.25,
+    "recall@20": 0.125,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.7878507387275895,
+    "recall@10": 0.9375,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.4014573892946936,
+    "recall@10": 0.875,
+    "hit@10": 1.0,
+    "recall@20": 0.875,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.14478515601411718,
+    "recall@10": 0.375,
+    "hit@10": 0.5,
+    "recall@20": 0.375,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.032531670832675136,
+    "recall@10": 0.0625,
+    "hit@10": 0.25,
+    "recall@20": 0.125,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.4014573892946936,
+    "recall@10": 0.875,
+    "hit@10": 1.0,
+    "recall@20": 0.875,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.4014573892946936,
+    "recall@10": 0.875,
+    "hit@10": 1.0,
+    "recall@20": 0.875,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "also_buy": {
+  "anchors": {
+   "dev": 2,
+   "test": 3
+  },
+  "targets_per_anchor": 2.3333333333333335,
+  "params": {
+   "itemknn": {
+    "neighbours": 47,
+    "shrink": 25.926231827891332,
+    "alpha": 0.5496624778787091,
+    "decay_half_life_days": 180.0,
+    "dev": 1.0
+   },
+   "ease": {
+    "lam": 151.34724182275528,
+    "dev": 1.0
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.3333333333333333,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.31546487678572877,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.1781035935540111,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 1.0,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 1.0,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 1.0,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.4444444444444444,
+    "recall@10": 0.6666666666666666,
+    "hit@10": 0.6666666666666666,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.03267976194378568,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.4666666666666666,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.4520690623693407,
+    "recall@10": 0.6666666666666666,
+    "hit@10": 0.6666666666666666,
+    "recall@20": 0.6666666666666666,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.11305340175787204,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.11305340175787204,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.5574978462023165,
+    "recall@10": 0.7333333333333334,
+    "hit@10": 1.0,
+    "recall@20": 0.7333333333333334,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.11305340175787204,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.07132875491150918,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.11305340175787204,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.11305340175787204,
+    "recall@10": 0.06666666666666667,
+    "hit@10": 0.3333333333333333,
+    "recall@20": 0.06666666666666667,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "also_buy_cross": {
+  "anchors": {
+   "dev": 2,
+   "test": 2
+  },
+  "targets_per_anchor": 1.0,
+  "params": {
+   "itemknn": {
+    "neighbours": 47,
+    "shrink": 25.926231827891332,
+    "alpha": 0.5496624778787091,
+    "decay_half_life_days": 180.0,
+    "dev": 0.5
+   },
+   "ease": {
+    "lam": 151.34724182275528,
+    "dev": 0.5
+   }
+  },
+  "dev": {
+   "pop": {
+    "ndcg@10": 0.16666666666666666,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.1781035935540111,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.3065735963827292,
+    "recall@10": 0.25,
+    "hit@10": 0.5,
+    "recall@20": 0.25,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.3065735963827292,
+    "recall@10": 0.25,
+    "hit@10": 0.5,
+    "recall@20": 0.25,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.5,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.5,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.5,
+    "recall@10": 0.5,
+    "hit@10": 0.5,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.3065735963827292,
+    "recall@10": 0.25,
+    "hit@10": 0.5,
+    "recall@20": 0.25,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.3065735963827292,
+    "recall@10": 0.25,
+    "hit@10": 0.5,
+    "recall@20": 0.25,
+    "filled@10": 1.0
+   }
+  },
+  "test": {
+   "pop": {
+    "ndcg@10": 0.6666666666666666,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "same_category_pop": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.5,
+    "filled@10": 1.0
+   },
+   "other_category_pop": {
+    "ndcg@10": 0.6781035935540111,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_e5-small_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "content_potion-multi_other_category": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "co_purchase": {
+    "ndcg@10": 0.6666666666666666,
+    "recall@10": 1.0,
+    "hit@10": 1.0,
+    "recall@20": 1.0,
+    "filled@10": 1.0
+   },
+   "itemknn": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "ease": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   },
+   "mitate_day_one": {
+    "ndcg@10": 0.0,
+    "recall@10": 0.0,
+    "hit@10": 0.0,
+    "recall@20": 0.0,
+    "filled@10": 1.0
+   }
+  }
+ },
+ "seconds": 46.172366083003
+}

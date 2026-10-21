@@ -1,0 +1,191 @@
+{
+ "best_params": {
+  "half_life_days": 276.32459551717915
+ },
+ "best_value": 0.3,
+ "n_trials": 30,
+ "seconds": 5.982266025000058,
+ "trials": [
+  {
+   "params": {
+    "half_life_days": 5.9921368367003875
+   },
+   "value": 0.1607494551005908
+  },
+  {
+   "params": {
+    "half_life_days": 0.30198109419140956
+   },
+   "value": 0.13576863876419543
+  },
+  {
+   "params": {
+    "half_life_days": 13.717217986623698
+   },
+   "value": 0.1455474368558608
+  },
+  {
+   "params": {
+    "half_life_days": 5.962846985771158
+   },
+   "value": 0.1607494551005908
+  },
+  {
+   "params": {
+    "half_life_days": 5.347269386565906
+   },
+   "value": 0.15930596698841604
+  },
+  {
+   "params": {
+    "half_life_days": 2.7748271993534033
+   },
+   "value": 0.14496232480215127
+  },
+  {
+   "params": {
+    "half_life_days": 1.1105049487093581
+   },
+   "value": 0.13576863876419543
+  },
+  {
+   "params": {
+    "half_life_days": 22.778853398491663
+   },
+   "value": 0.14992981193974594
+  },
+  {
+   "params": {
+    "half_life_days": 2.2189786877807736
+   },
+   "value": 0.13576863876419543
+  },
+  {
+   "params": {
+    "half_life_days": 1.7469306259797452
+   },
+   "value": 0.13576863876419543
+  },
+  {
+   "params": {
+    "half_life_days": 276.32459551717915
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 272.8644363686591
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 354.24841863797434
+   },
+   "value": 0.18927892607143726
+  },
+  {
+   "params": {
+    "half_life_days": 326.4664519419678
+   },
+   "value": 0.18927892607143726
+  },
+  {
+   "params": {
+    "half_life_days": 102.31083931950761
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 102.3495084644267
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 106.03643284829306
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 42.87776619012583
+   },
+   "value": 0.13026018174652085
+  },
+  {
+   "params": {
+    "half_life_days": 185.693379355569
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 51.41330916543844
+   },
+   "value": 0.13026018174652085
+  },
+  {
+   "params": {
+    "half_life_days": 188.34029502292594
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 74.57777792055619
+   },
+   "value": 0.18010299956639814
+  },
+  {
+   "params": {
+    "half_life_days": 166.82636060433683
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 29.515960388416996
+   },
+   "value": 0.1430676558073393
+  },
+  {
+   "params": {
+    "half_life_days": 244.86908317923996
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 102.85624664321814
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 67.32436970103078
+   },
+   "value": 0.15930596698841604
+  },
+  {
+   "params": {
+    "half_life_days": 140.83407747455811
+   },
+   "value": 0.3
+  },
+  {
+   "params": {
+    "half_life_days": 358.24874640403635
+   },
+   "value": 0.18927892607143726
+  },
+  {
+   "params": {
+    "half_life_days": 16.158307300837773
+   },
+   "value": 0.1455474368558608
+  }
+ ],
+ "shared_from": null
+}

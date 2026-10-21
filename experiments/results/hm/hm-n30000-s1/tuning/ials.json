@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "factors": 64,
+  "regularization": 0.0023960787499040176,
+  "alpha": 97.78006630766023,
+  "iterations": 16
+ },
+ "best_value": 0.045628349216147744,
+ "n_trials": 1,
+ "seconds": 2.224311829000044,
+ "trials": [
+  {
+   "params": {
+    "factors": 64,
+    "regularization": 0.0023960787499040176,
+    "alpha": 97.78006630766023,
+    "iterations": 16
+   },
+   "value": 0.045628349216147744
+  }
+ ],
+ "shared_from": "hm-n30000-s0"
+}

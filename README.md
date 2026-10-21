@@ -29,8 +29,9 @@ events; from 100K, session kNN takes over. Any single method is the wrong choice
 store's life, and the store cannot see where: at small sizes, the test windows are too noisy to
 compare methods by eye.
 
-Mitate doesn't pick one. A LambdaMART ranker reads the candidates from nine methods side by side,
-together with how big the store is, and learns from stores of every size when to trust which.
+Mitate doesn't pick one. Nine methods each nominate candidates, and a LambdaMART ranker, trained
+on shopping decisions from stores of every size, puts the merged list in order. A store needs no
+labelled data of its own: it fits the nine methods on its own log and borrows the ranker.
 
 <p align="center">
   <img src="docs/figures/crossover_hm.svg" alt="NDCG@10 by store size on H&M: recent popularity leads the baselines up to 30K events, session kNN from 100K, and Mitate is above both at every size except 3K" width="760">
@@ -38,15 +39,28 @@ together with how big the store is, and learns from stores of every size when to
 
 ## Results
 
-Next-basket recommendation on H&M (ledger D22), protocol **Mitate-GTS v1**
-([protocol.md](docs/protocol.md)):
-* five simulated stores per size, sampled from real transactions;
-* a global temporal split, with the last week held out;
+Protocol **Mitate-GTS v1** ([protocol.md](docs/protocol.md)):
+* five simulated stores per size, sampled from real data;
+* one global temporal split per dataset, with the last week held out (28 days for grocery);
 * ranking over the full catalogue;
-* fifteen baselines, each tuned with the same budget.
+* fifteen baselines per dataset, each tuned with the same budget.
 
-Mitate is compared with the best of those fifteen chosen *with hindsight*, on the test week
-itself, paired over the same shoppers, with Holm correction across the seven sizes.
+Mitate is compared with the best of those fifteen chosen *with hindsight*, on the test window
+itself, paired over the same shoppers, with Holm correction across store sizes.
+
+**OTTO**, general e-commerce sessions (CC BY 4.0), next item:
+
+| Store size (events) | Best single method, picked on the test week | Mitate | Difference, 95% CI | p (Holm) |
+|---:|---|---:|---:|---:|
+| 1K | Transition probe (PCTM) · 0.1762 | **0.2467** | +0.069 [+0.035, +0.103] | 1.6 × 10⁻⁴ |
+| 3K | Session kNN (VSTAN) · 0.2155 | **0.2803** | +0.069 [+0.053, +0.086] | 1.6 × 10⁻¹⁴ |
+| 10K | Session kNN (VSTAN) · 0.2130 | **0.2751** | +0.064 [+0.055, +0.073] | 8.2 × 10⁻³⁹ |
+| 30K | GRU4Rec · 0.2160 | **0.2825** | +0.066 [+0.059, +0.074] | 1.1 × 10⁻⁶⁰ |
+| 100K | iALS · 0.2196 | **0.2864** | +0.067 [+0.064, +0.070] | < 10⁻³⁰⁰ |
+| 300K | SASRec · 0.2202 | **0.2728** | +0.053 [+0.051, +0.055] | < 10⁻³⁰⁰ |
+| 1M | SASRec · 0.2274 | **0.2721** | +0.045 [+0.043, +0.047] | < 10⁻³⁰⁰ |
+
+**H&M**, fashion, next basket:
 
 | Store size (events) | Test shoppers per store | Best single method, picked on the test week | Mitate | Difference, 95% CI | p (Holm) |
 |---:|---:|---|---:|---:|---:|
@@ -58,25 +72,41 @@ itself, paired over the same shoppers, with Holm correction across the seven siz
 | 300K | 1,346 | Session kNN (VSTAN) · 0.0559 | **0.0897** | +0.029 [+0.025, +0.032] | 7.0 × 10⁻⁵⁵ |
 | 1M | 3,947 | Session kNN (VSTAN) · 0.0573 | **0.0797** | +0.022 [+0.021, +0.024] | 9.8 × 10⁻¹⁴⁶ |
 
-<sub>NDCG@10 on the held-out week, mean over five stores. Full tables, every baseline, and
-Recall@20 are in [results.md](docs/results.md).</sub>
+**Dunnhumby**, grocery, next basket. With only 2,500 households, stores stop at 30K events:
 
-* **Six of seven sizes won** against a baseline nobody could actually pick in advance. At 3K
-  events it is a tie, and that row stays in.
-* **Against the choice a merchant can actually make** (whichever baseline did best on the
-  store's own validation week), Mitate's 95% interval is above zero at every size.
+| Store size (events) | Best single method | Mitate, ranker alone | Difference, 95% CI | p (Holm) | Repurchases first, shipped ranker |
+|---:|---|---:|---:|---:|---:|
+| 1K | GP-TopFreq · 0.3910 | 0.3633 | −0.023 [−0.058, +0.012] | 0.43 | 0.3896 |
+| 3K | GP-TopFreq · 0.3159 | 0.3196 | +0.004 [−0.018, +0.026] | 0.75 | 0.3117 |
+| 10K | GP-TopFreq · 0.3284 | 0.3151 | −0.014 [−0.024, −0.002] | 0.066 | 0.3287 |
+| 30K | GP-TopFreq · 0.3199 | 0.3113 | −0.009 [−0.017, −0.001] | 0.066 | 0.3242 |
+
+<sub>NDCG@10 on the held-out window, mean over five stores. Full tables, every baseline, Recall@20
+and the ablations are in [results.md](docs/results.md).</sub>
+
+* **OTTO: every size won, on 35 of 35 stores.** The leading baseline changes four times across the
+  seven sizes, and Mitate stays 0.045 to 0.069 ahead of whichever one leads.
+* **H&M: six of seven sizes won.** At 3K events it is a tie, and that row stays in. Against the
+  choice a merchant can actually make (the baseline that did best on the store's own validation
+  week), Mitate's 95% interval is above zero at every size.
+* **Dunnhumby: grocery is where the ranker does not win.** Re-recommending a household's own most
+  frequent purchases (GP-TopFreq) is the best method at every size. The ranker alone is level
+  with it after correction, but about 0.01 behind at 10K and 30K on nearly every store. The
+  returning-customer rail the product actually serves, half repurchases and half ranker, matches
+  GP-TopFreq at every size (last column; ledger D27, added after the grocery baselines were seen).
 * **The learning is what matters.** Replacing the ranker with plain rank fusion over the same
-  nine sources costs 0.04 to 0.21 NDCG@10. Removing any one source mostly changes nothing
-  measurable: the ranker leans on whichever sources remain.
-* **Small means few.** A 1K store has 4 to 17 buying shoppers in its test week. Read the
+  nine sources costs 0.06 to 0.09 NDCG@10 on OTTO and 0.04 to 0.21 on H&M. Removing any one source
+  mostly changes nothing measurable.
+* **Store size is not what the ranker learns from.** Blanking the six store-size features
+  changes nothing on OTTO, helps only at H&M 1K, and on Dunnhumby the ranker is better without
+  them. The gain comes from ranking the merged candidates well, not from switching strategy by
+  size.
+* **Small means few.** A 1K H&M store has 4 to 17 buying shoppers in its test week. Read the
   intervals, not the point estimates.
 
-On this benchmark, H&M next-basket stores of 1K to 1M events, Mitate is significantly ahead of
-every baseline we tuned at six of seven sizes. That is the claim; nothing broader is.
-
-**OTTO** (anonymous e-commerce sessions, CC BY 4.0): every baseline is finished at all seven
-sizes, and Mitate's own run is in progress. Its table lands here when it finishes, including any
-size where Mitate loses.
+On this benchmark, Mitate is significantly ahead of every baseline we tuned at all seven OTTO
+sizes and six of seven H&M sizes, and level with the best grocery baseline. That is the claim;
+nothing broader is.
 
 **Before any of this was trusted, the pipeline had to pass two checks:**
 * It reproduced two published results. EASE on MovieLens-20M scores Recall@20 0.3905 against
@@ -192,6 +222,9 @@ including the ones made after a result was seen. Each entry records when it was 
   statistics are validated in simulation, and interleaving's sensitivity on real small-store
   traffic is unverified.
 * Dunnhumby has only 2,500 households, so grocery is measured on stores of up to 30K events.
+* The shipped OTTO ranker and the returning-customer rail are not yet scored on H&M; that run is
+  waiting for Kaggle GPU quota (ledger D28). On Dunnhumby the shipped ranker scores the same as
+  one trained on Dunnhumby itself.
 * The dense item-item models assume catalogues of up to about 25K products.
 
 ## Read more

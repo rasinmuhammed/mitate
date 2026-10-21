@@ -110,7 +110,7 @@ unit), then across units:
 * Per bucket: mean ± std and a t-interval across the five stores.
 * Wilcoxon and sign tests are not used (see ledger D1).
 
-## 8. Leakage guards (CI)
+## 8. Leakage guards (test suite)
 
 `tests/test_leakage.py` and `tests/test_runner.py`:
 

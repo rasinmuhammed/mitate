@@ -47,7 +47,7 @@ What is already measured:
   (Recall@20 0.3905 vs 0.391 published; Recall@50 0.5215 vs 0.521; NDCG@100 0.4202 vs 0.420) and
   GP-TopFreq on the NBR reality-check Instacart split (exact match to their code).
 * **Leakage (Gate 3).** Predictions are bitwise identical when everything after the cut date is
-  replaced with noise, for every model and the whole pipeline (CI-enforced).
+  replaced with noise, for every model and the whole pipeline (enforced by the test suite).
 
 ## Quickstart (synthetic demo store)
 

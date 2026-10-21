@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-IN" data-skin="brass">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misata Kitchen: a synthetic store showing Mitate</title>
+<meta name="description" content="A synthetic kitchen-and-home shop, generated with Misata, running the Mitate recommender with its x-ray switched on.">
+<link rel="icon" href="/ui/mark.svg" type="image/svg+xml">
+<link rel="preload" href="/ui/fonts/anek-latin-text.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/ui/tokens.css">
+<link rel="stylesheet" href="demo.css">
+<script src="config.js"></script>
+<script src="/widget/mitate.js" defer data-api="" data-url-template="#/p/{id}" data-currency="INR" data-locale="en-IN" data-heading="h2"></script>
+<script src="demo.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+
+<aside class="synthetic" aria-label="About this store">
+  <span class="seal mark" aria-hidden="true"></span>
+  <span><strong>Synthetic store.</strong> Products, shoppers, orders and pictures are generated with
+  <a href="https://github.com/rasinmuhammed/misata">Misata</a>. Nothing here is a real shop or person, and none of it feeds a benchmark result.</span>
+</aside>
+
+<div class="shop">
+  <header class="shop-head">
+    <a class="wordmark" href="#/">Misata <span>Kitchen</span></a>
+    <nav class="depts" aria-label="Departments"><ul role="list"></ul></nav>
+    <a class="cart-link" href="#/cart">Cart <span class="cart-count tnum" id="cart-count">0</span></a>
+  </header>
+
+  <section class="consent" id="consent" aria-labelledby="consent-q" hidden>
+    <p id="consent-q">Can this store use what you browse here to personalise what it shows you?
+      <span class="consent-note">Either way, recommendations still work: without it they use only the product on screen.</span></p>
+    <div class="consent-actions">
+      <button class="s-btn" type="button" data-consent="granted">Allow</button>
+      <button class="s-btn" type="button" data-consent="denied">No thanks</button>
+    </div>
+  </section>
+
+  <main id="view" tabindex="-1"></main>
+
+  <footer class="shop-foot">
+    <p>Pictures are drawn for this synthetic store and do not show real products. Recommendations by
+      <a href="/dashboard/">Mitate</a>: every reason is a counted fact from this store's own data.</p>
+  </footer>
+</div>
+
+<aside class="dock" aria-label="Demo controls (Mitate)">
+  <a class="dock-brand" href="/dashboard/" title="Merchant dashboard">
+    <span class="seal mark" aria-hidden="true"></span>
+    <span>Mitate</span>
+  </a>
+  <label class="dock-field">
+    <span>Browse as</span>
+    <select id="shopper"><option value="">Guest</option></select>
+  </label>
+  <button class="dock-chip" id="consent-state" type="button" aria-controls="consent">Personal: ask</button>
+  <label class="dock-switch">
+    <input type="checkbox" role="switch" id="xray">
+    <span>X-ray</span>
+    <kbd aria-hidden="true">X</kbd>
+  </label>
+  <label class="dock-field">
+    <span class="visually-hidden">Store look</span>
+    <select id="skin">
+      <option value="brass">Brass &amp; teak</option>
+      <option value="thali">Steel thali</option>
+      <option value="night">Night bazaar</option>
+      <option value="plain">Plain HTML</option>
+    </select>
+  </label>
+</aside>
+
+<div class="toast-region" role="status" aria-live="polite"></div>
+</body>
+</html>

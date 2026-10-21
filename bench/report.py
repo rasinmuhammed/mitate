@@ -43,6 +43,7 @@ DATASET_NAMES = {
     "amazon_grocery": "Amazon Grocery",
 }
 LABELS = dict(FIGURE_MODELS) | {
+    "mitate": "Mitate (blend)",
     "mitate_rrf": "Mitate, rank fusion (no learning)",
     "mitate_no_volume": "Mitate without store-size features",
     "recpop": "Recent popularity",

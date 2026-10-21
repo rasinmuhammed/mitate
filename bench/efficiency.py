@@ -60,6 +60,40 @@ def machine() -> dict[str, Any]:
     return info
 
 
+def _serialised_mb(model: Any) -> float:
+    """Pickled size of a fitted model. Code fetched at run time (the official GRU4Rec) cannot be
+    pickled by reference, so its objects are stored as their attributes and torch modules as their
+    weights, which is what a deployment would save."""
+    import importlib
+    import io
+
+    import torch
+
+    try:
+        return len(pickle.dumps(model, protocol=pickle.HIGHEST_PROTOCOL)) / 2**20
+    except pickle.PicklingError:
+        pass
+
+    def importable(name: str) -> bool:
+        try:
+            importlib.import_module(name)
+        except ImportError:
+            return False
+        return True
+
+    class Pickler(pickle.Pickler):
+        def reducer_override(self, obj: Any) -> Any:
+            if isinstance(obj, torch.nn.Module):
+                return dict, (obj.state_dict(),)
+            if not isinstance(obj, type) and not importable(type(obj).__module__):
+                return dict, (vars(obj),)
+            return NotImplemented
+
+    buf = io.BytesIO()
+    Pickler(buf, protocol=pickle.HIGHEST_PROTOCOL).dump(model)
+    return len(buf.getvalue()) / 2**20
+
+
 def one(job: dict[str, Any]) -> dict[str, Any]:
     """Runs inside the fresh process."""
     import numpy as np
@@ -98,7 +132,7 @@ def one(job: dict[str, Any]) -> dict[str, Any]:
     model.fit(train, catalog)
     fit_s = time.perf_counter() - t0
     peak = _rss_mb()
-    size_mb = len(pickle.dumps(model, protocol=pickle.HIGHEST_PROTOCOL)) / 2**20
+    size_mb = _serialised_mb(model)
     q, ex = ev.queries, ev.exclude
     n = min(len(q), 500)
     lat = []

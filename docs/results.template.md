@@ -53,7 +53,8 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 
 ### Cost
 
-Peak memory and wall time per model, measured one at a time on an otherwise idle Apple M1 (8 GB):
+Peak memory, fit time and request latency per model, each measured in a fresh single-threaded
+process on an Apple M1 (8 GB), on the seed-0 store of each size up to 30K events (ledger D29):
 
 {{otto_efficiency}}
 

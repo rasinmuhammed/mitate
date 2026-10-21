@@ -1,6 +1,7 @@
 """Efficiency benchmark (docs/protocol.md section 9): measured, not estimated.
 
     uv run python -m bench.efficiency experiments/configs/benchmark.yaml --dataset otto --seed 0
+    uv run python -m bench.efficiency experiments/configs/benchmark.yaml --buckets 1000 3000
 
 For every (store size, model) pair a **fresh, single-threaded process** fits the model with the
 store's tuned hyperparameters on all data before ``t_test`` and reports:
@@ -130,7 +131,13 @@ def one(job: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def run(cfg: dict[str, Any], dataset: str, seed: int, results: Path) -> None:
+def run(
+    cfg: dict[str, Any],
+    dataset: str,
+    seed: int,
+    results: Path,
+    buckets: list[int] | None = None,
+) -> None:
     from bench.datasets import load
     from bench.registry import NEURAL
     from bench.run import store_path
@@ -141,6 +148,8 @@ def run(cfg: dict[str, Any], dataset: str, seed: int, results: Path) -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     env = {**os.environ, **THREAD_ENV}
     for b in cfg["buckets"]:
+        if buckets and b["n"] not in buckets:
+            continue
         store = f"{dataset}-n{b['n']}-s{seed}"
         sdir = results / dataset / store
         if not (sdir / "tuning").exists():
@@ -190,6 +199,7 @@ def main() -> None:
     ap.add_argument("config", nargs="?")
     ap.add_argument("--dataset", default="otto")
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--buckets", nargs="*", type=int, help="restrict to these bucket sizes")
     ap.add_argument("--one", help=argparse.SUPPRESS)
     a = ap.parse_args()
     if a.one:
@@ -198,7 +208,7 @@ def main() -> None:
     import yaml
 
     cfg = yaml.safe_load(Path(a.config).read_text())
-    run(cfg, a.dataset, a.seed, Path(cfg.get("results_dir", "experiments/results")))
+    run(cfg, a.dataset, a.seed, Path(cfg.get("results_dir", "experiments/results")), a.buckets)
 
 
 if __name__ == "__main__":

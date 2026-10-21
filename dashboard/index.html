@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mitate: your store</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/ui/mark.svg" type="image/svg+xml">
+<link rel="preload" href="/ui/fonts/anek-latin-text.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/ui/tokens.css">
+<link rel="stylesheet" href="app.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell" id="shell" hidden>
+  <header class="bar">
+    <a class="brand" href="#home" aria-label="Mitate home">
+      <span class="seal mark brand-seal" aria-hidden="true"></span>
+      <span class="brand-name">Mitate</span>
+    </a>
+    <p class="store" id="store-id"></p>
+    <div class="bar-tools">
+      <label class="theme">
+        <span class="visually-hidden">Theme</span>
+        <select id="theme">
+          <option value="">System theme</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </label>
+      <button class="btn ghost small" id="sign-out" type="button">Sign out</button>
+    </div>
+  </header>
+
+  <nav class="rail" aria-label="Dashboard">
+    <ul role="list">
+      <li><a href="#home" data-route="home"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 9.5 10 4l7 5.5V16H3z"/></svg><span>Home</span></a></li>
+      <li><a href="#rules" data-route="rules"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M4 10h12M4 14h7"/><circle cx="14.5" cy="14" r="1.6"/></svg><span>Rules</span></a></li>
+      <li><a href="#pairings" data-route="pairings"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="7" cy="10" r="3.5"/><circle cx="13" cy="10" r="3.5"/></svg><span>Pairings</span><b class="count" id="pending-count" hidden></b></a></li>
+      <li><a href="#tests" data-route="tests"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h14M7 7v6M13 6v8"/></svg><span>Tests</span></a></li>
+      <li><a href="#catalog" data-route="catalog"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 4h12v12H4zM4 9h12M9 4v12"/></svg><span>Catalog</span></a></li>
+      <li><a href="#privacy" data-route="privacy"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3 4 5.5v4c0 3.5 2.6 6.2 6 7.5 3.4-1.3 6-4 6-7.5v-4z"/></svg><span>Privacy</span></a></li>
+      <li class="advanced"><a href="#models" data-route="models"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 15V9M8 15V5M12 15v-4M16 15V7"/></svg><span>Models</span></a></li>
+    </ul>
+  </nav>
+
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<section class="signin" id="signin" hidden aria-labelledby="signin-title">
+  <span class="signin-mark" role="img" aria-label="見立て, Mitate"></span>
+  <h1 id="signin-title">Your store's recommendations</h1>
+  <p class="muted">Paste the private key Mitate gave you when the store was created. It stays in this tab and is gone when you close it.</p>
+  <form id="signin-form" novalidate>
+    <label for="key">Private key</label>
+    <input id="key" name="key" autocomplete="off" spellcheck="false" placeholder="sk_…" required>
+    <p class="field-error" id="signin-error" role="alert"></p>
+    <button class="btn primary" type="submit">Open dashboard</button>
+  </form>
+</section>
+
+<div class="toast-region" role="status" aria-live="polite"></div>
+</body>
+</html>

@@ -13,7 +13,6 @@ experiments/results/**/raw/
 node_modules/
 experiments/results_timing/
 dist/
-.claude/
 .hypothesis/
 # per-query arrays are large and regenerate from the runs; summaries and analyses are kept
 experiments/results/**/*.npz

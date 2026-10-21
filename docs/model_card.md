@@ -11,9 +11,10 @@ are not repeated here; they live in [results.md](results.md), generated from sto
   gradient-boosted ranker (LightGBM LambdaMART). Before a store has behavioural data it serves
   text-embedding similarity, a merchant-approved category complement graph (then text-related
   products from other categories), and new arrivals.
-* **What ships.** Code under Apache-2.0, plus one pretrained artefact: the LambdaMART ranker
-  (`<results>/otto/_ltr/<variant>.json`, a dumped tree ensemble scored in pure numpy). Everything
-  else is fitted on the merchant's own data inside their deployment.
+* **What ships.** Code under the PolyForm Noncommercial License 1.0.0, plus one pretrained
+  artefact: the LambdaMART rankers in `mitate/rankers/`, dumped tree ensembles scored in pure
+  numpy, with a `MANIFEST.json` recording their training stores, code version and checksums.
+  Everything else is fitted on the merchant's own data inside their deployment.
 * **Training data of the shipped ranker.** OTTO (CC BY 4.0) only: validation-week labels pooled
   from simulated stores of every size. Rankers fitted on non-commercial datasets (H&M,
   Dunnhumby, Amazon, Instacart, MovieLens) are benchmark artefacts and are never distributed

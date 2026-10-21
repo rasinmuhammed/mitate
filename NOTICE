@@ -1,0 +1,42 @@
+Mitate
+Copyright 2026 Muhammed Rasin O M
+
+Mitate is licensed under the PolyForm Noncommercial License 1.0.0 (LICENSE.md), except for the
+third-party material listed below, which keeps its own license. Commercial use of Mitate needs
+a separate license from the copyright holder.
+
+-------------------------------------------------------------------------------------------------
+OTTO session dataset
+-------------------------------------------------------------------------------------------------
+
+The pretrained rankers in mitate/rankers/ and the OTTO benchmark results in experiments/results/
+are derived from the OTTO session dataset by OTTO GmbH & Co KG, licensed under the Creative
+Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/).
+Dataset: https://www.kaggle.com/datasets/otto/recsys-dataset, DOI 10.34740/KAGGLE/DSV/4991874.
+
+Changes made: stores were sampled from the sessions (bench/simulator.py), and the rankers were
+trained on the validation windows of those stores. The dataset itself is not redistributed here.
+
+-------------------------------------------------------------------------------------------------
+Fonts
+-------------------------------------------------------------------------------------------------
+
+The following fonts are subset and redistributed in ui/fonts/ under the SIL Open Font License
+1.1. Each family's license text ships beside its files.
+
+  Gloock          Copyright 2022 The Gloock Project Authors     ui/fonts/OFL-gloock.txt
+  Anek Latin      Copyright 2021 The Anek Project Authors       ui/fonts/OFL-aneklatin.txt
+  IBM Plex Mono   Copyright 2017 IBM Corp., Reserved Font Name "Plex"
+                                                                ui/fonts/OFL-ibmplexmono.txt
+
+The marks ui/mark.svg and ui/seal.svg contain glyph outlines from Shippori Mincho Bold,
+Copyright 2021 The Shippori Mincho Project Authors, SIL Open Font License 1.1
+(ui/fonts/OFL-shipporimincho.txt).
+
+-------------------------------------------------------------------------------------------------
+Benchmark data
+-------------------------------------------------------------------------------------------------
+
+The H&M, Amazon, Instacart and MovieLens results in experiments/results/ are aggregate scores
+only. None of those datasets, nor any identifier from them, is redistributed. Their terms and
+the citations they ask for are listed in docs/licenses.md.

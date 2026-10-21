@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Retail recommender for small stores: sensible on day one from the catalog, better as shopping data arrives."
 readme = "README.md"
 requires-python = ">=3.11,<3.13"
-license = { text = "Apache-2.0" }
+license = { text = "PolyForm-Noncommercial-1.0.0" }
 dependencies = [
   "numpy>=1.26,<2.3",
   "scipy>=1.13",

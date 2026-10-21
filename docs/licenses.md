@@ -5,7 +5,8 @@ model cards). The operative sentences, URLs and access checks are quoted in
 [research_notes/05_datasets_licenses.md](research_notes/05_datasets_licenses.md). This is an
 engineering review, not legal advice.
 
-Mitate's own code is Apache-2.0.
+Mitate's own code is licensed under the PolyForm Noncommercial License 1.0.0 (`LICENSE.md`);
+third-party material that ships with it is listed in `NOTICE`.
 
 ## The commercial firewall
 

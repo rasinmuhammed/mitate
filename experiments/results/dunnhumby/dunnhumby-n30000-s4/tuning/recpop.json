@@ -1,0 +1,17 @@
+{
+ "best_params": {
+  "half_life_days": 4.085867452415996
+ },
+ "best_value": 0.17474749802510778,
+ "n_trials": 1,
+ "seconds": 0.003354687999944872,
+ "trials": [
+  {
+   "params": {
+    "half_life_days": 4.085867452415996
+   },
+   "value": 0.17474749802510778
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

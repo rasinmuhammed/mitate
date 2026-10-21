@@ -1,0 +1,346 @@
+{
+ "best_params": {
+  "window": 10,
+  "rule_kernel": "div",
+  "idf": true,
+  "prune": 0,
+  "max_len": 5,
+  "hist_kernel": "linear"
+ },
+ "best_value": 0.258284092900427,
+ "n_trials": 30,
+ "seconds": 6.617126182999982,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 200,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.1990373288981785
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.24027834617696617
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.21425852400602932
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 200,
+    "max_len": 3,
+    "hist_kernel": "linear"
+   },
+   "value": 0.2134426652390243
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "linear"
+   },
+   "value": 0.258284092900427
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.20344090765508788
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 20,
+    "max_len": 1,
+    "hist_kernel": "div"
+   },
+   "value": 0.2097548837558934
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 200,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.24785558749714048
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.25055060666145273
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "quadratic",
+    "idf": false,
+    "prune": 200,
+    "max_len": 5,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.20975102318438005
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "div"
+   },
+   "value": 0.23606410738701797
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 3,
+    "hist_kernel": "div"
+   },
+   "value": 0.227043250622652
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "linear"
+   },
+   "value": 0.24246550641720818
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "log"
+   },
+   "value": 0.24277065606795856
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.2261022272856435
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.2171944797494334
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.19278215281556885
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 200,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.2434314599104408
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "linear"
+   },
+   "value": 0.2046783209068998
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.25077882989692496
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.25077882989692496
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.2341759943877839
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.2113237210640168
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 200,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.24685758907372288
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.15760236856132073
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "linear"
+   },
+   "value": 0.23611054721896324
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "div"
+   },
+   "value": 0.2387990576252197
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 0,
+    "max_len": 1,
+    "hist_kernel": "log"
+   },
+   "value": 0.19377974987009366
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 20,
+    "max_len": 5,
+    "hist_kernel": "log"
+   },
+   "value": 0.23563303914519848
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 1,
+    "hist_kernel": "linear"
+   },
+   "value": 0.19377974987009366
+  }
+ ],
+ "shared_from": null
+}

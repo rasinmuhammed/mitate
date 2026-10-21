@@ -1,0 +1,346 @@
+{
+ "best_params": {
+  "window": 3,
+  "rule_kernel": "linear",
+  "idf": true,
+  "prune": 100,
+  "max_len": 10,
+  "hist_kernel": "same"
+ },
+ "best_value": 0.31437266900689037,
+ "n_trials": 30,
+ "seconds": 6.495491356000002,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": false,
+    "prune": 200,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.16229907538033678
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.3048347896959894
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 20,
+    "max_len": 10,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.18584974051845662
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 200,
+    "max_len": 3,
+    "hist_kernel": "linear"
+   },
+   "value": 0.13132302573499086
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "linear"
+   },
+   "value": 0.21223828194891697
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "div",
+    "idf": false,
+    "prune": 20,
+    "max_len": 3,
+    "hist_kernel": "log"
+   },
+   "value": 0.17567089234880082
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 20,
+    "max_len": 1,
+    "hist_kernel": "div"
+   },
+   "value": 0.14325814344076263
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 200,
+    "max_len": 20,
+    "hist_kernel": "linear"
+   },
+   "value": 0.2410410728689017
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.20591421720125094
+  },
+  {
+   "params": {
+    "window": 10,
+    "rule_kernel": "quadratic",
+    "idf": false,
+    "prune": 200,
+    "max_len": 5,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.1333298975036691
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "same"
+   },
+   "value": 0.2671177318585089
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.25831872823847635
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "log",
+    "idf": false,
+    "prune": 0,
+    "max_len": 5,
+    "hist_kernel": "same"
+   },
+   "value": 0.24344189824313303
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 0,
+    "max_len": 3,
+    "hist_kernel": "same"
+   },
+   "value": 0.2124564509637898
+  },
+  {
+   "params": {
+    "window": 1,
+    "rule_kernel": "log",
+    "idf": true,
+    "prune": 100,
+    "max_len": 5,
+    "hist_kernel": "same"
+   },
+   "value": 0.1669117508931267
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 0,
+    "max_len": 1,
+    "hist_kernel": "same"
+   },
+   "value": 0.10246425246579402
+  },
+  {
+   "params": {
+    "window": 30,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 200,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.29949004636059096
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 200,
+    "max_len": 10,
+    "hist_kernel": "linear"
+   },
+   "value": 0.23762500315830018
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.31437266900689037
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 20,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.19418997434384316
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.31080414172053794
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.31080414172053794
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "quadratic",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "div"
+   },
+   "value": 0.14543397020227747
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 1,
+    "hist_kernel": "same"
+   },
+   "value": 0.11926403566136784
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "linear"
+   },
+   "value": 0.2507301234714573
+  },
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.3070596330056398
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 200,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.31080414172053794
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "div",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.30747444070473406
+  },
+  {
+   "params": {
+    "window": 20,
+    "rule_kernel": "same",
+    "idf": true,
+    "prune": 0,
+    "max_len": 10,
+    "hist_kernel": "same"
+   },
+   "value": 0.29783455913755946
+  },
+  {
+   "params": {
+    "window": 3,
+    "rule_kernel": "linear",
+    "idf": true,
+    "prune": 100,
+    "max_len": 3,
+    "hist_kernel": "same"
+   },
+   "value": 0.15619341928469763
+  }
+ ],
+ "shared_from": null
+}

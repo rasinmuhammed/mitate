@@ -233,15 +233,41 @@ over two years, testing on the last 28 days (ledger D26).
 The data has only 2,500 households, so stores stop at 30K events. Like H&M, the data never leaves
 Kaggle; only the scores below do.
 
-_Not run yet._
+| Store size | Stores | Products per store | Test shoppers per store: mean (range) | Seeds passed over |
+|---|---:|---:|---:|---:|
+| 1K | 5 | 166 | 26 (20 to 30) | 0 |
+| 3K | 5 | 329 | 51 (44 to 58) | 0 |
+| 10K | 5 | 534 | 157 (126 to 221) | 0 |
+| 30K | 5 | 848 | 355 (254 to 425) | 0 |
 
-_Not run yet._
+| Store size | Stores | Mitate | Best single (chosen on test) | Δ vs best, 95% CI | d_z | p (Holm) | Stores where Mitate ≥ best | Δ vs validation-selected single, 95% CI |
+|---|---:|---:|---|---:|---:|---:|---:|---:|
+| 1K | 5 | – | – | – | – | – | – | – |
+| 3K | 5 | – | – | – | – | – | – | – |
+| 10K | 5 | – | – | – | – | – | – | – |
+| 30K | 5 | – | – | – | – | – | – | – |
 
-_Not run yet._
+![Which method wins at each store size, Dunnhumby](figures/crossover_dunnhumby.svg)
 
 All models, NDCG@10:
 
-_Not run yet._
+| Model | 1K | 3K | 10K | 30K |
+|---|---:|---:|---:|---:|
+| BPR | 0.2696 ± 0.0312 | 0.2130 ± 0.0636 | 0.2052 ± 0.0374 | 0.1899 ± 0.0727 |
+| EASE | 0.3052 ± 0.0447 | 0.2258 ± 0.0591 | 0.2255 ± 0.0508 | 0.1967 ± 0.0786 |
+| GP-TopFreq | 0.3910 ± 0.0809 | 0.3159 ± 0.0855 | 0.3284 ± 0.0301 | 0.3199 ± 0.0847 |
+| ItemKNN | 0.2132 ± 0.0489 | 0.1941 ± 0.0621 | 0.1819 ± 0.0739 | 0.1603 ± 0.0778 |
+| Markov chain | 0.1330 ± 0.0522 | 0.1395 ± 0.0501 | 0.1326 ± 0.0527 | 0.1237 ± 0.0668 |
+| Popularity | 0.1848 ± 0.1276 | 0.1628 ± 0.0816 | 0.1758 ± 0.0724 | 0.1564 ± 0.0733 |
+| RP3beta | 0.3034 ± 0.0701 | 0.2200 ± 0.0735 | 0.2211 ± 0.0623 | 0.1891 ± 0.0708 |
+| Recent popularity | 0.2140 ± 0.0886 | 0.1739 ± 0.0712 | 0.1830 ± 0.0771 | 0.1536 ± 0.0735 |
+| SASRec (full softmax) | 0.3076 ± 0.0795 | 0.2263 ± 0.0721 | 0.2330 ± 0.0526 | 0.2480 ± 0.0899 |
+| SeqRules | 0.3242 ± 0.0420 | 0.2838 ± 0.0683 | 0.2755 ± 0.0430 | 0.2350 ± 0.0804 |
+| Session kNN (VSTAN) | 0.3563 ± 0.0464 | 0.2886 ± 0.0719 | 0.2948 ± 0.0481 | 0.2757 ± 0.0853 |
+| Transition probe (PCTM) | 0.3153 ± 0.0477 | 0.2826 ± 0.0578 | 0.2740 ± 0.0462 | 0.2195 ± 0.1247 |
+| eSASRec | 0.2499 ± 0.0792 | 0.2148 ± 0.0680 | 0.2259 ± 0.0420 | 0.2177 ± 0.0732 |
+| gSASRec (tuned k, t) | 0.2619 ± 0.1001 | 0.2118 ± 0.0601 | 0.2235 ± 0.0702 | 0.1880 ± 0.0740 |
+| iALS | 0.3149 ± 0.0500 | 0.2359 ± 0.0803 | 0.2379 ± 0.0579 | 0.2260 ± 0.0872 |
 
 ### What drives the result
 

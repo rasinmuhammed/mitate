@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "factors": 256,
+  "learning_rate": 0.0909163407564262,
+  "regularization": 4.702052667681609e-05,
+  "iterations": 286
+ },
+ "best_value": 0.20855972794152675,
+ "n_trials": 1,
+ "seconds": 2.4240548850002597,
+ "trials": [
+  {
+   "params": {
+    "factors": 256,
+    "learning_rate": 0.0909163407564262,
+    "regularization": 4.702052667681609e-05,
+    "iterations": 286
+   },
+   "value": 0.20855972794152675
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

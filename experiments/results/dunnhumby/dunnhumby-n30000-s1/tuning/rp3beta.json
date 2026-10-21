@@ -1,0 +1,21 @@
+{
+ "best_params": {
+  "alpha": 1.2349162273532728,
+  "beta": 0.05763617122181225,
+  "neighbours": 860
+ },
+ "best_value": 0.10528968997922261,
+ "n_trials": 1,
+ "seconds": 0.09532578100015598,
+ "trials": [
+  {
+   "params": {
+    "alpha": 1.2349162273532728,
+    "beta": 0.05763617122181225,
+    "neighbours": 860
+   },
+   "value": 0.10528968997922261
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

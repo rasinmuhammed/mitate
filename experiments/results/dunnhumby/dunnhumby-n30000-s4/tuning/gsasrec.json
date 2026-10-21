@@ -1,0 +1,35 @@
+{
+ "best_params": {
+  "d": 128,
+  "n_blocks": 1,
+  "heads": 1,
+  "max_len": 100,
+  "dropout": 0.06646995248532994,
+  "lr": 0.0003860548758894278,
+  "weight_decay": 0.001609801654066514,
+  "negatives": 16,
+  "gbce_t": 0.3809267758057354,
+  "epochs": 11
+ },
+ "best_value": 0.20580690744659177,
+ "n_trials": 1,
+ "seconds": 1.7295747190000839,
+ "trials": [
+  {
+   "params": {
+    "d": 128,
+    "n_blocks": 1,
+    "heads": 1,
+    "max_len": 100,
+    "dropout": 0.06646995248532994,
+    "lr": 0.0003860548758894278,
+    "weight_decay": 0.001609801654066514,
+    "negatives": 16,
+    "gbce_t": 0.3809267758057354
+   },
+   "value": 0.20580690744659177,
+   "epochs": 11
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

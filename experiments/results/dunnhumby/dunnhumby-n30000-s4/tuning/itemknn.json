@@ -1,0 +1,23 @@
+{
+ "best_params": {
+  "neighbours": 6,
+  "shrink": 458.6815626587429,
+  "alpha": 0.7395051482206848,
+  "decay_half_life_days": 0.0
+ },
+ "best_value": 0.20562429515041947,
+ "n_trials": 1,
+ "seconds": 0.02089784600002531,
+ "trials": [
+  {
+   "params": {
+    "neighbours": 6,
+    "shrink": 458.6815626587429,
+    "alpha": 0.7395051482206848,
+    "decay_half_life_days": 0.0
+   },
+   "value": 0.20562429515041947
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

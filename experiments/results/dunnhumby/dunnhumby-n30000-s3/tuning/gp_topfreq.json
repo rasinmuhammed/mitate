@@ -1,0 +1,13 @@
+{
+ "best_params": {},
+ "best_value": 0.31551806291089474,
+ "n_trials": 1,
+ "seconds": 0.006085752999752003,
+ "trials": [
+  {
+   "params": {},
+   "value": 0.31551806291089474
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

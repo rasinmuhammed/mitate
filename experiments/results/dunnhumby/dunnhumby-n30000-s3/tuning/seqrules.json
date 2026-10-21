@@ -1,0 +1,27 @@
+{
+ "best_params": {
+  "window": 5,
+  "rule_kernel": "same",
+  "idf": false,
+  "prune": 0,
+  "max_len": 20,
+  "hist_kernel": "quadratic"
+ },
+ "best_value": 0.23914043171810692,
+ "n_trials": 1,
+ "seconds": 0.02640159499969741,
+ "trials": [
+  {
+   "params": {
+    "window": 5,
+    "rule_kernel": "same",
+    "idf": false,
+    "prune": 0,
+    "max_len": 20,
+    "hist_kernel": "quadratic"
+   },
+   "value": 0.23914043171810692
+  }
+ ],
+ "shared_from": "dunnhumby-n30000-s0"
+}

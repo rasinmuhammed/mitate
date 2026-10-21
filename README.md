@@ -191,7 +191,7 @@ including the ones made after a result was seen. Each entry records when it was 
 * Offline accuracy is not revenue. The online module is how a real store finds out. Its
   statistics are validated in simulation, and interleaving's sensitivity on real small-store
   traffic is unverified.
-* Grocery repeat purchase (Dunnhumby) is waiting on dataset terms.
+* Dunnhumby has only 2,500 households, so grocery is measured on stores of up to 30K events.
 * The dense item-item models assume catalogues of up to about 25K products.
 
 ## Read more

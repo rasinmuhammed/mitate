@@ -16,7 +16,7 @@ set -euo pipefail
 cd "$(dirname "$0")/../.."
 
 ds=${1:-}
-[[ $ds == otto || $ds == hm ]] || { echo "usage: $0 otto|hm" >&2; exit 2; }
+[[ $ds =~ ^(otto|hm|dunnhumby)$ ]] || { echo "usage: $0 otto|hm|dunnhumby" >&2; exit 2; }
 user="${KAGGLE_USER:-rasinmuhammed}"
 # a notebook Kaggle stops starting (an empty log and ERROR at once) can be replaced by a new one
 kernel="${KAGGLE_KERNEL:-mitate-bench-$ds}"

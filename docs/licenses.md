@@ -31,7 +31,7 @@ Three rules follow:
 | OTTO (Kaggle dataset `otto/recsys-dataset`) | CC BY 4.0 (data), MIT (code) | Yes | **Yes** | Yes, with attribution | Primary benchmark; the only dataset any shipped default may be derived from. Store IDs and seeds released. |
 | H&M Personalized Fashion | Kaggle competition rules: "non-commercial purposes only"; no redistribution | Yes (academic research) | No | No (seeds and code only) | Fashion benchmark only |
 | RelBench `rel-hm` | Inherits H&M terms | Same as H&M | No | No | Not used (same data) |
-| Dunnhumby The Complete Journey | dunnhumby Source Files terms (research / non-commercial; accepted by the user at download) | Yes (research) | No | No | Grocery and repeat benchmark only |
+| Dunnhumby The Complete Journey | No dataset license; dunnhumby site terms (checked 2026-10-21) allow downloaded material to be used "solely for research, personal or non-commercial purposes" and "not modified or altered" | Yes (research) | No | No | Grocery and repeat benchmark only. The source CSVs are kept unmodified, including a private Kaggle copy for compute; stores are sampled on Kaggle and stay there; only scores leave (ledger D26) |
 | Amazon Reviews 2023 | None assigned; maintainers: "primarily for research purposes" | Yes (research) | Treat as no | Seeds only | Text-rich e-commerce benchmark; content and cold-start studies |
 | Amazon 2023 `bought_together` | Field is empty in every category | n/a | n/a | n/a | **Not used** |
 | Amazon 2018 `also_buy` | None stated; cite Ni et al. 2019 | Yes (research) | Treat as no | Seeds only | Complement ground truth (evaluation only) |

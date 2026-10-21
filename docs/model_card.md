@@ -58,10 +58,9 @@ randomised holdout, with 95% intervals; clicks on recommendations are never repo
 ## Evaluation data
 
 Simulated small stores carved from real logs ([store_simulation.md](store_simulation.md)):
-OTTO (session-heavy general e-commerce) for all reported numbers so far. Planned: H&M (fashion),
-Dunnhumby (grocery and repeat buying) and Amazon Reviews 2023 Grocery (text-rich; complement
-ground truth from Amazon 2018 `also_buy`). Each dataset section of results.md states whether it
-has been run.
+OTTO (session-heavy general e-commerce), H&M (fashion), Dunnhumby (grocery and repeat buying,
+stores of up to 30K events) and Amazon Reviews 2023 Grocery (text-rich; complement ground truth
+from Amazon 2018 `also_buy`). Each dataset section of results.md states whether it has been run.
 
 ## Quantitative analyses
 

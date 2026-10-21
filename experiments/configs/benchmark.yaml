@@ -53,3 +53,12 @@ datasets:
              vstan, sasrec_ce, gsasrec, esasrec]
     blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
     transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)
+  dunnhumby:
+    task: next_basket
+    exclude_seen: false   # groceries are re-bought; repeat vs explore reported (fixed before results)
+    # 2,500 households: no sub-catalog reaches 100K pre-test events under the store rules (D26)
+    max_bucket: 30000
+    models: [pop, recpop, gp_topfreq, itemknn, rp3beta, ease, ials, bpr, markov, pctm, seqrules,
+             vstan, sasrec_ce, gsasrec, esasrec]
+    blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
+    transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)

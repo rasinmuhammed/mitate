@@ -27,11 +27,15 @@ Global temporal split with dataset-level cut points `t_val < t_test < t_end`:
 |---|---|---|---|---|
 | OTTO | 2022-08-14 22:00 UTC | 2022-08-21 22:00 UTC | 2022-08-28 22:00 UTC (end of the official train file) | next item |
 | H&M | 2020-09-09 00:00 UTC | 2020-09-16 00:00 UTC | 2020-09-23 00:00 UTC (the day after the last day of `transactions_train.csv`) | next basket |
+| Dunnhumby | start of day 656 | start of day 684 | end of day 711 (the last day of `transaction_data.csv`) | next basket |
 
 OTTO's official test week is not used: its sessions are truncated (ledger D15). H&M's test
 window is the last week of the competition's training file, the same seven-day horizon the
 competition predicts. H&M dates carry no time of day, so a basket is one customer-day and all
 its events share the day's start (ledger D22).
+Dunnhumby gives days as numbers from 1, with a time of day, and never dates; a basket is one
+`BASKET_ID` at one moment. With only 2,500 households its windows are 28 days rather than 7, and
+its stores stop at 30K events, the largest every seed can supply (ledger D26).
 
 Other datasets are added to this table as they are ingested.
 

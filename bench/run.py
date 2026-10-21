@@ -619,7 +619,13 @@ def main() -> None:
         if a.datasets and name not in a.datasets:
             continue
         ds = load(name)
-        buckets = [b for b in cfg["buckets"] if not a.buckets or b["n"] in a.buckets]
+        # a dataset too small for the largest stores declares the largest it can supply
+        largest = dcfg.get("max_bucket", float("inf"))
+        buckets = [
+            b
+            for b in cfg["buckets"]
+            if b["n"] <= largest and (not a.buckets or b["n"] in a.buckets)
+        ]
         # explicit --seeds run exactly those seeds; the configured set may draw spare seeds
         seeds = a.seeds if a.seeds is not None else cfg["seeds"]
         spare = 0 if a.seeds is not None else cfg.get("spare_seeds", 0)

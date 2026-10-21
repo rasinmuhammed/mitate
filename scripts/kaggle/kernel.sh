@@ -6,15 +6,16 @@
 #   scripts/kaggle/kernel.sh otto stage2       Mitate on OTTO, once every bucket is finished
 #
 # Inputs: the private dataset mitate-bench (scripts/kaggle/package.sh); for hm, the H&M
-# competition, whose rules must be accepted on kaggle.com first; and mitate-results-<dataset>
+# competition, whose rules must be accepted on kaggle.com first; for dunnhumby, the private
+# dataset mitate-dunnhumby (scripts/kaggle/upload_dunnhumby.sh); and mitate-results-<dataset>
 # (scripts/kaggle/collect.sh) once an earlier run has left results to resume from.
 # Needs a Kaggle API token in ~/.kaggle/access_token.
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-usage() { echo "usage: $0 otto|hm BUCKET... | $0 otto|hm stage2" >&2; exit 2; }
+usage() { echo "usage: $0 otto|hm|dunnhumby BUCKET... | $0 DATASET stage2" >&2; exit 2; }
 ds=${1:-}
-[[ $ds == otto || $ds == hm ]] || usage
+[[ $ds =~ ^(otto|hm|dunnhumby)$ ]] || usage
 shift
 (($#)) || usage
 stage=1
@@ -40,6 +41,7 @@ fi
 # the run resumes from the results dataset when one exists, and stops if that holds fewer
 # finished results than this tree (a stale version still processing, or a failed publish)
 sources="\"$user/mitate-bench\""
+[[ $ds == dunnhumby ]] && sources+=", \"$user/mitate-dunnhumby\""
 resume=0
 if [[ $(kaggle datasets status "$user/mitate-results-$ds" 2>/dev/null) == *ready* ]]; then
   sources+=", \"$user/mitate-results-$ds\""

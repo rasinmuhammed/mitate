@@ -130,7 +130,37 @@ def hm(root: Path = DATA / "hm") -> Dataset:
     )
 
 
-DATASETS = {"otto": otto, "amazon_grocery": amazon_grocery, "hm": hm}
+def dunnhumby(root: Path = DATA / "dunnhumby") -> Dataset:
+    """dunnhumby The Complete Journey (site terms: research and non-commercial use only).
+
+    Two years of grocery baskets from 2,500 households, with a three-level product taxonomy and
+    no product names. Built by ``bench.data.dunnhumby``. Test = the last 28 days, validation =
+    the 28 days before: with 2,500 households a week holds too few baskets for small stores, and
+    28 days spans the weekly shopping cycle several times over (ledger D26).
+    """
+    events = pl.scan_parquet(root / "events.parquet")
+    hi = events.select(pl.col("ts").max()).collect().item()
+    t_end = (int(hi) // DAY + 1) * DAY  # the end of the last day
+    t_test = t_end - 28 * DAY
+    items = pl.read_parquet(root / "items.parquet").select(
+        "item", "title", "text", "category", "price"
+    )
+    categories = pl.read_parquet(root / "categories.parquet")
+    return Dataset(
+        "dunnhumby",
+        events,
+        items,
+        categories,
+        t_test - 28 * DAY,
+        t_test,
+        t_end,
+        "taxonomy",
+        "next_basket",
+        "dunnhumby site terms: research and non-commercial use only; no redistribution",
+    )
+
+
+DATASETS = {"otto": otto, "amazon_grocery": amazon_grocery, "hm": hm, "dunnhumby": dunnhumby}
 
 
 def load(name: str) -> Dataset:

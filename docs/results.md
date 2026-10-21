@@ -53,6 +53,12 @@ hardware record is stored with its results.
 
 ![Which method wins at each store size, OTTO](figures/crossover_otto.svg)
 
+**Finding.** Mitate is ahead of the best single method at every size and on every one of the 35
+stores, by 0.045 to 0.069 NDCG@10, and every difference survives the Holm correction. The best
+single method changes four times across the seven sizes: the transition probe at 1K, session kNN
+at 3K and 10K, GRU4Rec at 30K, iALS at 100K and SASRec from 300K. Against the method each store
+would pick on its own validation week, the gap is +0.045 to +0.086.
+
 All models, NDCG@10:
 
 | Model | 1K | 3K | 10K | 30K | 100K | 300K | 1M |
@@ -114,6 +120,12 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 | Source: SeqRules | -0.0003 (n.s.) | -0.0046 (n.s.) | -0.0003 (n.s.) | -0.0009 (n.s.) | -0.0027 | -0.0012 (n.s.) | -0.0003 (n.s.) |
 | Source: Session kNN (VSTAN) | -0.0026 (n.s.) | +0.0071 (n.s.) | +0.0029 (n.s.) | -0.0017 (n.s.) | +0.0006 (n.s.) | -0.0007 (n.s.) | -0.0004 (n.s.) |
 | Source: SASRec (full softmax) | -0.0061 (n.s.) | +0.0075 (n.s.) | +0.0077 (n.s.) | +0.0089 | +0.0019 (n.s.) | +0.0025 | +0.0049 |
+
+**Finding.** The gain comes from learning to rank: rank fusion over the same nine sources is
+0.058 to 0.092 lower at every size, significant from 3K (at 1K the difference does not survive the
+correction across all ablations). The store-size features change nothing measurable at any size.
+No single source matters much on its own: removing one moves the score by at most 0.015, and 8 of
+those 63 differences are significant.
 
 ### Cost
 
@@ -283,6 +295,12 @@ tests, and the shopper counts here, before the means:
 
 ![Which method wins at each store size, H&M](figures/crossover_hm.svg)
 
+**Finding.** Mitate is ahead of the best single method at six of seven sizes after the Holm
+correction. At 3K it is 0.013 lower, which is not significant. Small stores have few buying
+shoppers (11 per store at 1K), so the paired test, not the mean, carries the weight there.
+Against the method each store would pick on its own validation week, Mitate is ahead at every
+size, by +0.021 to +0.185.
+
 The figure plots a set of methods fixed in advance, one per family. Recent popularity was added
 to that set after the H&M results were seen, because it is the strongest baseline here and
 leaving it out would flatter Mitate.
@@ -327,6 +345,11 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 | Source: SeqRules | +0.0248 (n.s.) | -0.0226 (n.s.) | -0.0006 (n.s.) | +0.0043 (n.s.) | -0.0012 (n.s.) | +0.0015 (n.s.) | +0.0010 (n.s.) |
 | Source: Session kNN (VSTAN) | -0.0166 (n.s.) | +0.0145 (n.s.) | -0.0030 (n.s.) | +0.0069 (n.s.) | -0.0005 (n.s.) | +0.0003 (n.s.) | +0.0016 |
 | Source: SASRec (full softmax) | +0.0121 (n.s.) | -0.0092 (n.s.) | -0.0104 (n.s.) | +0.0073 (n.s.) | +0.0029 (n.s.) | +0.0022 (n.s.) | +0.0031 |
+
+**Finding.** Learning to rank again carries the gain, worth 0.039 to 0.211 over rank fusion.
+The store-size features matter only at 1K (+0.043). Recent popularity is the source whose
+removal costs most often (significant at 10K, 30K, 300K and 1M); four others are significant at
+one or two sizes, by at most 0.013.
 
 ### Returning customers: the rail as shipped
 

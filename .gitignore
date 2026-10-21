@@ -18,3 +18,4 @@ dist/
 experiments/results/**/*.npz
 # rankers trained on non-commercial data are never distributed (docs/licenses.md)
 experiments/results/hm/_ltr/
+experiments/results/dunnhumby/_ltr/

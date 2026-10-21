@@ -3,6 +3,7 @@
 # grows with the store. Five independently sampled stores per bucket.
 results_dir: experiments/results
 seeds: [0, 1, 2, 3, 4]
+spare_seeds: 10        # replace a seed whose store cannot be sampled or evaluated (ledger D24)
 buckets:
   - {n: 1000, items: 200}
   - {n: 3000, items: 400}
@@ -18,6 +19,12 @@ tuning:
   neural_trial_budget_s: 900
   neural_device: mps    # training only; serving and efficiency runs are CPU. MPS kernels are not
                         # bitwise deterministic, so neural results reproduce up to float noise.
+  # Compute rules for large stores (ledger D18), fixed before any store above 10K was evaluated.
+  # shared_tuning: the bucket's first store is tuned; the others reuse its configurations and
+  # re-select only the epoch count on their own validation window. skip: models not run.
+  scale:
+    - {from_n: 30000, trials: 20, shared_tuning: true}
+    - {from_n: 100000, trials: 20, shared_tuning: true, skip: [gsasrec, esasrec, gru4rec]}
 test:
   units: 5000           # test shoppers (Successive targets), sampled if more
   k: 20
@@ -25,6 +32,7 @@ blend:
   n_cand: 30            # per source
   ltr_val_units: 1000   # validation shoppers contributing LTR training groups per store
   ltr_trials: 30
+  returning_rail: 10    # rail size for the returning-customer variants: the NDCG@10 cutoff
   variants:             # ablations evaluated with the same pooled-training recipe
     - {name: full}
     - {name: rrf, rrf: true}
@@ -35,5 +43,25 @@ datasets:
     task: next_item
     exclude_seen: false   # re-viewing/re-carting is legitimate in sessions; repeat vs explore reported
     models: [pop, recpop, itemknn, rp3beta, ease, ials, bpr, markov, pctm, seqrules, vstan,
-             sasrec_ce, gsasrec, esasrec]
+             sasrec_ce, gsasrec, esasrec, gru4rec]   # gru4rec: official code, benchmark only (D6)
     blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
+  hm:
+    task: next_basket
+    exclude_seen: false   # fashion basics are re-bought; repeat vs explore reported (fixed before results)
+    # gp_topfreq: the repeat-purchase baseline that next-basket studies show is hard to beat.
+    # GRU4Rec is not run: it models sessions, and here a session is a one-day basket.
+    models: [pop, recpop, gp_topfreq, itemknn, rp3beta, ease, ials, bpr, markov, pctm, seqrules,
+             vstan, sasrec_ce, gsasrec, esasrec]
+    blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
+    transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)
+    returning: true       # also score the returning-customer rail, repurchases first (D27)
+  dunnhumby:
+    task: next_basket
+    exclude_seen: false   # groceries are re-bought; repeat vs explore reported (fixed before results)
+    # 2,500 households: no sub-catalog reaches 100K pre-test events under the store rules (D26)
+    max_bucket: 30000
+    models: [pop, recpop, gp_topfreq, itemknn, rp3beta, ease, ials, bpr, markov, pctm, seqrules,
+             vstan, sasrec_ce, gsasrec, esasrec]
+    blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
+    transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)
+    returning: true       # also score the returning-customer rail, repurchases first (D27)

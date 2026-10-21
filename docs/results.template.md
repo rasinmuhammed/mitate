@@ -132,9 +132,21 @@ All models, NDCG@10:
 
 {{dunnhumby_ndcg_10_models}}
 
+**Finding.** Grocery is where Mitate's ranker does not win. GP-TopFreq, a household's own most
+frequent purchases, is the best single method at every size, and the ranker alone does not beat
+it: no difference is significant after the Holm correction, but at 10K and 30K the ranker is about
+0.01 behind on nearly every store (1 of 5 and 0 of 5 stores at or above it), and on Recall@20 it is
+significantly behind at 30K. None of the ranker's nine sources recommends repurchases. Stage 2 on
+this dataset ran on the Apple M1 rather than Kaggle (ledger D28).
+
 ### What drives the result
 
 {{dunnhumby_ndcg_10_ablations}}
+
+**Finding.** Unlike OTTO and H&M, the store-size features hurt here: the ranker trained without
+them is better, significantly at 1K, 10K and 30K. With 20 stores to learn from, the ranker fits
+differences between those particular stores. The shipped OTTO ranker scores the same as the one
+trained on Dunnhumby itself (no difference is significant).
 
 ### Returning customers: the rail as shipped
 
@@ -146,6 +158,10 @@ after the Dunnhumby baselines showed the repeat-purchase baseline leading at eve
 (ledger D27), so it sits beside the headline rather than replacing it.
 
 {{dunnhumby_ndcg_10_returning}}
+
+**Finding.** With repurchases first, as the product serves returning customers, Mitate matches
+GP-TopFreq at every size, within ±0.005 NDCG@10, with either ranker. With the shipped OTTO ranker
+it is ahead at 30K before correction (+0.005) and level after it.
 
 ## 4. Product-page placements (Amazon Grocery)
 
@@ -219,5 +235,8 @@ Interleaving: how often a preference test picks the better ranker:
 {{online_interleaving}}
 
 ## Not run
+
+* H&M with the shipped OTTO ranker and the returning-customer rail: waiting for the Kaggle GPU
+  quota to reset (ledger D28). The H&M rows above are final.
 
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

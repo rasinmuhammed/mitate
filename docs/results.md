@@ -47,9 +47,9 @@ hardware record is stored with its results.
 | 3K | 5 | 0.2803 | Session kNN (VSTAN) 0.2155 | +0.0691 [+0.0527, +0.0857] | +0.44 | 1.59e-14 | 5/5 | +0.0705 [+0.0537, +0.0878] |
 | 10K | 5 | 0.2751 | Session kNN (VSTAN) 0.2130 | +0.0638 [+0.0547, +0.0733] | +0.43 | 8.19e-39 | 5/5 | +0.0700 [+0.0601, +0.0799] |
 | 30K | 5 | 0.2825 | GRU4Rec 0.2160 | +0.0663 [+0.0588, +0.0740] | +0.34 | 1.1e-60 | 5/5 | +0.0749 [+0.0690, +0.0808] |
-| 100K | 5 | 0.2864 | iALS 0.2196 | +0.0668 [+0.0637, +0.0698] | +0.47 | 0 | 5/5 | +0.0710 [+0.0681, +0.0738] |
-| 300K | 5 | 0.2728 | SASRec (full softmax) 0.2202 | +0.0526 [+0.0505, +0.0548] | +0.42 | 0 | 5/5 | +0.0598 [+0.0574, +0.0621] |
-| 1M | 5 | 0.2721 | SASRec (full softmax) 0.2274 | +0.0447 [+0.0428, +0.0466] | +0.39 | 0 | 5/5 | +0.0447 [+0.0428, +0.0466] |
+| 100K | 5 | 0.2864 | iALS 0.2196 | +0.0668 [+0.0637, +0.0698] | +0.47 | < 1e-300 | 5/5 | +0.0710 [+0.0681, +0.0738] |
+| 300K | 5 | 0.2728 | SASRec (full softmax) 0.2202 | +0.0526 [+0.0505, +0.0548] | +0.42 | < 1e-300 | 5/5 | +0.0598 [+0.0574, +0.0621] |
+| 1M | 5 | 0.2721 | SASRec (full softmax) 0.2274 | +0.0447 [+0.0428, +0.0466] | +0.39 | < 1e-300 | 5/5 | +0.0447 [+0.0428, +0.0466] |
 
 ![Which method wins at each store size, OTTO](figures/crossover_otto.svg)
 
@@ -283,10 +283,10 @@ Kaggle; only the scores below do.
 
 | Store size | Stores | Mitate | Best single (chosen on test) | Δ vs best, 95% CI | d_z | p (Holm) | Stores where Mitate ≥ best | Δ vs validation-selected single, 95% CI |
 |---|---:|---:|---|---:|---:|---:|---:|---:|
-| 1K | 5 | – | – | – | – | – | – | – |
-| 3K | 5 | – | – | – | – | – | – | – |
-| 10K | 5 | – | – | – | – | – | – | – |
-| 30K | 5 | – | – | – | – | – | – | – |
+| 1K | 5 | 0.3633 | GP-TopFreq 0.3910 | -0.0227 [-0.0584, +0.0124] | -0.11 | 0.431 | 2/5 | +0.0250 [-0.0143, +0.0646] |
+| 3K | 5 | 0.3196 | GP-TopFreq 0.3159 | +0.0035 [-0.0182, +0.0256] | +0.02 | 0.753 | 3/5 | +0.0042 [-0.0177, +0.0260] |
+| 10K | 5 | 0.3151 | GP-TopFreq 0.3284 | -0.0135 [-0.0243, -0.0025] | -0.09 | 0.0663 | 1/5 | -0.0135 [-0.0243, -0.0025] |
+| 30K | 5 | 0.3113 | GP-TopFreq 0.3199 | -0.0091 [-0.0168, -0.0014] | -0.05 | 0.0663 | 0/5 | -0.0091 [-0.0168, -0.0014] |
 
 ![Which method wins at each store size, Dunnhumby](figures/crossover_dunnhumby.svg)
 
@@ -294,9 +294,10 @@ All models, NDCG@10:
 
 | Model | 1K | 3K | 10K | 30K |
 |---|---:|---:|---:|---:|
+| Mitate (blend) | 0.3633 ± 0.0455 | 0.3196 ± 0.0665 | 0.3151 ± 0.0282 | 0.3113 ± 0.0841 |
 | BPR | 0.2696 ± 0.0312 | 0.2130 ± 0.0636 | 0.2052 ± 0.0374 | 0.1899 ± 0.0727 |
 | EASE | 0.3052 ± 0.0447 | 0.2258 ± 0.0591 | 0.2255 ± 0.0508 | 0.1967 ± 0.0786 |
-| GP-TopFreq | 0.3910 ± 0.0809 | 0.3159 ± 0.0855 | 0.3284 ± 0.0301 | 0.3199 ± 0.0847 |
+| GP-TopFreq | **0.3910 ± 0.0809** | **0.3159 ± 0.0855** | **0.3284 ± 0.0301** | **0.3199 ± 0.0847** |
 | ItemKNN | 0.2132 ± 0.0489 | 0.1941 ± 0.0621 | 0.1819 ± 0.0739 | 0.1603 ± 0.0778 |
 | Markov chain | 0.1330 ± 0.0522 | 0.1395 ± 0.0501 | 0.1326 ± 0.0527 | 0.1237 ± 0.0668 |
 | Popularity | 0.1848 ± 0.1276 | 0.1628 ± 0.0816 | 0.1758 ± 0.0724 | 0.1564 ± 0.0733 |
@@ -310,9 +311,34 @@ All models, NDCG@10:
 | gSASRec (tuned k, t) | 0.2619 ± 0.1001 | 0.2118 ± 0.0601 | 0.2235 ± 0.0702 | 0.1880 ± 0.0740 |
 | iALS | 0.3149 ± 0.0500 | 0.2359 ± 0.0803 | 0.2379 ± 0.0579 | 0.2260 ± 0.0872 |
 
+**Finding.** Grocery is where Mitate's ranker does not win. GP-TopFreq, a household's own most
+frequent purchases, is the best single method at every size, and the ranker alone does not beat
+it: no difference is significant after the Holm correction, but at 10K and 30K the ranker is about
+0.01 behind on nearly every store (1 of 5 and 0 of 5 stores at or above it), and on Recall@20 it is
+significantly behind at 30K. None of the ranker's nine sources recommends repurchases. Stage 2 on
+this dataset ran on the Apple M1 rather than Kaggle (ledger D28).
+
 ### What drives the result
 
-_Not run yet._
+| Removed | 1K | 3K | 10K | 30K |
+|---|---:|---:|---:|---:|
+| Learned ranking (rank fusion instead) | +0.0031 (n.s.) | +0.0278 (n.s.) | +0.0386 | +0.0604 |
+| Store-size features | -0.0396 | -0.0171 (n.s.) | -0.0152 | -0.0190 |
+| In-domain ranker (the shipped OTTO ranker instead) | -0.0347 (n.s.) | +0.0084 (n.s.) | -0.0024 (n.s.) | +0.0005 (n.s.) |
+| Source: Recent popularity | -0.0040 (n.s.) | -0.0008 (n.s.) | -0.0033 (n.s.) | -0.0114 |
+| Source: ItemKNN | -0.0416 | -0.0041 (n.s.) | -0.0137 | -0.0151 |
+| Source: RP3beta | -0.0355 | -0.0223 (n.s.) | -0.0232 | -0.0165 |
+| Source: EASE | -0.0230 (n.s.) | +0.0091 (n.s.) | -0.0016 (n.s.) | -0.0048 (n.s.) |
+| Source: iALS | -0.0089 (n.s.) | +0.0071 (n.s.) | -0.0017 (n.s.) | +0.0003 (n.s.) |
+| Source: Transition probe (PCTM) | -0.0292 (n.s.) | -0.0003 (n.s.) | -0.0135 | -0.0174 |
+| Source: SeqRules | -0.0390 | -0.0106 (n.s.) | -0.0122 | -0.0174 |
+| Source: Session kNN (VSTAN) | -0.0519 | -0.0210 (n.s.) | -0.0205 | -0.0197 |
+| Source: SASRec (full softmax) | -0.0132 (n.s.) | +0.0013 (n.s.) | -0.0083 (n.s.) | -0.0037 (n.s.) |
+
+**Finding.** Unlike OTTO and H&M, the store-size features hurt here: the ranker trained without
+them is better, significantly at 1K, 10K and 30K. With 20 stores to learn from, the ranker fits
+differences between those particular stores. The shipped OTTO ranker scores the same as the one
+trained on Dunnhumby itself (no difference is significant).
 
 ### Returning customers: the rail as shipped
 
@@ -323,7 +349,20 @@ repurchases, then the ranker. "Ranker alone" is the headline above. This compari
 after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
 (ledger D27), so it sits beside the headline rather than replacing it.
 
-_Not run yet._
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+|---|---|---:|---|---:|---:|---:|
+| 1K | GP-TopFreq 0.3910 | 0.3633 | ranker trained here | 0.3871 | -0.0023 [-0.0256, +0.0213] | 1 |
+| 1K | GP-TopFreq 0.3910 | 0.3633 | shipped OTTO ranker | 0.3896 | +0.0011 [-0.0207, +0.0237] | 1 |
+| 3K | GP-TopFreq 0.3159 | 0.3196 | ranker trained here | 0.3195 | +0.0034 [-0.0066, +0.0135] | 1 |
+| 3K | GP-TopFreq 0.3159 | 0.3196 | shipped OTTO ranker | 0.3117 | -0.0044 [-0.0140, +0.0049] | 1 |
+| 10K | GP-TopFreq 0.3284 | 0.3151 | ranker trained here | 0.3241 | -0.0035 [-0.0108, +0.0039] | 1 |
+| 10K | GP-TopFreq 0.3284 | 0.3151 | shipped OTTO ranker | 0.3287 | +0.0006 [-0.0058, +0.0071] | 1 |
+| 30K | GP-TopFreq 0.3199 | 0.3113 | ranker trained here | 0.3210 | +0.0005 [-0.0045, +0.0054] | 1 |
+| 30K | GP-TopFreq 0.3199 | 0.3113 | shipped OTTO ranker | 0.3242 | +0.0048 [+0.0007, +0.0089] | 0.0888 |
+
+**Finding.** With repurchases first, as the product serves returning customers, Mitate matches
+GP-TopFreq at every size, within ±0.005 NDCG@10, with either ranker. With the shipped OTTO ranker
+it is ahead at 30K before correction (+0.005) and level after it.
 
 ## 4. Product-page placements (Amazon Grocery)
 
@@ -520,5 +559,8 @@ Interleaving: how often a preference test picks the better ranker:
 | 3,000 | 0.935 | 0.000 | 0.035 | 0.965 | 99.8% |
 
 ## Not run
+
+* H&M with the shipped OTTO ranker and the returning-customer rail: waiting for the Kaggle GPU
+  quota to reset (ledger D28). The H&M rows above are final.
 
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

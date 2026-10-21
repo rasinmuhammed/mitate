@@ -1,0 +1,21 @@
+data/
+!data/README.md
+.venv/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+experiments/results/**/raw/
+*.sqlite
+*.duckdb
+.env
+node_modules/
+experiments/results_timing/
+dist/
+.claude/
+.hypothesis/
+# per-query arrays are large and regenerate from the runs; summaries and analyses are kept
+experiments/results/**/*.npz
+# rankers trained on non-commercial data are never distributed (docs/licenses.md)
+experiments/results/hm/_ltr/

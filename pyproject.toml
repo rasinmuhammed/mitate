@@ -1,0 +1,80 @@
+[project]
+name = "mitate"
+version = "0.1.0"
+description = "Retail recommender for small stores: sensible on day one from the catalog, better as shopping data arrives."
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "numpy>=1.26,<2.3",
+  "scipy>=1.13",
+  "polars>=1.8",
+  "pyarrow>=17",
+  "duckdb>=1.1",
+  "scikit-learn>=1.5",
+  "lightgbm>=4.5",
+  "implicit>=0.7.2",
+  "optuna>=4.0",
+  "pyyaml>=6",
+  "pydantic>=2.8",
+  "torch>=2.4",
+  "sentence-transformers>=3.2",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "python-multipart>=0.0.9",
+  "matplotlib>=3.9",
+  "tqdm>=4.66",
+  "httpx>=0.27",
+  "irspack>=0.5.2",
+  "numba>=0.68.0",
+  "model2vec>=0.10.0",
+]
+
+[dependency-groups]
+demo = [
+    "misata==0.9.6.9",
+]
+dev = ["pytest>=8", "hypothesis>=6.100", "ruff>=0.6", "mypy>=1.11", "types-PyYAML", "pytest-timeout"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mitate", "bench", "serve"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "N", "SIM", "RUF", "NPY", "PERF"]
+ignore = ["N803", "N806", "E741", "N812"]  # X/A/B linear-algebra names; torch's `F` alias
+
+[tool.ruff.lint.per-file-ignores]
+# Reproductions must replay the original papers' legacy numpy RNG calls exactly.
+"bench/repro/*" = ["NPY002"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+timeout = 600
+markers = [
+  "slow: needs downloaded datasets",
+  "leakage: leakage guards (must pass for CI)",
+  "network: downloads pinned third-party benchmark code",
+]
+
+# CPU-only torch on Linux (CI, servers): serving never uses a GPU and the CUDA wheels are ~2 GB.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true

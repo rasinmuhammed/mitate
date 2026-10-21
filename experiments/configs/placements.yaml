@@ -1,0 +1,15 @@
+# Product-page placements (ledger D17): similar items vs Amazon 2018 also_view, complements vs
+# also_buy, on simulated Amazon Grocery stores. Every number comes from
+# `python -m bench.placements <this file>`.
+dataset: amazon_grocery
+results_dir: experiments/results/placements
+kinds: [also_view, also_buy, also_buy_cross]
+seeds: [1, 2, 3, 4, 5]  # seed 0 is the development store (product decisions); never reported
+buckets:                 # pre-test interactions (reviews) and assortment size
+  - {n: 1000, items: 300}
+  - {n: 10000, items: 800}
+  - {n: 100000, items: 3000}
+max_anchors: 1000        # per half (dev / test), sampled if more
+trials: 20               # TPE trials for each tunable baseline (ItemKNN, EASE), on dev anchors
+embedders: [e5-small, potion-multi]  # qwen3-0.6b (2.4 GB fp32) thrashes 8 GB RAM next to the benchmark
+mitate_embedder: e5-small  # the serving default (EngineConfig.embedder)

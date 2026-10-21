@@ -1,0 +1,58 @@
+# Timing probe: one seed, 5 trials, three buckets. Not a results config.
+results_dir: experiments/results_timing
+seeds:
+- 0
+buckets:
+- n: 1000
+  items: 200
+- n: 10000
+  items: 800
+- n: 100000
+  items: 3000
+tuning:
+  trials: 5
+  val_units: 2000
+  neural_trial_budget_s: 900
+test:
+  units: 5000
+  k: 20
+blend:
+  n_cand: 30
+  ltr_val_units: 1000
+  ltr_trials: 5
+  variants:
+  - name: full
+  - name: rrf
+    rrf: true
+  - name: no_volume
+    drop_groups:
+    - store
+datasets:
+  otto:
+    task: next_item
+    exclude_seen: false
+    models:
+    - pop
+    - recpop
+    - itemknn
+    - rp3beta
+    - ease
+    - ials
+    - bpr
+    - markov
+    - pctm
+    - seqrules
+    - vstan
+    - sasrec_ce
+    - gsasrec
+    - esasrec
+    blend_sources:
+    - recpop
+    - itemknn
+    - rp3beta
+    - ease
+    - ials
+    - pctm
+    - seqrules
+    - vstan
+    - sasrec_ce

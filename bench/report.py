@@ -85,6 +85,13 @@ def num(x: float, spec: str) -> str:
     return format(x, spec) if math.isfinite(x) else NA
 
 
+def fmt_p(p: float) -> str:
+    """A p-value to three significant figures; one below double precision prints as a bound."""
+    if not math.isfinite(p):
+        return NA
+    return "< 1e-300" if p < 1e-300 else f"{p:.3g}"
+
+
 def size_label(n: int) -> str:
     return f"{n // 1_000_000}M" if n >= 1_000_000 else f"{n // 1000}K"
 
@@ -146,7 +153,7 @@ def returning_table(an: dict[str, Any]) -> str | None:
             score = r["models"].get(m, {}).get("mean", math.nan)
             diff = (
                 f"{o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | "
-                f"{o.get('p_adj_holm', math.nan):.3g}"
+                f"{fmt_p(o.get('p_adj_holm', math.nan))}"
                 if o
                 else f"{NA} | {NA}"
             )
@@ -175,7 +182,7 @@ def headline_table(an: dict[str, Any]) -> str:
         rows.append(
             f"| {size_label(int(b))} | {r['n_stores']} | {mit:.4f} | {LABELS.get(best, best)} "
             f"{bm:.4f} | {o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | "
-            f"{o['d_z']:+.2f} | {o.get('p_adj_holm', math.nan):.3g} | "
+            f"{o['d_z']:+.2f} | {fmt_p(o.get('p_adj_holm', math.nan))} | "
             f"{int(o['stores_mitate_ge'])}/{o['stores']} | "
             + (f"{v['diff']:+.4f} [{v['ci_low']:+.4f}, {v['ci_high']:+.4f}]" if v else NA)
             + " |"
@@ -360,8 +367,8 @@ def placement_tables(rows: dict[str, Any]) -> str:
         v, o = rows[n]["vs_dev_selected"], rows[n]["vs_oracle"]
         out.append(
             f"| {size_label(int(n))} | {v['diff']:+.4f} [{v['ci_low']:+.4f}, {v['ci_high']:+.4f}] "
-            f"| {v['p_adj']:.3g} | {PLACEMENT_LABELS.get(o['model'], o['model'])} "
-            f"| {o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | {o['p_adj']:.3g} |"
+            f"| {fmt_p(v['p_adj'])} | {PLACEMENT_LABELS.get(o['model'], o['model'])} "
+            f"| {o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | {fmt_p(o['p_adj'])} |"
         )
     return "\n".join(out)
 

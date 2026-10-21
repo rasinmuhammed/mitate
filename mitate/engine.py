@@ -8,10 +8,10 @@ The method shifts with the store's data volume:
   the shopper has viewed this visit). Complements move to measured co-purchase as soon as enough
   shoppers stand behind a pair, whatever the stage.
 * **Behavioural**: the Mitate blend over every source whose volume threshold the store has
-  reached, ordered by the shipped ranker trained on pooled OTTO stores of every size with
-  data-volume features, so it already knows which source to trust at this store's size. When a
-  source is below its threshold the ranker trained without that source is used; with no ranker
-  for the active sources, the blend falls back to rank fusion.
+  reached, ordered by the shipped ranker, which learned from the validation decisions of pooled
+  OTTO stores of every size, so a store needs no labelled data of its own. When a source is below
+  its threshold the ranker trained without that source is used; with no ranker for the active
+  sources, the blend falls back to rank fusion.
 
 Thresholds come from the benchmark (docs/results.md), not from intuition; until a threshold is
 measured the source is always on. Every list passes the business constraints and every item

@@ -1,9 +1,10 @@
 """Mitate's blend: union candidates from every source, describe each (query, item) pair with
 source, item, shopper and store-size features, and rank with LightGBM LambdaMART.
 
-The ranker is trained on validation-window labels pooled across stores of many sizes, which is
-what lets the store-level data-volume features matter: inside one request they are constant, but
-the trees can split on them first and learn which source to trust at which store size.
+The ranker is trained on validation-window labels pooled across stores of many sizes. The
+store-level data-volume features are constant inside one request, so they can only matter through
+splits that treat stores of different sizes differently; the ``no_volume`` ablation measures
+whether they do (docs/results.md).
 Ablations switch off feature groups or sources without touching anything else.
 """
 

@@ -118,6 +118,45 @@ def model_table(an: dict[str, Any]) -> str:
     return "\n".join(rows)
 
 
+RETURNING_LABELS = {
+    "mitate_full_repeat": "ranker trained here",
+    "mitate_otto_full_repeat": "shipped OTTO ranker",
+}
+
+
+def returning_table(an: dict[str, Any]) -> str | None:
+    """The returning-customer rail (repurchases first, then the ranker) against the oracle best
+    single method; each system is Holm-corrected across store sizes (ledger D27)."""
+    buckets = sorted(an["buckets"], key=int)
+    systems = [m for m in RETURNING_LABELS if any(m in an["buckets"][b]["models"] for b in buckets)]
+    if not systems:
+        return None
+    rows = [
+        "| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score "
+        "| Δ vs best, 95% CI | p (Holm) |",
+        "|---|---|---:|---|---:|---:|---:|",
+    ]
+    for b in buckets:
+        r = an["buckets"][b]
+        best = r.get("oracle_best_single")
+        bm = r["models"].get(best, {}).get("mean", math.nan) if best else math.nan
+        alone = r["models"].get("mitate_full", {}).get("mean", math.nan)
+        for m in systems:
+            o = r.get("returning", {}).get(m)
+            score = r["models"].get(m, {}).get("mean", math.nan)
+            diff = (
+                f"{o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | "
+                f"{o.get('p_adj_holm', math.nan):.3g}"
+                if o
+                else f"{NA} | {NA}"
+            )
+            rows.append(
+                f"| {size_label(int(b))} | {LABELS.get(best, best)} {num(bm, '.4f')} | "
+                f"{num(alone, '.4f')} | {RETURNING_LABELS[m]} | {num(score, '.4f')} | {diff} |"
+            )
+    return "\n".join(rows)
+
+
 def headline_table(an: dict[str, Any]) -> str:
     rows = [
         "| Store size | Stores | Mitate | Best single (chosen on test) | Δ vs best, 95% CI | d_z "
@@ -458,6 +497,9 @@ def main() -> None:
             an = json.loads(p.read_text())
             (gen / f"{ds}_{metric}_models.md").write_text(model_table(an) + "\n")
             (gen / f"{ds}_{metric}_headline.md").write_text(headline_table(an) + "\n")
+            returning = returning_table(an)
+            if returning:
+                (gen / f"{ds}_{metric}_returning.md").write_text(returning + "\n")
             ablations = ablation_table(an)
             if ablations:
                 (gen / f"{ds}_{metric}_ablations.md").write_text(ablations + "\n")

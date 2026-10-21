@@ -32,6 +32,7 @@ blend:
   n_cand: 30            # per source
   ltr_val_units: 1000   # validation shoppers contributing LTR training groups per store
   ltr_trials: 30
+  returning_rail: 10    # rail size for the returning-customer variants: the NDCG@10 cutoff
   variants:             # ablations evaluated with the same pooled-training recipe
     - {name: full}
     - {name: rrf, rrf: true}
@@ -53,6 +54,7 @@ datasets:
              vstan, sasrec_ce, gsasrec, esasrec]
     blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
     transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)
+    returning: true       # also score the returning-customer rail, repurchases first (D27)
   dunnhumby:
     task: next_basket
     exclude_seen: false   # groceries are re-bought; repeat vs explore reported (fixed before results)
@@ -62,3 +64,4 @@ datasets:
              vstan, sasrec_ce, gsasrec, esasrec]
     blend_sources: [recpop, itemknn, rp3beta, ease, ials, pctm, seqrules, vstan, sasrec_ce]
     transfer_from: otto   # also score with the OTTO-trained ranker the product ships (D25)
+    returning: true       # also score the returning-customer rail, repurchases first (D27)

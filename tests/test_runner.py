@@ -25,6 +25,7 @@ CFG = {
         "n_cand": 10,
         "ltr_val_units": 100,
         "ltr_trials": 2,
+        "returning_rail": 10,
         "variants": [
             {"name": "full"},
             {"name": "rrf", "rrf": True},
@@ -37,6 +38,7 @@ DCFG = {
     "exclude_seen": False,
     "models": ["pop", "recpop", "itemknn", "pctm", "vstan"],
     "blend_sources": ["recpop", "itemknn", "pctm"],
+    "returning": True,
 }
 
 
@@ -61,6 +63,7 @@ def test_smoke_both_stages(isolated: Path) -> None:
             "mitate_rrf",
             "mitate_no_volume",
             "mitate_no_itemknn",
+            "mitate_full_repeat",
         ]:
             summary = json.loads((d / f"{name}.json").read_text())["summary"]
             assert 0.0 <= summary["ndcg@10"] <= 1.0, name
@@ -124,6 +127,8 @@ def test_mitate_never_sees_the_future(isolated: Path) -> None:
     snames = [str(x) for x in pools[0][1]["source_names"]]
     boosters = run.train_rankers(ds, CFG, pools)
     todo = run.variants(CFG, snames)
+    boosters["full_repeat"] = boosters["full"]
+    todo.append((run.Variant("full_repeat"), False))
     outs = []
     for k, store in enumerate((st, _perturbed(st, st.t_test))):
         out = isolated / f"m{k}"

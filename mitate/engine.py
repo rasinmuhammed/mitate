@@ -56,6 +56,28 @@ def ranker_sources(name: str, feature_names: Sequence[str]) -> set[str] | None:
     return None
 
 
+def repurchase_first(
+    scores: NDArray[np.floating[Any]], orders: Sequence[int], n_rep: int
+) -> NDArray[np.float64]:
+    """``scores`` with the shopper's ``n_rep`` most repurchased items lifted above everything
+    else, ordered by personal order count, then by how recently each was last ordered.
+    ``orders`` is the shopper's ordered items, oldest first; the rest keep their order."""
+    S = np.asarray(scores, np.float64).copy()
+    if not orders or n_rep <= 0:
+        return S
+    cnt: dict[int, int] = {}
+    last: dict[int, int] = {}
+    for pos, i in enumerate(orders):
+        cnt[i] = cnt.get(i, 0) + 1
+        last[i] = pos
+    rep = sorted(cnt, key=lambda i: (-cnt[i], -last[i]))[:n_rep]
+    fin = S[np.isfinite(S)]
+    top = fin.max() if fin.size else 0.0
+    for r, i in enumerate(rep):
+        S[i] = top + 1.0 + (len(rep) - r)
+    return S
+
+
 def shipped_rankers() -> Path | None:
     return SHIPPED_RANKERS if (SHIPPED_RANKERS / "full.json").exists() else None
 
@@ -290,22 +312,8 @@ class Engine:
         """Repurchases (by personal order frequency, then recency) fill up to
         ``returning_repeat_share`` of the slate; the rest is the next-item ranking."""
         explore = self._next(shopper, -1)
-        orders = shopper.orders()
-        if not orders:
-            return explore
-        cnt: dict[int, int] = {}
-        last: dict[int, int] = {}
-        for pos, i in enumerate(orders):
-            cnt[i] = cnt.get(i, 0) + 1
-            last[i] = pos
         n_rep = round(k * self.cfg.returning_repeat_share)
-        rep = sorted(cnt, key=lambda i: (-cnt[i], -last[i]))[:n_rep]
-        S = explore.copy()
-        fin = S[np.isfinite(S)]
-        top = fin.max() if fin.size else 0.0
-        for r, i in enumerate(rep):
-            S[i] = top + 1.0 + (len(rep) - r)
-        return S
+        return repurchase_first(explore, shopper.orders(), n_rep)
 
     def _explain(
         self,

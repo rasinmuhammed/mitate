@@ -4,7 +4,7 @@ import pytest
 from mitate.complements import CategoryGraph, Edge, EdgeStatus, parse_proposals
 from mitate.constraints import Constraints, Context, ItemState, Placement, Rules
 from mitate.data import Catalog, Event, Log
-from mitate.engine import Engine, EngineConfig, Shopper
+from mitate.engine import Engine, EngineConfig, Shopper, repurchase_first
 from mitate.explain import Evidence, _co_units
 from tests.test_leakage import random_log
 
@@ -301,3 +301,47 @@ def test_engine_uses_the_ranker_trained_on_exactly_its_active_sources(tmp_path) 
     assert ranker(sources=names) == "full"
     assert ranker(sources=names, source_min_events={"pctm": 10**9}) == "no_pctm"
     assert ranker(sources=("recpop", "itemknn", "seqrules")) == "rrf"
+
+
+def test_repurchases_lead_by_order_count_then_recency() -> None:
+    S = np.array([5.0, 4.0, 3.0, 2.0, 1.0, -np.inf])
+    # counts: item 3 three times, item 1 twice, item 4 once
+    out = repurchase_first(S, [3, 1, 3, 4, 1, 3], n_rep=2)
+    assert np.argsort(-out, kind="stable").tolist() == [3, 1, 0, 2, 4, 5]
+    # equal counts: the more recently ordered item first
+    assert np.argsort(-repurchase_first(S, [2, 4], n_rep=2))[:2].tolist() == [4, 2]
+    # a repurchase lifts an item the ranker would never show
+    assert np.argmax(repurchase_first(S, [5], n_rep=1)) == 5
+    assert np.array_equal(repurchase_first(S, [], n_rep=5), S)
+    assert np.array_equal(S[:5], [5.0, 4.0, 3.0, 2.0, 1.0])  # the input is not modified
+
+
+def test_benchmark_rail_matches_the_engine() -> None:
+    from bench.run import _repurchase_first
+    from mitate.data import Queries
+
+    rng = np.random.default_rng(0)
+    S = rng.random((2, 12)).astype(np.float32)
+    items = np.array([4, 7, 4, 1, 9, 9, 2], np.int32)
+    event = np.array(
+        [Event.ORDER, Event.VIEW, Event.ORDER, Event.ORDER, Event.ORDER, Event.CART, Event.ORDER],
+        np.int8,
+    )
+    q = Queries(
+        indptr=np.array([0, 4, 7], np.int64),
+        items=items,
+        ts=np.arange(7, dtype=np.int64),
+        event=event,
+        now=np.array([10, 10], np.int64),
+        user=np.array([0, 1], np.int32),
+        session_start=np.zeros(2, np.int64),
+        anchor=np.full(2, -1, np.int32),
+    )
+    out = _repurchase_first(S, q, n_rep=2)
+    shoppers = [
+        Shopper(items=items[:4].tolist(), ts=list(range(4)), events=event[:4].tolist()),
+        Shopper(items=items[4:].tolist(), ts=list(range(3)), events=event[4:].tolist()),
+    ]
+    for r, sh in enumerate(shoppers):
+        expected = repurchase_first(S[r], sh.orders(), 2)
+        assert np.array_equal(np.argsort(-out[r]), np.argsort(-expected))

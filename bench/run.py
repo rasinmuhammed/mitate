@@ -43,7 +43,8 @@ from bench.simulator import (
 )
 from bench.tuning import evaluate_config, tune
 from mitate.blend import Blend, CandidateFrame, Variant, ablate
-from mitate.data import I64, Log
+from mitate.data import I64, Event, Log, Queries
+from mitate.engine import EngineConfig, repurchase_first
 from mitate.ltr import TreeEnsemble, train_isolated
 from mitate.models.base import F32, topk
 
@@ -461,6 +462,9 @@ def _ablate_rows(
     return Xa[keep_rows], ya[keep_rows].astype(np.float32), g_new[has_pos]
 
 
+REPEAT = "_repeat"  # suffix of a variant scored as the returning-customer rail
+
+
 def stage2(ds: Dataset, cfg: dict[str, Any], dcfg: dict[str, Any], stores: list[Store]) -> None:
     pools = []
     for st in stores:
@@ -473,9 +477,15 @@ def stage2(ds: Dataset, cfg: dict[str, Any], dcfg: dict[str, Any], stores: list[
     boosters = train_rankers(ds, cfg, pools)
     todo = variants(cfg, snames)
     # the ranker the product ships, trained on another dataset's stores (ledger D25)
-    if src := dcfg.get("transfer_from"):
+    src = dcfg.get("transfer_from")
+    if src:
         boosters[f"{src}_full"] = TreeEnsemble.load(RESULTS / src / "_ltr" / "full.json")
         todo.append((Variant(f"{src}_full"), False))
+    # the product's returning-customer rail: repurchases first, then the ranker (ledger D27)
+    if dcfg.get("returning"):
+        for base in ["full", *([f"{src}_full"] if src else [])]:
+            boosters[f"{base}{REPEAT}"] = boosters[base]
+            todo.append((Variant(f"{base}{REPEAT}"), False))
     for st in stores:
         run = StoreRun(st, RESULTS / ds.name / st.name, cfg, dcfg)
         score_mitate(run, boosters, todo)
@@ -506,6 +516,16 @@ def train_rankers(
     return boosters
 
 
+def _repurchase_first(S: F32, q: Queries, n_rep: int) -> F32:
+    """Each query's scores with its own repurchases lifted first, exactly as the engine does."""
+    out = np.empty_like(S)
+    for r in range(len(q)):
+        a, b = int(q.indptr[r]), int(q.indptr[r + 1])
+        orders = q.items[a:b][q.event[a:b] == Event.ORDER].tolist()
+        out[r] = repurchase_first(S[r], orders, n_rep)
+    return out
+
+
 def score_mitate(
     run: StoreRun,
     boosters: dict[str, TreeEnsemble | None],
@@ -528,6 +548,8 @@ def score_mitate(
     bg = b.background()
     avail = run.avail
     k = cfg["test"]["k"]
+    # repurchases take their share of a rail of the size the headline metric scores
+    n_rep = round(cfg["blend"]["returning_rail"] * EngineConfig.returning_repeat_share)
     recs = {v.name: np.full((len(run.test), k), -1, np.int32) for v, _ in todo}
     pred_s = {v.name: 0.0 for v, _ in todo}
     for s in range(0, len(run.test), b.batch):
@@ -539,6 +561,8 @@ def score_mitate(
             t2 = time.monotonic()
             b.booster = boosters[v.name]
             S = b.scores_from_frame(ablate(fr_full, v), bg)
+            if v.name.endswith(REPEAT):
+                S = _repurchase_first(S, run.test.queries.slice(s, e), n_rep)
             if run.test.exclude is not None:
                 ex = run.test.exclude[s:e].tocoo()
                 S[ex.row, ex.col] = -np.inf

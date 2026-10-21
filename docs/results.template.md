@@ -103,6 +103,17 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 
 {{hm_ndcg_10_ablations}}
 
+### Returning customers: the rail as shipped
+
+A returning customer's rail starts with repurchases: up to half of it is the products they have
+ordered most often, the most recent first, and the ranker fills the rest. The benchmark calls the
+same function the product does (`mitate.engine.repurchase_first`), on a 10-product rail: five
+repurchases, then the ranker. "Ranker alone" is the headline above. This comparison was added
+after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
+(ledger D27), so it sits beside the headline rather than replacing it.
+
+{{hm_ndcg_10_returning}}
+
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
 Grocery is repeat buying: across the whole dataset, 54% of the products in test-window baskets
@@ -124,6 +135,17 @@ All models, NDCG@10:
 ### What drives the result
 
 {{dunnhumby_ndcg_10_ablations}}
+
+### Returning customers: the rail as shipped
+
+A returning customer's rail starts with repurchases: up to half of it is the products they have
+ordered most often, the most recent first, and the ranker fills the rest. The benchmark calls the
+same function the product does (`mitate.engine.repurchase_first`), on a 10-product rail: five
+repurchases, then the ranker. "Ranker alone" is the headline above. This comparison was added
+after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
+(ledger D27), so it sits beside the headline rather than replacing it.
+
+{{dunnhumby_ndcg_10_returning}}
 
 ## 4. Product-page placements (Amazon Grocery)
 

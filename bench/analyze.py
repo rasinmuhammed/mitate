@@ -13,7 +13,9 @@ store seeds. Headline comparison per bucket: Mitate (full) against
 Paired tests run over shoppers pooled across the bucket's stores (each shopper belongs to one
 store; pairs are the same shopper under both systems). Holm corrects across buckets
 (confirmatory); Benjamini-Yekutieli corrects the full leaderboard and, separately, the ablations
-(Mitate against each variant with one piece removed), both exploratory.
+(Mitate against each variant with one piece removed), both exploratory. Where the returning-
+customer rail was scored (ledger D27), each version of it is compared with the oracle best single
+method and Holm-corrected across buckets as its own family.
 """
 
 from __future__ import annotations
@@ -30,6 +32,9 @@ from numpy.typing import NDArray
 from mitate.stats import benjamini_yekutieli, holm, paired_test, per_user_mean, t_interval
 
 MITATE = "mitate_full"
+# the returning-customer rail, repurchases first (ledger D27): with the ranker trained on this
+# dataset's stores, and with the ranker the product ships
+RETURNING = ("mitate_full_repeat", "mitate_otto_full_repeat")
 
 
 def load_units(
@@ -79,6 +84,8 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
     confirm_keys: list[tuple[int, str]] = []
     leaderboard: list[dict[str, Any]] = []
     ablations: list[dict[str, Any]] = []
+    returning_p: dict[str, list[float]] = defaultdict(list)
+    returning_keys: dict[str, list[int]] = defaultdict(list)
     for bucket in sorted(by_bucket):
         per_model: dict[str, list[float]] = defaultdict(list)
         units: dict[str, dict[str, tuple[NDArray[np.integer[Any]], NDArray[np.float64]]]] = {}
@@ -103,15 +110,17 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
             row["oracle_best_single"] = oracle
 
             def pooled(
-                ref_of: dict[str, str], units: dict[str, dict[str, tuple[Any, Any]]] = units
+                ref_of: dict[str, str],
+                units: dict[str, dict[str, tuple[Any, Any]]] = units,
+                system: str = MITATE,
             ) -> dict[str, Any]:
                 wins: float
                 a_all, b_all, wins = [], [], 0
                 for sname, u in units.items():
                     ref = ref_of.get(sname)
-                    if MITATE not in u or ref not in u:
+                    if system not in u or ref not in u:
                         continue
-                    ua, va = u[MITATE]
+                    ua, va = u[system]
                     ub, vb = u[ref]
                     _, ia, ib = np.intersect1d(ua, ub, return_indices=True)
                     a_all.append(va[ia])
@@ -133,15 +142,25 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
                 res = pooled(ref)
                 if res:
                     leaderboard.append({"bucket": bucket, "baseline": m, **res})
+            for system in RETURNING:
+                res = pooled({s: oracle for s in units}, system=system)
+                if res:
+                    row.setdefault("returning", {})[system] = res
+                    returning_p[system].append(res["p_ttest"])
+                    returning_keys[system].append(bucket)
             # Mitate minus each reduced variant: what the removed piece contributes
             for m in summary:
-                if m.startswith("mitate_") and m != MITATE:
+                if m.startswith("mitate_") and m != MITATE and m not in RETURNING:
                     res = pooled({s: m for s in units})
                     if res:
                         ablations.append({"bucket": bucket, "variant": m, **res})
         table[bucket] = row
     for (bucket, _), p in zip(confirm_keys, holm(confirm_p), strict=True):
         table[bucket]["vs_oracle"]["p_adj_holm"] = float(p)
+    # each returning-customer system is its own family across buckets, like the headline
+    for system, ps in returning_p.items():
+        for bucket, p in zip(returning_keys[system], holm(ps), strict=True):
+            table[bucket]["returning"][system]["p_adj_holm"] = float(p)
     for row, p in zip(
         leaderboard, benjamini_yekutieli([r["p_ttest"] for r in leaderboard]), strict=True
     ):

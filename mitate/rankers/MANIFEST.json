@@ -1,0 +1,175 @@
+{
+ "trained_on": "OTTO session dataset, otto/recsys-dataset on Kaggle, CC BY 4.0",
+ "stores": [
+  "otto-n1000-s0",
+  "otto-n1000-s1",
+  "otto-n1000-s2",
+  "otto-n1000-s3",
+  "otto-n1000-s4",
+  "otto-n3000-s0",
+  "otto-n3000-s1",
+  "otto-n3000-s2",
+  "otto-n3000-s3",
+  "otto-n3000-s4",
+  "otto-n10000-s0",
+  "otto-n10000-s1",
+  "otto-n10000-s2",
+  "otto-n10000-s3",
+  "otto-n10000-s4",
+  "otto-n30000-s0",
+  "otto-n30000-s1",
+  "otto-n30000-s2",
+  "otto-n30000-s3",
+  "otto-n30000-s4",
+  "otto-n100000-s0",
+  "otto-n100000-s1",
+  "otto-n100000-s2",
+  "otto-n100000-s3",
+  "otto-n100000-s4",
+  "otto-n300000-s0",
+  "otto-n300000-s1",
+  "otto-n300000-s2",
+  "otto-n300000-s3",
+  "otto-n300000-s4",
+  "otto-n1000000-s0",
+  "otto-n1000000-s1",
+  "otto-n1000000-s2",
+  "otto-n1000000-s3",
+  "otto-n1000000-s4"
+ ],
+ "code_version": "661ca6214a087562",
+ "exported_utc": "2026-10-21T12:09:57Z",
+ "rankers": {
+  "full.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "f50965a73e0ffc4afedf82a8dc85c2e55a858d2c5cf2f3a423188b146e0b00b2"
+  },
+  "no_ease.json": {
+   "sources": [
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "9538b3392ab8f0e7ae52078a6d3e5945de1543629ec45ea8025e539aec2a7017"
+  },
+  "no_ials.json": {
+   "sources": [
+    "ease",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "37da080d71b22b0d50b80e6a42a6d25b1285971b77bc7a3bc95e9cc5298bed55"
+  },
+  "no_itemknn.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "269c622c512ddcf19d69f15dee305c81987003a9f523391dd32a5faa39ca862b"
+  },
+  "no_pctm.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "569234e58f1ca90c25aa5ce63b08a2bc79c835f51535acc6650e86b1d9b00df9"
+  },
+  "no_recpop.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "609d2a412593c29b4c1f86ccd643edc4afa5fae2524e5c3d11e688a332bb9792"
+  },
+  "no_rp3beta.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "sasrec_ce",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "9f0b01cb92cc72258348b8ddf798866be310c2d6ca8b6ecac45456238bf2cce8"
+  },
+  "no_sasrec_ce.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "seqrules",
+    "vstan"
+   ],
+   "sha256": "2c13de22c1c2d88c9458fb772273268a9ff476f8f671ba637a342e73e9c93f45"
+  },
+  "no_seqrules.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "vstan"
+   ],
+   "sha256": "61e22b2ca71a7af8dfdbfddf2eb3af8fe0908fab4e0b6fe65eb2caf399a9b061"
+  },
+  "no_vstan.json": {
+   "sources": [
+    "ease",
+    "ials",
+    "itemknn",
+    "pctm",
+    "recpop",
+    "rp3beta",
+    "sasrec_ce",
+    "seqrules"
+   ],
+   "sha256": "3ab7ab72801094c2455ef8541984574c386b155f4cc1de3a666a1d36ff32e44e"
+  }
+ }
+}

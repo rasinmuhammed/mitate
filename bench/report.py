@@ -48,6 +48,7 @@ LABELS = dict(FIGURE_MODELS) | {
     "markov": "Markov chain",
     "seqrules": "SeqRules",
     "gsasrec": "gSASRec (tuned k, t)",
+    "gru4rec": "GRU4Rec",
     "esasrec": "eSASRec",
     "content_knn": "Content kNN",
 }

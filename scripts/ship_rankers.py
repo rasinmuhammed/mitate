@@ -1,19 +1,21 @@
 """Copy the serving rankers from the OTTO benchmark into the package (research ledger D25).
 
-    uv run python scripts/ship_rankers.py
+    uv run python scripts/ship_rankers.py [--code-version HASH]
 
 Only OTTO (CC BY 4.0) may produce anything the product ships, so the source is fixed. The
 serving rankers are ``full`` and ``no_<source>`` (mitate.engine.ranker_sources); research
 ablations such as ``no_volume`` stay in the benchmark. ``MANIFEST.json`` records where each
-file came from: the stores it was trained on, the code version and a checksum.
+file came from: the stores it was trained on, the code version that trained it and a checksum.
+The code version comes from the latest stage 2 hardware record; ``--code-version`` supplies it
+for a run whose record predates that field.
 """
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import shutil
-import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
@@ -26,7 +28,20 @@ RESULTS = ROOT / "experiments" / "results" / "otto"
 ATTRIBUTION = "OTTO session dataset, otto/recsys-dataset on Kaggle, CC BY 4.0"
 
 
+def training_code_version() -> str | None:
+    """Code version of the newest stage 2 run, from the hardware record it wrote at start."""
+    runs = [json.loads(p.read_text()) for p in sorted((RESULTS / "_hardware").glob("*.json"))]
+    stage2 = [r for r in runs if str(r.get("stage")) == "2"]
+    return stage2[-1].get("code_version") if stage2 else None
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--code-version", help="code that trained the rankers, if not recorded")
+    args = parser.parse_args()
+    code = args.code_version or training_code_version()
+    if not code:
+        sys.exit("the stage 2 hardware record has no code version: pass --code-version")
     src = RESULTS / "_ltr"
     serving: dict[Path, set[str]] = {}
     for path in sorted(src.glob("*.json")):
@@ -36,12 +51,6 @@ def main() -> None:
     if not any(p.stem == "full" for p in serving):
         sys.exit(f"no full ranker in {src}: run OTTO stage 2 first")
     stores = [r for r in json.loads((RESULTS / "stores.json").read_text()) if "skipped" not in r]
-    code = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "kaggle" / "code_version.py")],
-        capture_output=True,
-        text=True,
-        check=True,
-    ).stdout.strip()
     if SHIPPED_RANKERS.exists():
         shutil.rmtree(SHIPPED_RANKERS)
     SHIPPED_RANKERS.mkdir(parents=True)

@@ -1,0 +1,21 @@
+{
+ "fit_s": 82.82064229200114,
+ "peak_rss_mb": 708.578125,
+ "rss_delta_mb": 361.234375,
+ "size_mb": 0.5163784027099609,
+ "p50_ms": 1.4869584992993623,
+ "p95_ms": 2.703979802026879,
+ "qps_batch": 2705.1430618414693,
+ "n_latency_queries": 500,
+ "n_items": 756,
+ "n_train_events": 10000,
+ "model": "sasrec_ce",
+ "store": "otto-n10000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

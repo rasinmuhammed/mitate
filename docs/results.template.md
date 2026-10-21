@@ -58,6 +58,11 @@ process on an Apple M1 (8 GB), on the seed-0 store of each size up to 30K events
 
 {{otto_efficiency}}
 
+**Finding.** Mitate is the most expensive method per request: about 18–20 ms at the median on one
+core, against 0.03–1.3 ms for any single method, because it runs nine sources and scores up to
+300 candidates through its trees. That is still about 50 single requests a second per core, and
+at these sizes it fits in at most 94 s with under 0.7 GB of memory.
+
 ### Same stores, another machine
 
 OTTO stores of 1K–10K events were first run on an Apple M1 and then rerun from scratch on Kaggle

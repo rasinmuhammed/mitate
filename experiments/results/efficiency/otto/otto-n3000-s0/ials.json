@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.06048154100062675,
+ "peak_rss_mb": 352.453125,
+ "rss_delta_mb": 3.984375,
+ "size_mb": 0.044671058654785156,
+ "p50_ms": 0.10641699918778613,
+ "p95_ms": 0.1144164998549968,
+ "qps_batch": 53799.65284498288,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "ials",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

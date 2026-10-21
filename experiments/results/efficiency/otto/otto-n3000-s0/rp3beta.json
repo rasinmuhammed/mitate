@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.007181082997703925,
+ "peak_rss_mb": 292.578125,
+ "rss_delta_mb": 1.15625,
+ "size_mb": 0.03682708740234375,
+ "p50_ms": 0.09045800106832758,
+ "p95_ms": 0.10562500028754584,
+ "qps_batch": 273777.7777588907,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "rp3beta",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

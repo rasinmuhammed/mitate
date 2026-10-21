@@ -1,0 +1,21 @@
+{
+ "fit_s": 33.613131082998734,
+ "peak_rss_mb": 690.046875,
+ "rss_delta_mb": 342.65625,
+ "size_mb": 2.732583999633789,
+ "p50_ms": 18.01158300077077,
+ "p95_ms": 22.39906249997148,
+ "qps_batch": 133.83649156549515,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "mitate",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

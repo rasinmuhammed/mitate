@@ -117,9 +117,82 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 
 ### Cost
 
-Peak memory and wall time per model, measured one at a time on an otherwise idle Apple M1 (8 GB):
+Peak memory, fit time and request latency per model, each measured in a fresh single-threaded
+process on an Apple M1 (8 GB), on the seed-0 store of each size up to 30K events (ledger D29):
 
-_Not measured yet._
+| Store | Model | Items | Fit (s) | Peak RSS (MB) | Model size (MB) | p50 (ms) | p95 (ms) | Batch throughput (q/s) |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| otto-n1000-s0 | BPR | 182 | 0.1 | 352 | 0.1 | 0.09 | 0.09 | 222359 |
+| otto-n1000-s0 | EASE | 182 | 0.0 | 292 | 0.1 | 0.07 | 0.07 | 308960 |
+| otto-n1000-s0 | eSASRec | 182 | 3.6 | 801 | 0.7 | 1.14 | 1.60 | 2502 |
+| otto-n1000-s0 | GRU4Rec | 182 | 2.4 | 512 | 1.7 | 0.20 | 0.47 | 25826 |
+| otto-n1000-s0 | gSASRec (tuned k, t) | 182 | 3.3 | 835 | 0.9 | 1.33 | 2.92 | 1953 |
+| otto-n1000-s0 | iALS | 182 | 0.2 | 294 | 0.2 | 0.20 | 0.23 | 11040 |
+| otto-n1000-s0 | ItemKNN | 182 | 0.0 | 348 | 0.0 | 0.10 | 0.10 | 291781 |
+| otto-n1000-s0 | Markov chain | 182 | 0.0 | 348 | 0.0 | 0.09 | 0.09 | 137868 |
+| otto-n1000-s0 | Mitate (blend) | 182 | 3.9 | 665 | 2.6 | 18.08 | 22.15 | 112 |
+| otto-n1000-s0 | Transition probe (PCTM) | 182 | 0.0 | 312 | 0.0 | 0.12 | 0.54 | 57932 |
+| otto-n1000-s0 | Popularity | 182 | 0.0 | 280 | 0.0 | 0.03 | 0.10 | 203597 |
+| otto-n1000-s0 | Recent popularity | 182 | 0.0 | 319 | 0.0 | 0.03 | 0.03 | 754080 |
+| otto-n1000-s0 | RP3beta | 182 | 0.0 | 335 | 0.0 | 0.10 | 0.11 | 293447 |
+| otto-n1000-s0 | SASRec (full softmax) | 182 | 3.3 | 684 | 0.5 | 0.44 | 0.92 | 4802 |
+| otto-n1000-s0 | SeqRules | 182 | 0.0 | 341 | 0.0 | 0.09 | 0.10 | 110409 |
+| otto-n1000-s0 | Session kNN (VSTAN) | 182 | 0.0 | 360 | 0.0 | 0.03 | 0.03 | 268857 |
+| otto-n3000-s0 | BPR | 364 | 0.0 | 343 | 0.0 | 0.09 | 0.10 | 205455 |
+| otto-n3000-s0 | EASE | 364 | 0.0 | 307 | 0.5 | 0.07 | 0.07 | 257226 |
+| otto-n3000-s0 | eSASRec | 364 | 25.6 | 600 | 0.1 | 0.49 | 0.72 | 6260 |
+| otto-n3000-s0 | GRU4Rec | 364 | 3.0 | 537 | 0.2 | 0.21 | 1.10 | 38115 |
+| otto-n3000-s0 | gSASRec (tuned k, t) | 364 | 26.3 | 537 | 0.3 | 0.79 | 1.50 | 3818 |
+| otto-n3000-s0 | iALS | 364 | 0.1 | 352 | 0.0 | 0.11 | 0.11 | 53800 |
+| otto-n3000-s0 | ItemKNN | 364 | 0.0 | 335 | 0.0 | 0.09 | 0.09 | 308892 |
+| otto-n3000-s0 | Markov chain | 364 | 0.0 | 312 | 0.0 | 0.10 | 0.11 | 117702 |
+| otto-n3000-s0 | Mitate (blend) | 364 | 33.6 | 690 | 2.7 | 18.01 | 22.40 | 134 |
+| otto-n3000-s0 | Transition probe (PCTM) | 364 | 0.0 | 338 | 0.0 | 0.10 | 0.10 | 88708 |
+| otto-n3000-s0 | Popularity | 364 | 0.0 | 323 | 0.0 | 0.03 | 0.04 | 459206 |
+| otto-n3000-s0 | Recent popularity | 364 | 0.0 | 332 | 0.0 | 0.03 | 0.03 | 526445 |
+| otto-n3000-s0 | RP3beta | 364 | 0.0 | 293 | 0.0 | 0.09 | 0.11 | 273778 |
+| otto-n3000-s0 | SASRec (full softmax) | 364 | 27.5 | 681 | 0.3 | 0.72 | 1.40 | 3557 |
+| otto-n3000-s0 | SeqRules | 364 | 0.0 | 331 | 0.0 | 0.10 | 0.10 | 82715 |
+| otto-n3000-s0 | Session kNN (VSTAN) | 364 | 0.0 | 328 | 0.0 | 0.03 | 0.04 | 147935 |
+| otto-n10000-s0 | BPR | 756 | 0.3 | 344 | 0.2 | 0.12 | 0.14 | 90237 |
+| otto-n10000-s0 | EASE | 756 | 0.0 | 307 | 2.2 | 0.07 | 0.12 | 107899 |
+| otto-n10000-s0 | eSASRec | 756 | 65.1 | 882 | 3.8 | 1.04 | 1.83 | 5245 |
+| otto-n10000-s0 | GRU4Rec | 756 | 8.4 | 697 | 0.7 | 0.19 | 0.49 | 31348 |
+| otto-n10000-s0 | gSASRec (tuned k, t) | 756 | 19.4 | 517 | 0.4 | 0.53 | 0.70 | 8805 |
+| otto-n10000-s0 | iALS | 756 | 0.3 | 302 | 0.4 | 0.15 | 0.17 | 21475 |
+| otto-n10000-s0 | ItemKNN | 756 | 0.0 | 349 | 0.0 | 0.13 | 0.59 | 112664 |
+| otto-n10000-s0 | Markov chain | 756 | 0.0 | 289 | 0.0 | 0.09 | 0.12 | 71912 |
+| otto-n10000-s0 | Mitate (blend) | 756 | 93.5 | 658 | 5.3 | 20.37 | 27.05 | 132 |
+| otto-n10000-s0 | Transition probe (PCTM) | 756 | 0.0 | 353 | 0.1 | 0.11 | 0.12 | 57543 |
+| otto-n10000-s0 | Popularity | 756 | 0.0 | 310 | 0.0 | 0.03 | 0.04 | 273882 |
+| otto-n10000-s0 | Recent popularity | 756 | 0.0 | 303 | 0.0 | 0.03 | 0.04 | 282461 |
+| otto-n10000-s0 | RP3beta | 756 | 0.0 | 298 | 0.2 | 0.09 | 0.11 | 115156 |
+| otto-n10000-s0 | SASRec (full softmax) | 756 | 82.8 | 709 | 0.5 | 1.49 | 2.70 | 2705 |
+| otto-n10000-s0 | SeqRules | 756 | 0.0 | 354 | 0.1 | 0.10 | 0.12 | 74059 |
+| otto-n10000-s0 | Session kNN (VSTAN) | 756 | 0.0 | 384 | 0.1 | 0.04 | 0.05 | 83027 |
+| otto-n30000-s0 | BPR | 1,483 | 1.4 | 352 | 1.5 | 0.52 | 1.33 | 5259 |
+| otto-n30000-s0 | EASE | 1,483 | 0.0 | 404 | 8.4 | 0.09 | 0.14 | 50115 |
+| otto-n30000-s0 | eSASRec | 1,483 | 575.1 | 1421 | 4.1 | 1.14 | 1.51 | 3750 |
+| otto-n30000-s0 | GRU4Rec | 1,483 | 31.7 | 626 | 0.5 | 0.26 | 0.89 | 23832 |
+| otto-n30000-s0 | gSASRec (tuned k, t) | 1,483 | 116.7 | 603 | 0.7 | 0.90 | 1.42 | 6616 |
+| otto-n30000-s0 | iALS | 1,483 | 3.6 | 369 | 2.9 | 0.96 | 1.26 | 2385 |
+| otto-n30000-s0 | ItemKNN | 1,483 | 0.0 | 366 | 0.2 | 0.11 | 0.13 | 106848 |
+| otto-n30000-s0 | Markov chain | 1,483 | 0.0 | 317 | 0.2 | 0.12 | 0.19 | 40750 |
+| otto-n30000-s0 | Mitate (blend) | 1,483 | 44.1 | 680 | 15.8 | 18.33 | 19.89 | 154 |
+| otto-n30000-s0 | Transition probe (PCTM) | 1,483 | 0.0 | 362 | 0.5 | 0.14 | 0.17 | 27647 |
+| otto-n30000-s0 | Popularity | 1,483 | 0.0 | 360 | 0.0 | 0.03 | 0.03 | 197391 |
+| otto-n30000-s0 | Recent popularity | 1,483 | 0.0 | 361 | 0.0 | 0.03 | 0.03 | 218070 |
+| otto-n30000-s0 | RP3beta | 1,483 | 0.0 | 353 | 0.1 | 0.10 | 0.18 | 42536 |
+| otto-n30000-s0 | SASRec (full softmax) | 1,483 | 71.9 | 560 | 1.1 | 0.71 | 1.24 | 6325 |
+| otto-n30000-s0 | SeqRules | 1,483 | 0.0 | 378 | 0.5 | 0.12 | 0.13 | 34268 |
+| otto-n30000-s0 | Session kNN (VSTAN) | 1,483 | 0.0 | 381 | 0.3 | 0.06 | 0.19 | 21187 |
+
+Machine: Apple M1, 8 GB RAM, macOS-15.7.5-arm64-arm-64bit; 1 thread.
+
+**Finding.** Mitate is the most expensive method per request: about 18–20 ms at the median on one
+core, against 0.03–1.3 ms for any single method, because it runs nine sources and scores up to
+300 candidates through its trees. That is still about 50 single requests a second per core, and
+at these sizes it fits in at most 94 s with under 0.7 GB of memory.
 
 ### Same stores, another machine
 

@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.0002702919991861563,
+ "peak_rss_mb": 361.40625,
+ "rss_delta_mb": 8.78125,
+ "size_mb": 0.011528968811035156,
+ "p50_ms": 0.029999999242136255,
+ "p95_ms": 0.030711047838849478,
+ "qps_batch": 218069.88777442425,
+ "n_latency_queries": 500,
+ "n_items": 1483,
+ "n_train_events": 30005,
+ "model": "recpop",
+ "store": "otto-n30000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

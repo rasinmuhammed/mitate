@@ -1,0 +1,21 @@
+{
+ "fit_s": 2.9696394160018826,
+ "peak_rss_mb": 536.71875,
+ "rss_delta_mb": 207.359375,
+ "size_mb": 0.18750286102294922,
+ "p50_ms": 0.20508399757090956,
+ "p95_ms": 1.1039585006074049,
+ "qps_batch": 38114.61677227546,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "gru4rec",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

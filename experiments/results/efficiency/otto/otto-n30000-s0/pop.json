@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.0001250829991477076,
+ "peak_rss_mb": 359.828125,
+ "rss_delta_mb": 8.75,
+ "size_mb": 0.01149749755859375,
+ "p50_ms": 0.029916001949459314,
+ "p95_ms": 0.0304579991279752,
+ "qps_batch": 197390.56078990878,
+ "n_latency_queries": 500,
+ "n_items": 1483,
+ "n_train_events": 30005,
+ "model": "pop",
+ "store": "otto-n30000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

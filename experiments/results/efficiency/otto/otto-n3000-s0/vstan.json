@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.0004910829993605148,
+ "peak_rss_mb": 328.40625,
+ "rss_delta_mb": 23.15625,
+ "size_mb": 0.03882312774658203,
+ "p50_ms": 0.031749998015584424,
+ "p95_ms": 0.03552100133674685,
+ "qps_batch": 147934.67808825354,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "vstan",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

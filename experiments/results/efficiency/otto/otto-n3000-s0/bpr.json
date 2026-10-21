@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.04707241700089071,
+ "peak_rss_mb": 342.59375,
+ "rss_delta_mb": 3.921875,
+ "size_mb": 0.04616832733154297,
+ "p50_ms": 0.08562500079278834,
+ "p95_ms": 0.09674950160842855,
+ "qps_batch": 205454.96242258855,
+ "n_latency_queries": 231,
+ "n_items": 364,
+ "n_train_events": 3000,
+ "model": "bpr",
+ "store": "otto-n3000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

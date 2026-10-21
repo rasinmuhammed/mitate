@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.003300708001916064,
+ "peak_rss_mb": 347.921875,
+ "rss_delta_mb": 0.3125,
+ "size_mb": 0.0151824951171875,
+ "p50_ms": 0.0976250012172386,
+ "p95_ms": 0.10244580043945462,
+ "qps_batch": 291781.1095231011,
+ "n_latency_queries": 75,
+ "n_items": 182,
+ "n_train_events": 1000,
+ "model": "itemknn",
+ "store": "otto-n1000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "fit_s": 0.00796141699902364,
+ "peak_rss_mb": 378.265625,
+ "rss_delta_mb": 25.25,
+ "size_mb": 0.5029306411743164,
+ "p50_ms": 0.11868799811054487,
+ "p95_ms": 0.13292440053191967,
+ "qps_batch": 34267.92768920583,
+ "n_latency_queries": 500,
+ "n_items": 1483,
+ "n_train_events": 30005,
+ "model": "seqrules",
+ "store": "otto-n30000-s0",
+ "threads": 1,
+ "machine": {
+  "platform": "macOS-15.7.5-arm64-arm-64bit",
+  "python": "3.12.8",
+  "cpu": "Apple M1",
+  "ram_gb": 8.0
+ }
+}

@@ -33,7 +33,7 @@ hardware record is stored with its results.
 
 {{otto_ndcg_10_headline}}
 
-![Which method wins at each store size, OTTO](figures/crossover_otto.svg)
+{{otto_figure}}
 
 All models, NDCG@10:
 
@@ -85,7 +85,7 @@ tests, and the shopper counts here, before the means:
 
 {{hm_ndcg_10_headline}}
 
-![Which method wins at each store size, H&M](figures/crossover_hm.svg)
+{{hm_figure}}
 
 The figure plots a set of methods fixed in advance, one per family. Recent popularity was added
 to that set after the H&M results were seen, because it is the strongest baseline here and
@@ -103,7 +103,29 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 
 {{hm_ndcg_10_ablations}}
 
-## 3. Product-page placements (Amazon Grocery)
+## 3. Ranking: grocery, next basket (Dunnhumby)
+
+Grocery is repeat buying: across the whole dataset, 54% of the products in test-window baskets
+had been bought by the same household before. Next-basket recommendation for 2,500 households
+over two years, testing on the last 28 days (ledger D26).
+The data has only 2,500 households, so stores stop at 30K events. Like H&M, the data never leaves
+Kaggle; only the scores below do.
+
+{{dunnhumby_stores}}
+
+{{dunnhumby_ndcg_10_headline}}
+
+{{dunnhumby_figure}}
+
+All models, NDCG@10:
+
+{{dunnhumby_ndcg_10_models}}
+
+### What drives the result
+
+{{dunnhumby_ndcg_10_ablations}}
+
+## 4. Product-page placements (Amazon Grocery)
 
 The "Similar items" and "Goes well with" rails are scored against Amazon's own product-page
 links (2018 metadata, McAuley lab): `also_view` for similar items, and `also_buy` for
@@ -152,7 +174,7 @@ Every `also_buy` pair, before D20:
 
 {{placements_d19_also_buy}}
 
-## 4. Online measurement, validated in simulation
+## 5. Online measurement, validated in simulation
 
 These tables check the online module's statistics against simulated stores where the true lift
 is known. They do not measure Mitate's effect on any real store.
@@ -176,6 +198,4 @@ Interleaving: how often a preference test picks the better ranker:
 
 ## Not run
 
-* Grocery repeat purchase (Dunnhumby): waiting for the dataset terms to be accepted
-  ([licenses.md](licenses.md)).
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

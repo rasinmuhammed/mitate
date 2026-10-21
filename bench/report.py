@@ -36,7 +36,12 @@ FIGURE_MODELS = [  # (name, label); chosen before any result was seen, except as
     # the figure would flatter Mitate there
     ("recpop", "Recent popularity"),
 ]
-DATASET_NAMES = {"otto": "OTTO", "hm": "H&M", "amazon_grocery": "Amazon Grocery"}
+DATASET_NAMES = {
+    "otto": "OTTO",
+    "hm": "H&M",
+    "dunnhumby": "Dunnhumby",
+    "amazon_grocery": "Amazon Grocery",
+}
 LABELS = dict(FIGURE_MODELS) | {
     "mitate_rrf": "Mitate, rank fusion (no learning)",
     "mitate_no_volume": "Mitate without store-size features",
@@ -457,8 +462,13 @@ def main() -> None:
             if ablations:
                 (gen / f"{ds}_{metric}_ablations.md").write_text(ablations + "\n")
             if metric == "ndcg_10":
-                title = f"Which method wins at each store size? ({DATASET_NAMES.get(ds, ds)})"
-                crossover_figure(an, figs / f"crossover_{ds}", title)
+                name = DATASET_NAMES.get(ds, ds)
+                crossover_figure(
+                    an, figs / f"crossover_{ds}", f"Which method wins at each store size? ({name})"
+                )
+                (gen / f"{ds}_figure.md").write_text(
+                    f"![Which method wins at each store size, {name}](figures/crossover_{ds}.svg)\n"
+                )
         (gen / f"{ds}_efficiency.md").write_text(
             efficiency_table(Path("experiments/results/efficiency"), ds) + "\n"
         )

@@ -225,7 +225,29 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 | Source: Session kNN (VSTAN) | -0.0166 (n.s.) | +0.0145 (n.s.) | -0.0030 (n.s.) | +0.0069 (n.s.) | -0.0005 (n.s.) | +0.0003 (n.s.) | +0.0016 |
 | Source: SASRec (full softmax) | +0.0121 (n.s.) | -0.0092 (n.s.) | -0.0104 (n.s.) | +0.0073 (n.s.) | +0.0029 (n.s.) | +0.0022 (n.s.) | +0.0031 |
 
-## 3. Product-page placements (Amazon Grocery)
+## 3. Ranking: grocery, next basket (Dunnhumby)
+
+Grocery is repeat buying: across the whole dataset, 54% of the products in test-window baskets
+had been bought by the same household before. Next-basket recommendation for 2,500 households
+over two years, testing on the last 28 days (ledger D26).
+The data has only 2,500 households, so stores stop at 30K events. Like H&M, the data never leaves
+Kaggle; only the scores below do.
+
+_Not run yet._
+
+_Not run yet._
+
+_Not run yet._
+
+All models, NDCG@10:
+
+_Not run yet._
+
+### What drives the result
+
+_Not run yet._
+
+## 4. Product-page placements (Amazon Grocery)
 
 The "Similar items" and "Goes well with" rails are scored against Amazon's own product-page
 links (2018 metadata, McAuley lab): `also_view` for similar items, and `also_buy` for
@@ -374,7 +396,7 @@ Every `also_buy` pair, before D20:
 | 10K | -0.1931 [-0.2344, -0.1520] | 1.95e-17 | Text similarity, e5-small | -0.2034 [-0.2437, -0.1634] | 1.77e-19 |
 | 100K | -0.1281 [-0.1410, -0.1158] | 1.28e-81 | Text similarity, e5-small | -0.1273 [-0.1402, -0.1149] | 5.79e-80 |
 
-## 4. Online measurement, validated in simulation
+## 5. Online measurement, validated in simulation
 
 These tables check the online module's statistics against simulated stores where the true lift
 is known. They do not measure Mitate's effect on any real store.
@@ -421,6 +443,4 @@ Interleaving: how often a preference test picks the better ranker:
 
 ## Not run
 
-* Grocery repeat purchase (Dunnhumby): waiting for the dataset terms to be accepted
-  ([licenses.md](licenses.md)).
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

@@ -132,6 +132,13 @@ The store-size features matter only at 1K (+0.043). Recent popularity is the sou
 removal costs most often (significant at 10K, 30K, 300K and 1M); four others are significant at
 one or two sizes, by at most 0.013.
 
+The shipped OTTO ranker does not transfer to fashion. On the same candidates and features it
+scores 0.03 to 0.23 below the ranker trained on H&M, significantly at every size, and its mean
+is below that of session kNN alone, the source it weights most. At 1K to 30K it is also below recent
+popularity by 0.06 to 0.26. Its training data may be the cause, though this is untested: on OTTO,
+the products already in a session are strong candidates, while an H&M shopper rarely buys the
+same article twice.
+
 ### Returning customers: the rail as shipped
 
 A returning customer's rail starts with repurchases: up to half of it is the products they have
@@ -142,6 +149,12 @@ after the Dunnhumby baselines showed the repeat-purchase baseline leading at eve
 (ledger D27), so it sits beside the headline rather than replacing it.
 
 {{hm_ndcg_10_returning}}
+
+**Finding.** In fashion, repurchases cost more than they bring. With the ranker trained here,
+the rail is significantly ahead of the best single method at 1K and from 100K, but its mean is
+below the ranker alone at every size except 1K, by up to 0.021 (not tested): five slots given to past purchases are five
+slots the ranker would have used better. With the shipped OTTO ranker, the rail is significantly
+behind the best single method at every size, by 0.007 to 0.231.
 
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
@@ -264,8 +277,5 @@ Interleaving: how often a preference test picks the better ranker:
 {{online_interleaving}}
 
 ## Not run
-
-* H&M with the shipped OTTO ranker and the returning-customer rail: waiting for the Kaggle GPU
-  quota to reset (ledger D28). The H&M rows above are final.
 
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

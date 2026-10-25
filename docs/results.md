@@ -336,6 +336,7 @@ after Benjamini-Yekutieli correction across all ablations of the dataset):
 |---|---:|---:|---:|---:|---:|---:|---:|
 | Learned ranking (rank fusion instead) | +0.2110 | +0.1780 | +0.1115 | +0.0927 | +0.0525 | +0.0405 | +0.0388 |
 | Store-size features | +0.0426 | -0.0152 (n.s.) | -0.0021 (n.s.) | +0.0024 (n.s.) | -0.0032 (n.s.) | -0.0018 (n.s.) | +0.0002 (n.s.) |
+| In-domain ranker (the shipped OTTO ranker instead) | +0.2106 | +0.2254 | +0.1167 | +0.0836 | +0.0527 | +0.0411 | +0.0315 |
 | Source: Recent popularity | -0.0432 (n.s.) | +0.0394 (n.s.) | +0.0404 | +0.0388 | +0.0066 (n.s.) | +0.0061 | +0.0038 |
 | Source: ItemKNN | -0.0396 (n.s.) | +0.0032 (n.s.) | +0.0084 (n.s.) | -0.0060 (n.s.) | +0.0050 (n.s.) | +0.0012 (n.s.) | +0.0009 (n.s.) |
 | Source: RP3beta | +0.0175 (n.s.) | -0.0052 (n.s.) | -0.0016 (n.s.) | -0.0001 (n.s.) | +0.0004 (n.s.) | +0.0001 (n.s.) | +0.0014 (n.s.) |
@@ -351,6 +352,13 @@ The store-size features matter only at 1K (+0.043). Recent popularity is the sou
 removal costs most often (significant at 10K, 30K, 300K and 1M); four others are significant at
 one or two sizes, by at most 0.013.
 
+The shipped OTTO ranker does not transfer to fashion. On the same candidates and features it
+scores 0.03 to 0.23 below the ranker trained on H&M, significantly at every size, and its mean
+is below that of session kNN alone, the source it weights most. At 1K to 30K it is also below recent
+popularity by 0.06 to 0.26. Its training data may be the cause, though this is untested: on OTTO,
+the products already in a session are strong candidates, while an H&M shopper rarely buys the
+same article twice.
+
 ### Returning customers: the rail as shipped
 
 A returning customer's rail starts with repurchases: up to half of it is the products they have
@@ -360,7 +368,28 @@ repurchases, then the ranker. "Ranker alone" is the headline above. This compari
 after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
 (ledger D27), so it sits beside the headline rather than replacing it.
 
-_Not run yet._
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+|---|---|---:|---|---:|---:|---:|
+| 1K | Recent popularity 0.1645 | 0.2825 | ranker trained here | 0.2856 | +0.1237 [+0.0545, +0.1965] | 0.00552 |
+| 1K | Recent popularity 0.1645 | 0.2825 | shipped OTTO ranker | 0.0467 | -0.0884 [-0.1605, -0.0121] | 0.0248 |
+| 3K | Recent popularity 0.3148 | 0.3018 | ranker trained here | 0.2820 | -0.0317 [-0.0797, +0.0197] | 0.551 |
+| 3K | Recent popularity 0.3148 | 0.3018 | shipped OTTO ranker | 0.0701 | -0.2314 [-0.3103, -0.1517] | 6.73e-07 |
+| 10K | Recent popularity 0.1650 | 0.1855 | ranker trained here | 0.1821 | +0.0143 [-0.0057, +0.0366] | 0.551 |
+| 10K | Recent popularity 0.1650 | 0.1855 | shipped OTTO ranker | 0.0740 | -0.0758 [-0.1096, -0.0427] | 2.74e-05 |
+| 30K | Recent popularity 0.1296 | 0.1596 | ranker trained here | 0.1388 | +0.0086 [-0.0051, +0.0225] | 0.551 |
+| 30K | Recent popularity 0.1296 | 0.1596 | shipped OTTO ranker | 0.0743 | -0.0502 [-0.0690, -0.0315] | 7.35e-07 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.1122 | ranker trained here | 0.0936 | +0.0132 [+0.0073, +0.0190] | 5.25e-05 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.1122 | shipped OTTO ranker | 0.0640 | -0.0124 [-0.0170, -0.0078] | 5.86e-07 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0897 | ranker trained here | 0.0735 | +0.0126 [+0.0096, +0.0155] | 7.47e-16 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0897 | shipped OTTO ranker | 0.0495 | -0.0066 [-0.0087, -0.0045] | 1.16e-09 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0797 | ranker trained here | 0.0635 | +0.0061 [+0.0045, +0.0077] | 1.15e-13 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0797 | shipped OTTO ranker | 0.0501 | -0.0072 [-0.0086, -0.0058] | 5.15e-22 |
+
+**Finding.** In fashion, repurchases cost more than they bring. With the ranker trained here,
+the rail is significantly ahead of the best single method at 1K and from 100K, but its mean is
+below the ranker alone at every size except 1K, by up to 0.021 (not tested): five slots given to past purchases are five
+slots the ranker would have used better. With the shipped OTTO ranker, the rail is significantly
+behind the best single method at every size, by 0.007 to 0.231.
 
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
@@ -655,8 +684,5 @@ Interleaving: how often a preference test picks the better ranker:
 | 3,000 | 0.935 | 0.000 | 0.035 | 0.965 | 99.8% |
 
 ## Not run
-
-* H&M with the shipped OTTO ranker and the returning-customer rail: waiting for the Kaggle GPU
-  quota to reset (ledger D28). The H&M rows above are final.
 
 * Any real store. Offline accuracy is not revenue; the online module is how a store finds out.

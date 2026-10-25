@@ -30,8 +30,9 @@ store's life, and the store cannot see where: at small sizes, the test windows a
 compare methods by eye.
 
 Mitate doesn't pick one. Nine methods each nominate candidates, and a LambdaMART ranker, trained
-on shopping decisions from stores of every size, puts the merged list in order. A store needs no
-labelled data of its own: it fits the nine methods on its own log and borrows the ranker.
+on shopping decisions from stores of every size, puts the merged list in order. A store fits the
+nine methods on its own log and borrows the ranker, which needs no labels from the store but does
+need the store to shop like the data it learned from (see the fashion result below).
 
 <p align="center">
   <img src="docs/figures/crossover_hm.svg" alt="NDCG@10 by store size on H&M: recent popularity leads the baselines up to 30K events, session kNN from 100K, and Mitate is above both at every size except 3K" width="760">
@@ -46,7 +47,9 @@ Protocol **Mitate-GTS v1** ([protocol.md](docs/protocol.md)):
 * fifteen baselines per dataset, each tuned with the same budget.
 
 Mitate is compared with the best of those fifteen chosen *with hindsight*, on the test window
-itself, paired over the same shoppers, with Holm correction across store sizes.
+itself, paired over the same shoppers, with Holm correction across store sizes. In each table,
+Mitate's ranker was trained on the validation weeks of that dataset's stores. The one that ships
+was trained on OTTO; what it scores elsewhere is under the tables.
 
 **OTTO**, general e-commerce sessions (CC BY 4.0), next item:
 
@@ -94,6 +97,10 @@ and the ablations are in [results.md](docs/results.md).</sub>
   with it after correction, but about 0.01 behind at 10K and 30K on nearly every store. The
   returning-customer rail the product actually serves, half repurchases and half ranker, matches
   GP-TopFreq at every size (last column; ledger D27, added after the grocery baselines were seen).
+* **The shipped ranker carries over to grocery, not to fashion.** On Dunnhumby, the OTTO-trained
+  ranker scores the same as one trained on grocery. On H&M it is 0.03 to 0.23 NDCG@10 below the
+  H&M-trained ranker at every size, and below recent popularity in stores of up to 30K events. A
+  fashion shop running the shipped ranker today would do better with recent popularity.
 * **The learning is what matters.** Replacing the ranker with plain rank fusion over the same
   nine sources costs 0.06 to 0.09 NDCG@10 on OTTO and 0.04 to 0.21 on H&M. Removing any one source
   mostly changes nothing measurable.
@@ -104,9 +111,9 @@ and the ablations are in [results.md](docs/results.md).</sub>
 * **Small means few.** A 1K H&M store has 4 to 17 buying shoppers in its test week. Read the
   intervals, not the point estimates.
 
-On this benchmark, Mitate is significantly ahead of every baseline we tuned at all seven OTTO
-sizes and six of seven H&M sizes, and level with the best grocery baseline. That is the claim;
-nothing broader is.
+On this benchmark, with a ranker trained on the same kind of data, Mitate is significantly ahead
+of every baseline we tuned at all seven OTTO sizes and six of seven H&M sizes, and level with the
+best grocery baseline. That is the claim; nothing broader is.
 
 **Before any of this was trusted, the pipeline had to pass two checks:**
 * It reproduced two published results. EASE on MovieLens-20M scores Recall@20 0.3905 against
@@ -222,9 +229,10 @@ including the ones made after a result was seen. Each entry records when it was 
   statistics are validated in simulation, and interleaving's sensitivity on real small-store
   traffic is unverified.
 * Dunnhumby has only 2,500 households, so grocery is measured on stores of up to 30K events.
-* The shipped OTTO ranker and the returning-customer rail are not yet scored on H&M; that run is
-  waiting for Kaggle GPU quota (ledger D28). On Dunnhumby the shipped ranker scores the same as
-  one trained on Dunnhumby itself.
+* Only one ranker ships, trained on OTTO sessions, and it fails on fashion. No fashion ranker can
+  ship from H&M's non-commercial data, so a fashion shop is not served well yet.
+* In fashion, the returning-customer rail's repurchases cost accuracy: with the H&M-trained
+  ranker, the rail's mean is below the ranker alone at six of seven sizes.
 * The dense item-item models assume catalogues of up to about 25K products.
 
 ## Read more

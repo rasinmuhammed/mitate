@@ -88,6 +88,10 @@ ablations, and measured latency and memory on a stated laptop.
   store in advance whether it has enough traffic to conclude anything.
 * Simulated stores are slices of large marketplaces, not real small shops; they keep the source
   data's time span, so they model *slow* shops rather than *young* ones.
+* The shipped ranker was trained on session-heavy general e-commerce. It transfers to grocery
+  (Dunnhumby: level with a ranker trained there) but not to fashion (H&M: below recent popularity
+  in stores of up to 30K events). Shops unlike OTTO should compare it with popularity before
+  relying on it; the built-in holdout test does this.
 * OTTO has no item text and no persistent customer ids, so content similarity and the
   returning-customer placement are not evaluated on it.
 * gSASRec's published defaults collapse on small catalogs in our implementation (ledger D16); its

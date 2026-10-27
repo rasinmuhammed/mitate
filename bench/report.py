@@ -130,27 +130,38 @@ RETURNING_LABELS = {
     "mitate_full_repeat": "ranker trained here",
     "mitate_otto_full_repeat": "shipped OTTO ranker",
 }
+GUARD_LABELS = {
+    "mitate_guard": "guard",
+    "mitate_guard_strict": "guard, conservative rule",
+    "mitate_guard_repeat": "guard, as the rail",
+    "mitate_guard_strict_repeat": "guard, conservative rule, as the rail",
+}
 
 
-def returning_table(an: dict[str, Any]) -> str | None:
-    """The returning-customer rail (repurchases first, then the ranker) against the oracle best
-    single method; each system is Holm-corrected across store sizes (ledger D27)."""
+def side_table(
+    an: dict[str, Any], family: str, labels: dict[str, str], alone: str, head: tuple[str, str]
+) -> str | None:
+    """Systems scored beside the headline, each against the oracle best single method and
+    Holm-corrected across store sizes as its own family; ``alone`` is the ranker they build on.
+    For guarded systems, how many stores the guard kept on the blend."""
     buckets = sorted(an["buckets"], key=int)
-    systems = [m for m in RETURNING_LABELS if any(m in an["buckets"][b]["models"] for b in buckets)]
+    systems = [m for m in labels if any(m in an["buckets"][b]["models"] for b in buckets)]
     if not systems:
         return None
+    guarded = family == "guarded"
     rows = [
-        "| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score "
-        "| Δ vs best, 95% CI | p (Holm) |",
-        "|---|---|---:|---|---:|---:|---:|",
+        f"| Store size | Best single (chosen on test) | {head[0]} | {head[1]} | Score "
+        + ("| Blend kept " if guarded else "")
+        + "| Δ vs best, 95% CI | p (Holm) |",
+        "|---|---|---:|---|---:|" + ("---:|" if guarded else "") + "---:|---:|",
     ]
     for b in buckets:
         r = an["buckets"][b]
         best = r.get("oracle_best_single")
         bm = r["models"].get(best, {}).get("mean", math.nan) if best else math.nan
-        alone = r["models"].get("mitate_full", {}).get("mean", math.nan)
+        base = r["models"].get(alone, {}).get("mean", math.nan)
         for m in systems:
-            o = r.get("returning", {}).get(m)
+            o = r.get(family, {}).get(m)
             score = r["models"].get(m, {}).get("mean", math.nan)
             diff = (
                 f"{o['diff']:+.4f} [{o['ci_low']:+.4f}, {o['ci_high']:+.4f}] | "
@@ -158,11 +169,31 @@ def returning_table(an: dict[str, Any]) -> str | None:
                 if o
                 else f"{NA} | {NA}"
             )
+            kept = ""
+            if guarded:
+                picks = r.get("guard_picks", {}).get(
+                    m.removeprefix("mitate_").removesuffix("_repeat")
+                )
+                kept = (
+                    f"{picks.get('blend', 0)} of {sum(picks.values())} | " if picks else f"{NA} | "
+                )
             rows.append(
                 f"| {size_label(int(b))} | {LABELS.get(best, best)} {num(bm, '.4f')} | "
-                f"{num(alone, '.4f')} | {RETURNING_LABELS[m]} | {num(score, '.4f')} | {diff} |"
+                f"{num(base, '.4f')} | {labels[m]} | {num(score, '.4f')} | {kept}{diff} |"
             )
     return "\n".join(rows)
+
+
+def returning_table(an: dict[str, Any]) -> str | None:
+    """The returning-customer rail, repurchases first and then the ranker (ledger D27)."""
+    return side_table(an, "returning", RETURNING_LABELS, "mitate_full", ("Ranker alone", "Rail"))
+
+
+def guard_table(an: dict[str, Any]) -> str | None:
+    """What the product serves under the guard (ledger D30), next to the shipped ranker alone."""
+    models = {m for r in an["buckets"].values() for m in r["models"]}
+    shipped = "mitate_otto_full" if "mitate_otto_full" in models else "mitate_full"
+    return side_table(an, "guarded", GUARD_LABELS, shipped, ("Shipped ranker alone", "Served"))
 
 
 def headline_table(an: dict[str, Any]) -> str:
@@ -508,6 +539,9 @@ def main() -> None:
             returning = returning_table(an)
             if returning:
                 (gen / f"{ds}_{metric}_returning.md").write_text(returning + "\n")
+            guarded = guard_table(an)
+            if guarded:
+                (gen / f"{ds}_{metric}_guard.md").write_text(guarded + "\n")
             ablations = ablation_table(an)
             if ablations:
                 (gen / f"{ds}_{metric}_ablations.md").write_text(ablations + "\n")

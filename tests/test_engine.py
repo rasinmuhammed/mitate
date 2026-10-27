@@ -268,10 +268,10 @@ def test_audit_attributes_each_hidden_item_to_its_first_failing_rule() -> None:
 def test_engine_uses_the_ranker_trained_on_exactly_its_active_sources(tmp_path) -> None:
     """A shipped ranker serves a store only if it was trained on the store's active sources; a
     store whose source set no ranker covers falls back to rank fusion."""
-    from bench.tasks import next_item
     from mitate.blend import Blend, Variant, ltr_groups
     from mitate.ltr import train_isolated
     from mitate.models.registry import MODELS
+    from mitate.tasks import next_item
     from tests.test_leakage import T0, T1
 
     names = ("recpop", "itemknn", "pctm")

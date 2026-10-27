@@ -7,7 +7,6 @@ from typing import Any
 import numpy as np
 from numpy.typing import NDArray
 
-from bench.tasks import EvalSet
 from mitate.data import Log
 from mitate.metrics import (
     aplt,
@@ -20,6 +19,7 @@ from mitate.metrics import (
     short_head,
     split_repeat_explore,
 )
+from mitate.tasks import EvalSet
 
 KS = (5, 10, 20)
 

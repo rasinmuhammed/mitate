@@ -6,8 +6,8 @@ from typing import Any, ClassVar, Self
 import numpy as np
 from implicit.recommender_base import ModelFitError
 
-from bench import tasks
 from bench.tuning import tune
+from mitate import tasks
 from mitate.data import Catalog, Log, Queries
 from mitate.models.base import F32, Recommender
 from tests.test_models_smoke import chain_log

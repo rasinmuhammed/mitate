@@ -11,9 +11,9 @@ import numpy as np
 import pytest
 
 import bench.run as run
-from bench import tasks
 from bench.leakage import perturb_after
 from bench.simulator import Store
+from mitate import tasks
 from tests.synthetic import marketplace
 
 CFG = {
@@ -64,9 +64,26 @@ def test_smoke_both_stages(isolated: Path) -> None:
             "mitate_no_volume",
             "mitate_no_itemknn",
             "mitate_full_repeat",
+            "mitate_guard",
+            "mitate_guard_strict",
+            "mitate_guard_repeat",
+            "mitate_guard_strict_repeat",
         ]:
             summary = json.loads((d / f"{name}.json").read_text())["summary"]
             assert 0.0 <= summary["ndcg@10"] <= 1.0, name
+        # what the guard serves is exactly the model it picked
+        pick = json.loads((d.parent / "guard.json").read_text())["picks"]["guard"]
+        source = "mitate_full" if pick == "blend" else pick
+        guarded = np.load(d / "mitate_guard.npz")["recs"]
+        assert np.array_equal(guarded, np.load(d / f"{source}.npz")["recs"])
+
+
+def test_strict_rule_switches_only_on_a_clear_advantage() -> None:
+    blend = np.linspace(0.0, 1.0, 200)
+    near = {"blend": blend, "recpop": blend + 0.001 * np.sin(np.arange(200))}
+    clear = {"blend": blend, "recpop": blend + 0.2}
+    assert run.strict_choice(near) == "blend"
+    assert run.strict_choice(clear) == "recpop"
 
 
 def _perturbed(st: Store, t: int) -> Store:

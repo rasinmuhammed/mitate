@@ -80,8 +80,8 @@ def test_hm_baskets_taxonomy_and_split(tmp_path: Path) -> None:
 
 
 def test_hm_feeds_the_store_sampler_and_next_basket_task(tmp_path: Path) -> None:
-    from bench import tasks
     from bench.simulator import sample_store
+    from mitate import tasks
 
     build(_raw(tmp_path), tmp_path / "hm")
     ds = hm(tmp_path / "hm")

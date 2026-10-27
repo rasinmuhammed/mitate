@@ -1,11 +1,11 @@
 import numpy as np
 
-from bench.tasks import next_item
 from mitate.blend import Blend, Variant, ablate, ltr_groups
 from mitate.data import Catalog
 from mitate.ltr import train_isolated
 from mitate.models.baselines import ItemKNN, RecencyPopularity
 from mitate.models.sequential import PCTM
+from mitate.tasks import next_item
 from tests.test_leakage import T0, T1, random_log
 
 

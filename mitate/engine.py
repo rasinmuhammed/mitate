@@ -9,9 +9,10 @@ The method shifts with the store's data volume:
   shoppers stand behind a pair, whatever the stage.
 * **Behavioural**: the Mitate blend over every source whose volume threshold the store has
   reached, ordered by the shipped ranker, which learned from the validation decisions of pooled
-  OTTO stores of every size, so a store needs no labelled data of its own. When a source is below
-  its threshold the ranker trained without that source is used; with no ranker for the active
-  sources, the blend falls back to rank fusion.
+  OTTO stores of every size. When a source is below its threshold the ranker trained without that
+  source is used; with no ranker for the active sources, the blend falls back to rank fusion.
+  Before serving, the guard (``mitate.guard``) replays the store's last week, and if one source
+  alone ranked it better than the blend, that source serves instead.
 
 Thresholds come from the benchmark (docs/results.md), not from intuition; until a threshold is
 measured the source is always on. Every list passes the business constraints and every item
@@ -24,11 +25,12 @@ import time
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, cast
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
 
+from mitate import guard
 from mitate.blend import Blend
 from mitate.complements import CategoryGraph, Complements
 from mitate.constraints import Constraints, Context, ItemState, Placement, Rules, Slate
@@ -100,6 +102,8 @@ class EngineConfig:
     embedder: str = "e5-small"  # see mitate.content.EMBEDDERS; "none" = no text model
     min_support: int = 5
     returning_repeat_share: float = 0.5  # share of a returning-customer slate for repurchases
+    guard_days: int = 7  # the guard's replay window (mitate.guard); 0 turns the guard off
+    guard_shoppers: int = 2000  # most shoppers the guard replays
     seed: int = 0
 
 
@@ -161,6 +165,7 @@ class EngineInfo:
     n_items: int
     fit_seconds: float
     trained_at: int  # data horizon (latest event time + 1)
+    guard: guard.GuardReport | None = None  # the replay that chose what serves, if one ran
 
 
 class Engine:
@@ -196,28 +201,47 @@ class Engine:
             vectors,
         )
         self.first_seen = self.evidence.first_seen
-        self.blend: Blend | None = None
+        self.ranking: Recommender | None = None  # the blend, or the one source the guard chose
         active: tuple[str, ...] = ()
         ranker = "none"
+        report: guard.GuardReport | None = None
         if len(log) >= cfg.min_behaviour_events:
             active = tuple(s for s in cfg.sources if len(log) >= cfg.source_min_events.get(s, 0))
-            sources: list[Recommender] = [
-                MODELS[s](**dict(cfg.source_params.get(s, {})), seed=cfg.seed) for s in active
-            ]
             booster, ranker = self._booster(active)
-            self.blend = Blend(sources=sources, n_cand=cfg.n_cand, booster=booster)
-            self.blend.fit(log, catalog)
+            if cfg.guard_days > 0:
+                report = guard.run(
+                    self._blend(active, booster),
+                    log,
+                    catalog,
+                    days=cfg.guard_days,
+                    max_shoppers=cfg.guard_shoppers,
+                    min_events=cfg.min_behaviour_events,
+                    seed=cfg.seed,
+                )
+            if report is None or report.choice == guard.BLEND:
+                self.ranking = self._blend(active, booster)
+            else:
+                self.ranking = self._source(report.choice)
+            self.ranking.fit(log, catalog)
         horizon = int(log.ts.max()) + 1 if len(log) else 0
         self.info = EngineInfo(
-            stage="behavioural" if self.blend is not None else "catalog_only",
+            stage="behavioural" if self.ranking is not None else "catalog_only",
             active_sources=active,
             ranker=ranker,
             n_events=len(log),
             n_items=n,
             fit_seconds=time.monotonic() - t0,
             trained_at=horizon,
+            guard=report,
         )
         return self.info
+
+    def _source(self, name: str) -> Recommender:
+        return MODELS[name](**dict(self.cfg.source_params.get(name, {})), seed=self.cfg.seed)
+
+    def _blend(self, active: tuple[str, ...], booster: TreeEnsemble | None) -> Blend:
+        sources = [self._source(s) for s in active]
+        return Blend(sources=sources, n_cand=self.cfg.n_cand, booster=booster)
 
     def _booster(self, active: tuple[str, ...]) -> tuple[TreeEnsemble | None, str]:
         """The ranker trained on exactly the active sources, or rank fusion if none was: a ranker
@@ -292,10 +316,8 @@ class Engine:
         return p / p.max() if p.max() > 0 else p
 
     def _next(self, shopper: Shopper, anchor: int) -> NDArray[np.float64]:
-        if self.blend is not None:
-            return cast(
-                NDArray[np.float64], self.blend.score(shopper.queries(anchor))[0].astype(np.float64)
-            )
+        if self.ranking is not None:
+            return np.asarray(self.ranking.score(shopper.queries(anchor))[0], np.float64)
         # catalog only: content similarity to this visit's items, else newest items first
         recent = list(shopper.items[shopper.session_start :]) + ([anchor] if anchor >= 0 else [])
         if self.vectors is not None and recent:

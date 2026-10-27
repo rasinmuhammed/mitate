@@ -83,8 +83,8 @@ def test_dunnhumby_baskets_merchandise_taxonomy_and_split(tmp_path: Path) -> Non
 
 
 def test_dunnhumby_feeds_the_store_sampler_and_next_basket_task(tmp_path: Path) -> None:
-    from bench import tasks
     from bench.simulator import sample_store
+    from mitate import tasks
 
     build(_raw(tmp_path), tmp_path / "dunnhumby")
     ds = dunnhumby(tmp_path / "dunnhumby")

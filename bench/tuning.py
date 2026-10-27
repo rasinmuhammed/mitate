@@ -18,10 +18,10 @@ import numpy as np
 import optuna
 from implicit.recommender_base import ModelFitError
 
-from bench.tasks import EvalSet
 from mitate.data import I64, Catalog, Log
 from mitate.metrics import ranking_metrics
 from mitate.models.base import Recommender
+from mitate.tasks import EvalSet
 
 optuna.logging.set_verbosity(logging.WARNING)
 

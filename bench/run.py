@@ -29,7 +29,6 @@ import numpy as np
 import yaml
 from numpy.typing import NDArray
 
-from bench import tasks
 from bench.datasets import Dataset, load
 from bench.evaluate import evaluate
 from bench.registry import MODELS, NEURAL
@@ -42,11 +41,13 @@ from bench.simulator import (
     widened_targets,
 )
 from bench.tuning import evaluate_config, tune
+from mitate import guard, tasks
 from mitate.blend import Blend, CandidateFrame, Variant, ablate
 from mitate.data import I64, Event, Log, Queries
 from mitate.engine import EngineConfig, repurchase_first
 from mitate.ltr import TreeEnsemble, train_isolated
 from mitate.models.base import F32, topk
+from mitate.stats import paired_test
 
 RESULTS = Path("experiments/results")
 STORES = Path("data/stores")
@@ -489,6 +490,21 @@ def stage2(ds: Dataset, cfg: dict[str, Any], dcfg: dict[str, Any], stores: list[
     for st in stores:
         run = StoreRun(st, RESULTS / ds.name / st.name, cfg, dcfg)
         score_mitate(run, boosters, todo)
+    guard_stage(ds, cfg, dcfg, stores)
+
+
+def guard_stage(
+    ds: Dataset, cfg: dict[str, Any], dcfg: dict[str, Any], stores: list[Store]
+) -> None:
+    """The guard on every store, with the ranker the product ships: this dataset's own where it
+    is the one shipped, else the one named by ``transfer_from`` (ledger D30). It needs stage 1
+    and the shipped ranker's stage 2 lists, and trains nothing."""
+    src = dcfg.get("transfer_from")
+    shipped = f"{src}_full" if src else "full"
+    booster = TreeEnsemble.load(RESULTS / (src or ds.name) / "_ltr" / "full.json")
+    for st in stores:
+        run = StoreRun(st, RESULTS / ds.name / st.name, cfg, dcfg)
+        score_guard(run, booster, shipped, rail=bool(dcfg.get("returning")))
 
 
 def train_rankers(
@@ -579,6 +595,74 @@ def score_mitate(
     print(f"[{st.name}] mitate variants done", flush=True)
 
 
+GUARD = "guard"  # the product's per-store choice (mitate.guard), scored as it ships (ledger D30)
+
+
+def strict_choice(scores: dict[str, NDArray[np.float64]]) -> str:
+    """The conservative rule registered beside the guard's own (ledger D30): the best source
+    replaces the blend only if the 95% interval of its paired advantage lies above zero."""
+    means = {m: float(np.mean(v)) for m, v in scores.items() if m != guard.BLEND and v.size}
+    if not means:
+        return guard.BLEND
+    best = max(means, key=lambda m: means[m])
+    return best if paired_test(scores[best], scores[guard.BLEND]).ci_low > 0 else guard.BLEND
+
+
+def score_guard(run: StoreRun, booster: TreeEnsemble, shipped: str, rail: bool) -> None:
+    """The guard on one store, under each rule. It replays the validation week, as the product
+    replays a store's last week: the blend under the shipped ranker and each source alone are
+    fitted on the log before it and rank its shoppers. What it picks is then scored on the test
+    week through that model's own test lists (the same tuned configuration fitted on the same
+    pre-test log), and with ``rail`` also as the returning-customer rail."""
+    st, out, cfg = run.st, run.out, run.cfg
+    assert run.val is not None and run.test is not None  # filled by __post_init__
+    rules = {GUARD: guard.choose, f"{GUARD}_strict": strict_choice}
+    names = [f"mitate_{r}{suffix}" for r in rules for suffix in ("", *([REPEAT] if rail else []))]
+    if all((out / "test" / f"{n}.npz").exists() for n in names):
+        return
+    b = Blend(sources=run.blend_sources(), n_cand=cfg["blend"]["n_cand"], booster=booster)
+    b.fit(st.log.until(st.t_val), st.catalog)
+    scores = guard.shopper_ndcg(b, run.val, run.avail)
+    picks = {rule: choose(scores) for rule, choose in rules.items()}
+    (out / "guard.json").write_text(
+        json.dumps(
+            {
+                "shipped": shipped,
+                "picks": picks,
+                "n_shoppers": int(np.unique(run.val.unit).size),
+                "ndcg": {m: float(np.mean(v)) for m, v in scores.items()},
+                "per_shopper": {m: v.tolist() for m, v in scores.items()},
+            },
+            indent=1,
+        )
+    )
+    train_t = st.log.until(st.t_test)
+    n_rep = round(cfg["blend"]["returning_rail"] * EngineConfig.returning_repeat_share)
+    k = cfg["test"]["k"]
+    for rule, pick in picks.items():
+        source = f"mitate_{shipped}" if pick == guard.BLEND else pick
+        recs = np.load(out / "test" / f"{source}.npz")["recs"]
+        run._save(f"mitate_{rule}", recs, train_t, {"pick": pick, "from": source})
+        if not rail:
+            continue
+        if pick == guard.BLEND:
+            recs = np.load(out / "test" / f"mitate_{shipped}{REPEAT}.npz")["recs"]
+        else:
+            m = next(s for s in run.blend_sources() if s.name == pick).fit(train_t, st.catalog)
+            recs = np.full((len(run.test), k), -1, np.int32)
+            for s in range(0, len(run.test), b.batch):
+                e = min(len(run.test), s + b.batch)
+                q = run.test.queries.slice(s, e)
+                S = _repurchase_first(m.score(q), q, n_rep)
+                if run.test.exclude is not None:
+                    ex = run.test.exclude[s:e].tocoo()
+                    S[ex.row, ex.col] = -np.inf
+                S[run.avail[None, :] > q.now[:, None]] = -np.inf
+                recs[s:e] = topk(S, k)
+        run._save(f"mitate_{rule}{REPEAT}", recs, train_t, {"pick": pick})
+    print(f"[{st.name}] guard picks {picks}", flush=True)
+
+
 def _fit_ltr(
     parts: list[tuple[F32, F32, NDArray[np.intp]]],
     fnames: list[str],
@@ -628,7 +712,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("config")
     ap.add_argument("--datasets", nargs="*")
-    ap.add_argument("--stage", default="all", choices=["1", "2", "all"])
+    ap.add_argument("--stage", default="all", choices=["1", "2", "guard", "all"])
     ap.add_argument("--buckets", nargs="*", type=int, help="restrict to these bucket sizes")
     ap.add_argument("--seeds", nargs="*", type=int)
     a = ap.parse_args()
@@ -660,6 +744,8 @@ def main() -> None:
         )
         if a.stage in ("2", "all"):
             stage2(ds, cfg, dcfg, stores)
+        elif a.stage == "guard":
+            guard_stage(ds, cfg, dcfg, stores)
 
 
 if __name__ == "__main__":

@@ -100,8 +100,8 @@ def one(job: dict[str, Any]) -> dict[str, Any]:
     import torch
 
     torch.set_num_threads(1)
-    from bench import tasks
     from bench.registry import MODELS
+    from mitate import tasks
     from mitate.blend import Blend
     from mitate.data import Catalog, Log
     from mitate.ltr import TreeEnsemble

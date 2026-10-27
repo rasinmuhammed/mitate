@@ -15,7 +15,8 @@ store; pairs are the same shopper under both systems). Holm corrects across buck
 (confirmatory); Benjamini-Yekutieli corrects the full leaderboard and, separately, the ablations
 (Mitate against each variant with one piece removed), both exploratory. Where the returning-
 customer rail was scored (ledger D27), each version of it is compared with the oracle best single
-method and Holm-corrected across buckets as its own family.
+method and Holm-corrected across buckets as its own family; so is each guarded system (ledger D30),
+the product as it ships.
 """
 
 from __future__ import annotations
@@ -35,6 +36,15 @@ MITATE = "mitate_full"
 # the returning-customer rail, repurchases first (ledger D27): with the ranker trained on this
 # dataset's stores, and with the ranker the product ships
 RETURNING = ("mitate_full_repeat", "mitate_otto_full_repeat")
+# the guard's pick per store (ledger D30), under its own rule and the conservative one, alone and
+# as the returning-customer rail
+GUARDED = (
+    "mitate_guard",
+    "mitate_guard_strict",
+    "mitate_guard_repeat",
+    "mitate_guard_strict_repeat",
+)
+FAMILIES = {"returning": RETURNING, "guarded": GUARDED}
 
 
 def load_units(
@@ -84,18 +94,23 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
     confirm_keys: list[tuple[int, str]] = []
     leaderboard: list[dict[str, Any]] = []
     ablations: list[dict[str, Any]] = []
-    returning_p: dict[str, list[float]] = defaultdict(list)
-    returning_keys: dict[str, list[int]] = defaultdict(list)
+    family_p: dict[tuple[str, str], list[float]] = defaultdict(list)
+    family_keys: dict[tuple[str, str], list[int]] = defaultdict(list)
     for bucket in sorted(by_bucket):
         per_model: dict[str, list[float]] = defaultdict(list)
         units: dict[str, dict[str, tuple[NDArray[np.integer[Any]], NDArray[np.float64]]]] = {}
         val_pick: dict[str, str] = {}
+        picks: dict[str, dict[str, int]] = defaultdict(dict)  # guard rule -> pick -> stores
         for s in by_bucket[bucket]:
             u = load_units(s, metric)
             units[s.name] = u
             for m, (_, v) in u.items():
                 per_model[m].append(float(np.nanmean(v)))
             vs = {m: v for m, v in val_scores(s).items() if not m.startswith("mitate")}
+            g = s / "guard.json"
+            if g.exists():
+                for rule, pick in json.loads(g.read_text())["picks"].items():
+                    picks[rule][pick] = picks[rule].get(pick, 0) + 1
             if vs:
                 val_pick[s.name] = max(vs, key=lambda m: vs[m])
         summary = {
@@ -105,6 +120,8 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
         }
         singles = {m: d["mean"] for m, d in summary.items() if not m.startswith("mitate")}
         row: dict[str, Any] = {"models": summary, "n_stores": len(by_bucket[bucket])}
+        if picks:
+            row["guard_picks"] = dict(picks)
         if singles and MITATE in summary:
             oracle = max(singles, key=lambda m: singles[m])
             row["oracle_best_single"] = oracle
@@ -142,25 +159,27 @@ def analyse(root: Path, metric: str) -> dict[str, Any]:
                 res = pooled(ref)
                 if res:
                     leaderboard.append({"bucket": bucket, "baseline": m, **res})
-            for system in RETURNING:
-                res = pooled({s: oracle for s in units}, system=system)
-                if res:
-                    row.setdefault("returning", {})[system] = res
-                    returning_p[system].append(res["p_ttest"])
-                    returning_keys[system].append(bucket)
+            for family, systems in FAMILIES.items():
+                for system in systems:
+                    res = pooled({s: oracle for s in units}, system=system)
+                    if res:
+                        row.setdefault(family, {})[system] = res
+                        family_p[family, system].append(res["p_ttest"])
+                        family_keys[family, system].append(bucket)
             # Mitate minus each reduced variant: what the removed piece contributes
+            side = {m for systems in FAMILIES.values() for m in systems}
             for m in summary:
-                if m.startswith("mitate_") and m != MITATE and m not in RETURNING:
+                if m.startswith("mitate_") and m != MITATE and m not in side:
                     res = pooled({s: m for s in units})
                     if res:
                         ablations.append({"bucket": bucket, "variant": m, **res})
         table[bucket] = row
     for (bucket, _), p in zip(confirm_keys, holm(confirm_p), strict=True):
         table[bucket]["vs_oracle"]["p_adj_holm"] = float(p)
-    # each returning-customer system is its own family across buckets, like the headline
-    for system, ps in returning_p.items():
-        for bucket, p in zip(returning_keys[system], holm(ps), strict=True):
-            table[bucket]["returning"][system]["p_adj_holm"] = float(p)
+    # each side system is its own family across buckets, like the headline
+    for (family, system), ps in family_p.items():
+        for bucket, p in zip(family_keys[family, system], holm(ps), strict=True):
+            table[bucket][family][system]["p_adj_holm"] = float(p)
     for row, p in zip(
         leaderboard, benjamini_yekutieli([r["p_ttest"] for r in leaderboard]), strict=True
     ):

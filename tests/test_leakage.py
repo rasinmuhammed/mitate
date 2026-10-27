@@ -5,13 +5,13 @@ import pytest
 
 from bench.gru4rec import GRU4Rec
 from bench.leakage import assert_future_invariant, perturb_after
-from bench.tasks import next_basket, next_item
 from mitate.data import Catalog, Event, Log
 from mitate.models.baselines import EASE, GPTopFreq, ItemKNN, RecencyPopularity, RP3beta
 from mitate.models.mf import IALS
 from mitate.models.sasrec import GSASRec, SASRecCE
 from mitate.models.sequential import PCTM, SeqRules
 from mitate.models.sknn import VSTAN
+from mitate.tasks import next_basket, next_item
 
 pytestmark = pytest.mark.leakage
 
@@ -118,7 +118,7 @@ def test_successive_covers_every_window_order() -> None:
 
 def test_no_future_items_are_recommended() -> None:
     """Checklist #8: an item cannot be recommended before it first exists."""
-    from bench.tasks import available_from
+    from mitate.tasks import available_from
 
     log = random_log(seed=9)
     # make items 30..39 appear only late in the window

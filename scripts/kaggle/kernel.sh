@@ -4,6 +4,7 @@
 #   scripts/kaggle/kernel.sh otto 30000        the OTTO 30K bucket
 #   scripts/kaggle/kernel.sh hm 1000 3000      H&M, two buckets in one run
 #   scripts/kaggle/kernel.sh otto stage2       Mitate on OTTO, once every bucket is finished
+#   scripts/kaggle/kernel.sh hm guard          the guard on H&M, once stage 2 is finished
 #
 # Inputs: the private dataset mitate-bench (scripts/kaggle/package.sh); for hm, the H&M
 # competition, whose rules must be accepted on kaggle.com first; for dunnhumby, the private
@@ -13,14 +14,14 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-usage() { echo "usage: $0 otto|hm|dunnhumby BUCKET... | $0 DATASET stage2" >&2; exit 2; }
+usage() { echo "usage: $0 otto|hm|dunnhumby BUCKET... | $0 DATASET stage2|guard" >&2; exit 2; }
 ds=${1:-}
 [[ $ds =~ ^(otto|hm|dunnhumby)$ ]] || usage
 shift
 (($#)) || usage
 stage=1
-if [[ $* == stage2 ]]; then
-  stage=2
+if [[ $* == stage2 || $* == guard ]]; then
+  [[ $* == guard ]] && stage=guard || stage=2
   set --
 else
   for b in "$@"; do [[ $b =~ ^[0-9]+$ ]] || usage; done
@@ -49,7 +50,7 @@ if [[ $(kaggle datasets status "$user/mitate-results-$ds" 2>/dev/null) == *ready
 fi
 echo "resume from mitate-results-$ds: $resume finished results expected"
 # stage 2 also scores with another dataset's trained ranker when the config names one (D25)
-if [[ $stage == 2 ]]; then
+if [[ $stage != 1 ]]; then
   transfer=$(uv run --no-project --with pyyaml==6.0.2 python -c "import yaml, sys
 cfg = yaml.safe_load(open('experiments/configs/benchmark.yaml'))
 print(cfg['datasets']['$ds'].get('transfer_from', ''))")
@@ -76,7 +77,7 @@ text = "".join(cell["source"])
 values = {
     r'^DATASET = "\w+"': f'DATASET = "{ds}"',
     r"^BUCKETS = \[[^]]*\]": f"BUCKETS = [{', '.join(buckets.split())}]",
-    r'^STAGE = "\d"': f'STAGE = "{stage}"',
+    r'^STAGE = "\w+"': f'STAGE = "{stage}"',
     r"^RESUME = \d+": f"RESUME = {resume}",
     r"^CODE_VERSION = \S+": f'CODE_VERSION = "{version}"',
 }

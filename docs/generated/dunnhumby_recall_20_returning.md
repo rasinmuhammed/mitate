@@ -1,4 +1,4 @@
-| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Score | Δ vs best, 95% CI | p (Holm) |
 |---|---|---:|---|---:|---:|---:|
 | 1K | GP-TopFreq 0.6559 | 0.6353 | ranker trained here | 0.6449 | -0.0111 [-0.0587, +0.0357] | 1 |
 | 1K | GP-TopFreq 0.6559 | 0.6353 | shipped OTTO ranker | 0.6689 | +0.0169 [-0.0241, +0.0586] | 1 |

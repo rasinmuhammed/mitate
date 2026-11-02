@@ -97,10 +97,13 @@ and the ablations are in [results.md](docs/results.md).</sub>
   with it after correction, but about 0.01 behind at 10K and 30K on nearly every store. The
   returning-customer rail the product actually serves, half repurchases and half ranker, matches
   GP-TopFreq at every size (last column; ledger D27, added after the grocery baselines were seen).
-* **The shipped ranker carries over to grocery, not to fashion.** On Dunnhumby, the OTTO-trained
-  ranker scores the same as one trained on grocery. On H&M it is 0.03 to 0.23 NDCG@10 below the
-  H&M-trained ranker at every size, and below recent popularity in stores of up to 30K events. A
-  fashion shop running the shipped ranker today would do better with recent popularity.
+* **The shipped ranker carries over to grocery, not to fashion, and the engine now checks.** On
+  Dunnhumby, the OTTO-trained ranker scores the same as one trained on grocery. On H&M it is 0.03
+  to 0.23 NDCG@10 below the H&M-trained ranker and below recent popularity up to 30K events. So
+  before serving, the engine replays the store's last week and serves whichever of the ranker and
+  its sources ranked it best (ledger D30). On H&M it turned the ranker away on all 35 stores and
+  brought Mitate as shipped level with the best single method from 10K events up (0.03 to 0.04
+  behind at 1K and 3K, not significant); on OTTO it kept the ranker on all 35.
 * **The learning is what matters.** Replacing the ranker with plain rank fusion over the same
   nine sources costs 0.06 to 0.09 NDCG@10 on OTTO and 0.04 to 0.21 on H&M. Removing any one source
   mostly changes nothing measurable.
@@ -229,8 +232,9 @@ including the ones made after a result was seen. Each entry records when it was 
   statistics are validated in simulation, and interleaving's sensitivity on real small-store
   traffic is unverified.
 * Dunnhumby has only 2,500 households, so grocery is measured on stores of up to 30K events.
-* Only one ranker ships, trained on OTTO sessions, and it fails on fashion. No fashion ranker can
-  ship from H&M's non-commercial data, so a fashion shop is not served well yet.
+* Only one ranker ships, trained on OTTO sessions, and it fails on fashion. The guard catches
+  that, so a fashion shop gets the best single method rather than the blend's gain: the H&M-trained
+  ranker is 0.02 to 0.21 better, and no ranker from H&M's non-commercial data can ship.
 * In fashion, the returning-customer rail's repurchases cost accuracy: with the H&M-trained
   ranker, the rail's mean is below the ranker alone at six of seven sizes.
 * The dense item-item models assume catalogues of up to about 25K products.

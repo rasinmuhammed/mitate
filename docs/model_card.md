@@ -90,8 +90,9 @@ ablations, and measured latency and memory on a stated laptop.
   data's time span, so they model *slow* shops rather than *young* ones.
 * The shipped ranker was trained on session-heavy general e-commerce. It transfers to grocery
   (Dunnhumby: level with a ranker trained there) but not to fashion (H&M: below recent popularity
-  in stores of up to 30K events). Shops unlike OTTO should compare it with popularity before
-  relying on it; the built-in holdout test does this.
+  in stores of up to 30K events). Before serving, the engine replays the store's last week and
+  serves a single source instead when one ranked it better (`mitate.guard`); on fashion that
+  brings it level with the best single method, not above it.
 * OTTO has no item text and no persistent customer ids, so content similarity and the
   returning-customer placement are not evaluated on it.
 * gSASRec's published defaults collapse on small catalogs in our implementation (ledger D16); its

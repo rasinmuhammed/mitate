@@ -1,4 +1,4 @@
-| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Score | Δ vs best, 95% CI | p (Holm) |
 |---|---|---:|---|---:|---:|---:|
 | 1K | Recent popularity 0.5382 | 0.7309 | ranker trained here | 0.7426 | +0.2593 [+0.1111, +0.4074] | 0.00473 |
 | 1K | Recent popularity 0.5382 | 0.7309 | shipped OTTO ranker | 0.1588 | -0.3519 [-0.5000, -0.2037] | 8.6e-05 |

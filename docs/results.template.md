@@ -63,6 +63,23 @@ correction across all ablations). The store-size features change nothing measura
 No single source matters much on its own: removing one moves the score by at most 0.015, and 8 of
 those 63 differences are significant.
 
+### Mitate as it ships: the guard
+
+The engine ships one ranker, trained on OTTO, and it does not carry over to every kind of shop
+(section 2). So before serving, the engine replays the store's last week: the blend under the
+shipped ranker and each of its sources alone are fitted on the log before that week, rank its
+shoppers, and the best mean NDCG@10 serves (`mitate.guard`). A conservative rule, registered with
+it, switches away from the blend only when the source's paired advantage has a 95% interval above
+zero. The benchmark replays the validation week and serves the pick's own test lists (ledger D30).
+"Blend kept" counts the stores where the guard served the shipped ranker. On OTTO the shipped
+ranker was trained on these stores' validation weeks, so the replay favours it here.
+
+{{otto_ndcg_10_guard}}
+
+**Finding.** The guard kept the shipped ranker on all 35 stores, so Mitate as shipped scores what
+the ranker alone does. The replay is in-sample here, so OTTO shows only that the guard does not
+discard a ranker that works; sections 2 and 3 test it where the ranker was never trained.
+
 ### Cost
 
 Peak memory, fit time and request latency per model, each measured in a fresh single-threaded
@@ -156,6 +173,21 @@ below the ranker alone at every size except 1K, by up to 0.021 (not tested): fiv
 slots the ranker would have used better. With the shipped OTTO ranker, the rail is significantly
 behind the best single method at every size, by 0.007 to 0.231.
 
+### Mitate as it ships: the guard
+
+The guard as in section 1, here choosing between the shipped OTTO ranker and the sources.
+
+{{hm_ndcg_10_guard}}
+
+**Finding.** The guard turned the shipped ranker away on all 35 stores: it served recent
+popularity or a transition model in small stores and session kNN from 100K events. Mitate as
+shipped goes from 0.04–0.07 NDCG@10, the shipped ranker alone, to level with the best single
+method chosen on test from 10K events up, and 0.003 ahead of it at 300K. At 1K and 3K it is 0.03
+to 0.04 behind, not significant after correction (at 1K the interval excludes zero before it),
+because a week of 10 to 20 shoppers sometimes points to the wrong source. It remains 0.02 to 0.21
+below the ranker trained on H&M, which cannot ship. The conservative rule kept the failing ranker
+on 3 of 5 stores at 1K and scores lower; the primary rule stands as registered.
+
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
 Grocery is repeat buying: across the whole dataset, 54% of the products in test-window baskets
@@ -204,6 +236,19 @@ after the Dunnhumby baselines showed the repeat-purchase baseline leading at eve
 **Finding.** With repurchases first, as the product serves returning customers, Mitate matches
 GP-TopFreq at every size, within ±0.005 NDCG@10, with either ranker. With the shipped OTTO ranker
 it is ahead at 30K before correction (+0.005) and level after it.
+
+### Mitate as it ships: the guard
+
+The guard as in section 1, here choosing between the shipped OTTO ranker and the sources.
+
+{{dunnhumby_ndcg_10_guard}}
+
+**Finding.** From 10K events the guard kept the shipped ranker on every store. At 1K and 3K it
+switched on 2 of 5 stores each and lost about 0.01 against the shipped ranker alone, not
+significant: the price of choosing on a handful of shoppers when the ranker was already right.
+Without repurchases, Mitate as shipped is behind GP-TopFreq at 10K and 30K by 0.01, as the ranker
+alone is; with repurchases first, the rail returning customers actually get, it is level with
+GP-TopFreq at every size.
 
 ## 4. Product-page placements (Amazon Grocery)
 

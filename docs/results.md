@@ -127,6 +127,38 @@ correction across all ablations). The store-size features change nothing measura
 No single source matters much on its own: removing one moves the score by at most 0.015, and 8 of
 those 63 differences are significant.
 
+### Mitate as it ships: the guard
+
+The engine ships one ranker, trained on OTTO, and it does not carry over to every kind of shop
+(section 2). So before serving, the engine replays the store's last week: the blend under the
+shipped ranker and each of its sources alone are fitted on the log before that week, rank its
+shoppers, and the best mean NDCG@10 serves (`mitate.guard`). A conservative rule, registered with
+it, switches away from the blend only when the source's paired advantage has a 95% interval above
+zero. The benchmark replays the validation week and serves the pick's own test lists (ledger D30).
+"Blend kept" counts the stores where the guard served the shipped ranker. On OTTO the shipped
+ranker was trained on these stores' validation weeks, so the replay favours it here.
+
+| Store size | Best single (chosen on test) | Shipped ranker alone | Served | Score | Blend kept | Δ vs best, 95% CI | p (Holm) |
+|---|---|---:|---|---:|---:|---:|---:|
+| 1K | Transition probe (PCTM) 0.1762 | 0.2467 | guard | 0.2467 | 5 of 5 | +0.0687 [+0.0345, +0.1030] | 0.000162 |
+| 1K | Transition probe (PCTM) 0.1762 | 0.2467 | guard, conservative rule | 0.2467 | 5 of 5 | +0.0687 [+0.0345, +0.1030] | 0.000162 |
+| 3K | Session kNN (VSTAN) 0.2155 | 0.2803 | guard | 0.2803 | 5 of 5 | +0.0691 [+0.0527, +0.0857] | 1.59e-14 |
+| 3K | Session kNN (VSTAN) 0.2155 | 0.2803 | guard, conservative rule | 0.2803 | 5 of 5 | +0.0691 [+0.0527, +0.0857] | 1.59e-14 |
+| 10K | Session kNN (VSTAN) 0.2130 | 0.2751 | guard | 0.2751 | 5 of 5 | +0.0638 [+0.0547, +0.0733] | 8.19e-39 |
+| 10K | Session kNN (VSTAN) 0.2130 | 0.2751 | guard, conservative rule | 0.2751 | 5 of 5 | +0.0638 [+0.0547, +0.0733] | 8.19e-39 |
+| 30K | GRU4Rec 0.2160 | 0.2825 | guard | 0.2825 | 5 of 5 | +0.0663 [+0.0588, +0.0740] | 1.1e-60 |
+| 30K | GRU4Rec 0.2160 | 0.2825 | guard, conservative rule | 0.2825 | 5 of 5 | +0.0663 [+0.0588, +0.0740] | 1.1e-60 |
+| 100K | iALS 0.2196 | 0.2864 | guard | 0.2864 | 5 of 5 | +0.0668 [+0.0637, +0.0698] | < 1e-300 |
+| 100K | iALS 0.2196 | 0.2864 | guard, conservative rule | 0.2864 | 5 of 5 | +0.0668 [+0.0637, +0.0698] | < 1e-300 |
+| 300K | SASRec (full softmax) 0.2202 | 0.2728 | guard | 0.2728 | 5 of 5 | +0.0526 [+0.0505, +0.0548] | < 1e-300 |
+| 300K | SASRec (full softmax) 0.2202 | 0.2728 | guard, conservative rule | 0.2728 | 5 of 5 | +0.0526 [+0.0505, +0.0548] | < 1e-300 |
+| 1M | SASRec (full softmax) 0.2274 | 0.2721 | guard | 0.2721 | 5 of 5 | +0.0447 [+0.0428, +0.0466] | < 1e-300 |
+| 1M | SASRec (full softmax) 0.2274 | 0.2721 | guard, conservative rule | 0.2721 | 5 of 5 | +0.0447 [+0.0428, +0.0466] | < 1e-300 |
+
+**Finding.** The guard kept the shipped ranker on all 35 stores, so Mitate as shipped scores what
+the ranker alone does. The replay is in-sample here, so OTTO shows only that the guard does not
+discard a ranker that works; sections 2 and 3 test it where the ranker was never trained.
+
 ### Cost
 
 Peak memory, fit time and request latency per model, each measured in a fresh single-threaded
@@ -368,7 +400,7 @@ repurchases, then the ranker. "Ranker alone" is the headline above. This compari
 after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
 (ledger D27), so it sits beside the headline rather than replacing it.
 
-| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Score | Δ vs best, 95% CI | p (Holm) |
 |---|---|---:|---|---:|---:|---:|
 | 1K | Recent popularity 0.1645 | 0.2825 | ranker trained here | 0.2856 | +0.1237 [+0.0545, +0.1965] | 0.00552 |
 | 1K | Recent popularity 0.1645 | 0.2825 | shipped OTTO ranker | 0.0467 | -0.0884 [-0.1605, -0.0121] | 0.0248 |
@@ -390,6 +422,50 @@ the rail is significantly ahead of the best single method at 1K and from 100K, b
 below the ranker alone at every size except 1K, by up to 0.021 (not tested): five slots given to past purchases are five
 slots the ranker would have used better. With the shipped OTTO ranker, the rail is significantly
 behind the best single method at every size, by 0.007 to 0.231.
+
+### Mitate as it ships: the guard
+
+The guard as in section 1, here choosing between the shipped OTTO ranker and the sources.
+
+| Store size | Best single (chosen on test) | Shipped ranker alone | Served | Score | Blend kept | Δ vs best, 95% CI | p (Holm) |
+|---|---|---:|---|---:|---:|---:|---:|
+| 1K | Recent popularity 0.1645 | 0.0361 | guard | 0.0741 | 0 of 5 | -0.0393 [-0.0765, -0.0117] | 0.177 |
+| 1K | Recent popularity 0.1645 | 0.0361 | guard, conservative rule | 0.0546 | 3 of 5 | -0.0656 [-0.1250, -0.0031] | 0.185 |
+| 1K | Recent popularity 0.1645 | 0.0361 | guard, as the rail | 0.0929 | 0 of 5 | -0.0201 [-0.0664, +0.0258] | 1 |
+| 1K | Recent popularity 0.1645 | 0.0361 | guard, conservative rule, as the rail | 0.0708 | 3 of 5 | -0.0505 [-0.1185, +0.0219] | 0.508 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard | 0.2350 | 0 of 5 | -0.0342 [-0.0789, +0.0048] | 0.575 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard, conservative rule | 0.2119 | 1 of 5 | -0.0705 [-0.1345, -0.0068] | 0.185 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard, as the rail | 0.2507 | 0 of 5 | -0.0299 [-0.0812, +0.0216] | 1 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard, conservative rule, as the rail | 0.2200 | 1 of 5 | -0.0782 [-0.1437, -0.0138] | 0.0882 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard | 0.1650 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard, conservative rule | 0.1650 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard, as the rail | 0.1823 | 0 of 5 | +0.0123 [-0.0056, +0.0331] | 1 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard, conservative rule, as the rail | 0.1823 | 0 of 5 | +0.0123 [-0.0056, +0.0331] | 0.508 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard | 0.1324 | 0 of 5 | +0.0026 [-0.0048, +0.0103] | 1 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard, conservative rule | 0.1324 | 0 of 5 | +0.0026 [-0.0048, +0.0103] | 1 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard, as the rail | 0.1296 | 0 of 5 | -0.0006 [-0.0131, +0.0123] | 1 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard, conservative rule, as the rail | 0.1296 | 0 of 5 | -0.0006 [-0.0131, +0.0123] | 0.923 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard | 0.0782 | 0 of 5 | +0.0006 [-0.0054, +0.0066] | 1 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, conservative rule | 0.0745 | 1 of 5 | -0.0049 [-0.0091, -0.0009] | 0.0974 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, as the rail | 0.0783 | 0 of 5 | -0.0012 [-0.0060, +0.0035] | 1 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, conservative rule, as the rail | 0.0744 | 1 of 5 | -0.0069 [-0.0108, -0.0029] | 0.00338 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard | 0.0627 | 0 of 5 | +0.0025 [+0.0007, +0.0043] | 0.0362 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, conservative rule | 0.0627 | 0 of 5 | +0.0025 [+0.0007, +0.0043] | 0.0362 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, as the rail | 0.0600 | 0 of 5 | -0.0026 [-0.0045, -0.0007] | 0.0408 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, conservative rule, as the rail | 0.0600 | 0 of 5 | -0.0026 [-0.0045, -0.0007] | 0.034 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard | 0.0573 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, conservative rule | 0.0573 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, as the rail | 0.0507 | 0 of 5 | -0.0066 [-0.0077, -0.0055] | 3.88e-31 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, conservative rule, as the rail | 0.0507 | 0 of 5 | -0.0066 [-0.0077, -0.0055] | 3.88e-31 |
+
+**Finding.** The guard turned the shipped ranker away on all 35 stores: it served recent
+popularity or a transition model in small stores and session kNN from 100K events. Mitate as
+shipped goes from 0.04–0.07 NDCG@10, the shipped ranker alone, to level with the best single
+method chosen on test from 10K events up, and 0.003 ahead of it at 300K. At 1K and 3K it is 0.03
+to 0.04 behind, not significant after correction (at 1K the interval excludes zero before it),
+because a week of 10 to 20 shoppers sometimes points to the wrong source. It remains 0.02 to 0.21
+below the ranker trained on H&M, which cannot ship. The conservative rule kept the failing ranker
+on 3 of 5 stores at 1K and scores lower; the primary rule stands as registered.
 
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
@@ -474,7 +550,7 @@ repurchases, then the ranker. "Ranker alone" is the headline above. This compari
 after the Dunnhumby baselines showed the repeat-purchase baseline leading at every store size
 (ledger D27), so it sits beside the headline rather than replacing it.
 
-| Store size | Best single (chosen on test) | Ranker alone | Rail | Rail score | Δ vs best, 95% CI | p (Holm) |
+| Store size | Best single (chosen on test) | Ranker alone | Rail | Score | Δ vs best, 95% CI | p (Holm) |
 |---|---|---:|---|---:|---:|---:|
 | 1K | GP-TopFreq 0.3910 | 0.3633 | ranker trained here | 0.3871 | -0.0023 [-0.0256, +0.0213] | 1 |
 | 1K | GP-TopFreq 0.3910 | 0.3633 | shipped OTTO ranker | 0.3896 | +0.0011 [-0.0207, +0.0237] | 1 |
@@ -488,6 +564,36 @@ after the Dunnhumby baselines showed the repeat-purchase baseline leading at eve
 **Finding.** With repurchases first, as the product serves returning customers, Mitate matches
 GP-TopFreq at every size, within ±0.005 NDCG@10, with either ranker. With the shipped OTTO ranker
 it is ahead at 30K before correction (+0.005) and level after it.
+
+### Mitate as it ships: the guard
+
+The guard as in section 1, here choosing between the shipped OTTO ranker and the sources.
+
+| Store size | Best single (chosen on test) | Shipped ranker alone | Served | Score | Blend kept | Δ vs best, 95% CI | p (Holm) |
+|---|---|---:|---|---:|---:|---:|---:|
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard | 0.3865 | 3 of 5 | -0.0025 [-0.0327, +0.0271] | 0.872 |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard, conservative rule | 0.3996 | 5 of 5 | +0.0120 [-0.0131, +0.0373] | 0.689 |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard, as the rail | 0.3843 | 3 of 5 | -0.0042 [-0.0270, +0.0192] | 1 |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard, conservative rule, as the rail | 0.3896 | 5 of 5 | +0.0011 [-0.0207, +0.0237] | 1 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard | 0.3030 | 3 of 5 | -0.0120 [-0.0313, +0.0065] | 0.419 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard, conservative rule | 0.3099 | 5 of 5 | -0.0049 [-0.0214, +0.0106] | 0.689 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard, as the rail | 0.3118 | 3 of 5 | -0.0044 [-0.0143, +0.0053] | 1 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard, conservative rule, as the rail | 0.3117 | 5 of 5 | -0.0044 [-0.0140, +0.0049] | 1 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard | 0.3165 | 5 of 5 | -0.0111 [-0.0194, -0.0028] | 0.028 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard, conservative rule | 0.3165 | 5 of 5 | -0.0111 [-0.0194, -0.0028] | 0.028 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard, as the rail | 0.3287 | 5 of 5 | +0.0006 [-0.0058, +0.0071] | 1 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard, conservative rule, as the rail | 0.3287 | 5 of 5 | +0.0006 [-0.0058, +0.0071] | 1 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard | 0.3096 | 5 of 5 | -0.0096 [-0.0159, -0.0033] | 0.0105 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard, conservative rule | 0.3096 | 5 of 5 | -0.0096 [-0.0159, -0.0033] | 0.0105 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard, as the rail | 0.3242 | 5 of 5 | +0.0048 [+0.0007, +0.0089] | 0.0888 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard, conservative rule, as the rail | 0.3242 | 5 of 5 | +0.0048 [+0.0007, +0.0089] | 0.0888 |
+
+**Finding.** From 10K events the guard kept the shipped ranker on every store. At 1K and 3K it
+switched on 2 of 5 stores each and lost about 0.01 against the shipped ranker alone, not
+significant: the price of choosing on a handful of shoppers when the ranker was already right.
+Without repurchases, Mitate as shipped is behind GP-TopFreq at 10K and 30K by 0.01, as the ranker
+alone is; with repurchases first, the rail returning customers actually get, it is level with
+GP-TopFreq at every size.
 
 ## 4. Product-page placements (Amazon Grocery)
 

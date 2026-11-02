@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from mitate import guard
+from mitate import guard, own_ranker
 from mitate.blend import DAY, Blend
 from mitate.constraints import Placement
 from mitate.data import Catalog, Event, Log
@@ -48,9 +48,28 @@ def test_the_replay_task_follows_what_the_log_records() -> None:
 def test_a_ranker_that_ranks_this_store_badly_is_replaced() -> None:
     log = cycle_log()
     blend = Blend(sources=[RecencyPopularity(), PCTM()], n_cand=10, booster=Noise())
-    report = guard.run(blend, log, Catalog(N))
-    assert report is not None and report.choice == "pctm"
+    replay = guard.run(blend, log, Catalog(N), own_days=0)
+    assert replay is not None and replay[1] is None
+    report = replay[0]
+    assert report.choice == "pctm" and guard.OWN not in report.ndcg
     assert report.ndcg["pctm"] > report.ndcg[guard.BLEND] and report.n_shoppers > 0
+
+
+def test_the_store_learns_its_own_ranker_before_the_replayed_week() -> None:
+    log = cycle_log()
+    blend = Blend(sources=[RecencyPopularity(), PCTM()], n_cand=10, booster=Noise())
+    replay = guard.run(blend, log, Catalog(N))
+    assert replay is not None and replay[1] is not None
+    report = replay[0]
+    assert report.ndcg[guard.OWN] > report.ndcg[guard.BLEND]
+    assert report.choice in (guard.OWN, "pctm")
+
+
+def test_too_few_labels_train_no_own_ranker() -> None:
+    log = cycle_log()
+    t1 = int(log.ts.max()) + 1
+    blend = Blend(sources=[RecencyPopularity()], n_cand=10)
+    assert own_ranker.train(blend, log, Catalog(N), t1 - 60, t1, "next_item") is None
 
 
 def test_nothing_to_replay_means_no_report() -> None:
@@ -75,3 +94,12 @@ def test_the_guard_can_be_turned_off() -> None:
     cfg = EngineConfig(min_behaviour_events=100, sources=("recpop", "pctm"), guard_days=0)
     info = Engine(cfg).fit(cycle_log(), Catalog(N))
     assert info.guard is None and info.stage == "behavioural"
+
+
+def test_the_engine_serves_the_own_ranker_it_chose(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(guard, "choose", lambda scores: guard.OWN)
+    cfg = EngineConfig(min_behaviour_events=100, sources=("recpop", "pctm"), embedder="none")
+    eng = Engine(cfg)
+    info = eng.fit(cycle_log(), Catalog(N))
+    assert info.ranker == guard.OWN and isinstance(eng.ranking, Blend)
+    assert eng.ranking.booster is not None

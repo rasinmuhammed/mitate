@@ -15,7 +15,7 @@ mkdir -p "$out"
 
 # the same paths scripts/kaggle/code_version.py hashes; the hash ships as CODE_VERSION
 zip -qr "$out/mitate-code.zip" \
-  mitate bench serve experiments/configs pyproject.toml uv.lock .python-version README.md \
+  mitate bench serve tests experiments/configs pyproject.toml uv.lock .python-version README.md \
   -x '*/__pycache__/*' '*.pyc' 'mitate/rankers/*'
 python3 scripts/kaggle/code_version.py >dist/kaggle/CODE_VERSION
 (cd dist/kaggle && zip -q mitate-bench/mitate-code.zip CODE_VERSION)

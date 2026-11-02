@@ -11,8 +11,8 @@ The method shifts with the store's data volume:
   reached, ordered by the shipped ranker, which learned from the validation decisions of pooled
   OTTO stores of every size. When a source is below its threshold the ranker trained without that
   source is used; with no ranker for the active sources, the blend falls back to rank fusion.
-  Before serving, the guard (``mitate.guard``) replays the store's last week, and if one source
-  alone ranked it better than the blend, that source serves instead.
+  Before serving, the guard (``mitate.guard``) replays the store's last week; if a ranker trained
+  on the store's own earlier weeks, or one source alone, ranked it better, that serves instead.
 
 Thresholds come from the benchmark (docs/results.md), not from intuition; until a threshold is
 measured the source is always on. Every list passes the business constraints and every item
@@ -103,7 +103,8 @@ class EngineConfig:
     min_support: int = 5
     returning_repeat_share: float = 0.5  # share of a returning-customer slate for repurchases
     guard_days: int = 7  # the guard's replay window (mitate.guard); 0 turns the guard off
-    guard_shoppers: int = 2000  # most shoppers the guard replays
+    guard_shoppers: int = 2000  # most shoppers the guard replays, and the own ranker learns from
+    own_ranker_days: int = 14  # days before the replay the store's own ranker learns from; 0: off
     seed: int = 0
 
 
@@ -160,7 +161,7 @@ class Ranked:
 class EngineInfo:
     stage: str  # catalog_only | behavioural
     active_sources: tuple[str, ...]
-    ranker: str  # booster variant name, "rrf", or "none"
+    ranker: str  # shipped booster variant, "own" (trained on this store), "rrf", or "none"
     n_events: int
     n_items: int
     fit_seconds: float
@@ -208,18 +209,27 @@ class Engine:
         if len(log) >= cfg.min_behaviour_events:
             active = tuple(s for s in cfg.sources if len(log) >= cfg.source_min_events.get(s, 0))
             booster, ranker = self._booster(active)
-            if cfg.guard_days > 0:
-                report = guard.run(
+            replay = (
+                guard.run(
                     self._blend(active, booster),
                     log,
                     catalog,
                     days=cfg.guard_days,
                     max_shoppers=cfg.guard_shoppers,
+                    own_days=cfg.own_ranker_days,
+                    own_shoppers=cfg.guard_shoppers,
                     min_events=cfg.min_behaviour_events,
                     seed=cfg.seed,
                 )
+                if cfg.guard_days > 0
+                else None
+            )
+            report = replay[0] if replay else None
             if report is None or report.choice == guard.BLEND:
                 self.ranking = self._blend(active, booster)
+            elif report.choice == guard.OWN and replay is not None:
+                self.ranking = self._blend(active, replay[1])
+                ranker = guard.OWN
             else:
                 self.ranking = self._source(report.choice)
             self.ranking.fit(log, catalog)

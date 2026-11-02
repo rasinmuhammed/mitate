@@ -15,6 +15,7 @@ PATHS = (
     "mitate",
     "bench",
     "serve",
+    "tests",
     "experiments/configs",
     "pyproject.toml",
     "uv.lock",

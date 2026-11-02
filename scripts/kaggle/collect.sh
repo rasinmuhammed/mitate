@@ -48,6 +48,9 @@ if len(gpus) != 1:
 PY
 
 rsync -a --ignore-existing --exclude stores.json "$res/experiments/results/$ds/" "experiments/results/$ds/"
+# a store's guard record only gains picks (bench/run.py keeps earlier ones): the newer one wins
+rsync -a --include '*/' --include guard.json --exclude '*' "$res/experiments/results/$ds/" \
+  "experiments/results/$ds/"
 # the store manifest grows with every run: merge it entry by entry, the newer run's entry winning
 python3 - "$res/experiments/results/$ds/stores.json" "experiments/results/$ds/stores.json" <<'PY'
 import json

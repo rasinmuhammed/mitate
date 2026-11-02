@@ -43,6 +43,11 @@ GUARDED = (
     "mitate_guard_strict",
     "mitate_guard_repeat",
     "mitate_guard_strict_repeat",
+    # with the store's own ranker among the candidates, and that ranker alone (ledger D31)
+    "mitate_guard_own",
+    "mitate_guard_own_repeat",
+    "mitate_own",
+    "mitate_own_repeat",
 )
 FAMILIES = {"returning": RETURNING, "guarded": GUARDED}
 

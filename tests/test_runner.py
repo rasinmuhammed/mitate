@@ -68,12 +68,14 @@ def test_smoke_both_stages(isolated: Path) -> None:
             "mitate_guard_strict",
             "mitate_guard_repeat",
             "mitate_guard_strict_repeat",
+            "mitate_guard_own",
+            "mitate_guard_own_repeat",
         ]:
             summary = json.loads((d / f"{name}.json").read_text())["summary"]
             assert 0.0 <= summary["ndcg@10"] <= 1.0, name
         # what the guard serves is exactly the model it picked
         pick = json.loads((d.parent / "guard.json").read_text())["picks"]["guard"]
-        source = "mitate_full" if pick == "blend" else pick
+        source = {"blend": "mitate_full", "own": "mitate_own"}.get(pick, pick)
         guarded = np.load(d / "mitate_guard.npz")["recs"]
         assert np.array_equal(guarded, np.load(d / f"{source}.npz")["recs"])
 

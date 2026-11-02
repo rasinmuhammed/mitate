@@ -144,7 +144,7 @@ class _Builder:
 
     def build(self, task: str, t0: int, t1: int, exclude_seen: bool) -> EvalSet:
         if not self.now:
-            raise ValueError(f"{task}: no eligible targets in window")
+            raise EmptyWindowError(f"{task}: no eligible targets in window")
         lens = np.array([a.size for a in self.items], np.int64)
 
         def cat(xs: Sequence[NDArray[np.integer[Any]]], dt: type) -> NDArray[Any]:

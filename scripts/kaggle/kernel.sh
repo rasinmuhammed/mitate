@@ -5,6 +5,7 @@
 #   scripts/kaggle/kernel.sh hm 1000 3000      H&M, two buckets in one run
 #   scripts/kaggle/kernel.sh otto stage2       Mitate on OTTO, once every bucket is finished
 #   scripts/kaggle/kernel.sh hm guard          the guard on H&M, once stage 2 is finished
+#   scripts/kaggle/kernel.sh otto check        the test suite and type checks, on Kaggle
 #
 # Inputs: the private dataset mitate-bench (scripts/kaggle/package.sh); for hm, the H&M
 # competition, whose rules must be accepted on kaggle.com first; for dunnhumby, the private
@@ -14,14 +15,14 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 
-usage() { echo "usage: $0 otto|hm|dunnhumby BUCKET... | $0 DATASET stage2|guard" >&2; exit 2; }
+usage() { echo "usage: $0 otto|hm|dunnhumby BUCKET... | $0 DATASET stage2|guard|check" >&2; exit 2; }
 ds=${1:-}
 [[ $ds =~ ^(otto|hm|dunnhumby)$ ]] || usage
 shift
 (($#)) || usage
 stage=1
-if [[ $* == stage2 || $* == guard ]]; then
-  [[ $* == guard ]] && stage=guard || stage=2
+if [[ $* == stage2 || $* == guard || $* == check ]]; then
+  [[ $* == stage2 ]] && stage=2 || stage=$*
   set --
 else
   for b in "$@"; do [[ $b =~ ^[0-9]+$ ]] || usage; done
@@ -44,13 +45,14 @@ fi
 sources="\"$user/mitate-bench\""
 [[ $ds == dunnhumby ]] && sources+=", \"$user/mitate-dunnhumby\""
 resume=0
-if [[ $(kaggle datasets status "$user/mitate-results-$ds" 2>/dev/null) == *ready* ]]; then
+# the test suite needs no earlier results
+if [[ $stage != check && $(kaggle datasets status "$user/mitate-results-$ds" 2>/dev/null) == *ready* ]]; then
   sources+=", \"$user/mitate-results-$ds\""
   resume=$(find "experiments/results/$ds" -path '*/test/*.json' 2>/dev/null | wc -l | tr -d ' ')
 fi
 echo "resume from mitate-results-$ds: $resume finished results expected"
 # stage 2 also scores with another dataset's trained ranker when the config names one (D25)
-if [[ $stage != 1 ]]; then
+if [[ $stage == 2 || $stage == guard ]]; then
   transfer=$(uv run --no-project --with pyyaml==6.0.2 python -c "import yaml, sys
 cfg = yaml.safe_load(open('experiments/configs/benchmark.yaml'))
 print(cfg['datasets']['$ds'].get('transfer_from', ''))")

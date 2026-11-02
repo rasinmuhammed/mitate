@@ -41,8 +41,8 @@ from bench.simulator import (
     widened_targets,
 )
 from bench.tuning import evaluate_config, tune
-from mitate import guard, tasks
-from mitate.blend import Blend, CandidateFrame, Variant, ablate
+from mitate import guard, own_ranker, tasks
+from mitate.blend import DAY, Blend, CandidateFrame, Variant, ablate
 from mitate.data import I64, Event, Log, Queries
 from mitate.engine import EngineConfig, repurchase_first
 from mitate.ltr import TreeEnsemble, train_isolated
@@ -498,7 +498,7 @@ def guard_stage(
 ) -> None:
     """The guard on every store, with the ranker the product ships: this dataset's own where it
     is the one shipped, else the one named by ``transfer_from`` (ledger D30). It needs stage 1
-    and the shipped ranker's stage 2 lists, and trains nothing."""
+    and the shipped ranker's stage 2 lists; the only ranker it trains is each store's own."""
     src = dcfg.get("transfer_from")
     shipped = f"{src}_full" if src else "full"
     booster = TreeEnsemble.load(RESULTS / (src or ds.name) / "_ltr" / "full.json")
@@ -608,26 +608,60 @@ def strict_choice(scores: dict[str, NDArray[np.float64]]) -> str:
     return best if paired_test(scores[best], scores[guard.BLEND]).ci_low > 0 else guard.BLEND
 
 
+OWN_DAYS = 14  # the store's own ranker learns from these days before the replayed week (D31)
+
+
 def score_guard(run: StoreRun, booster: TreeEnsemble, shipped: str, rail: bool) -> None:
     """The guard on one store, under each rule. It replays the validation week, as the product
-    replays a store's last week: the blend under the shipped ranker and each source alone are
-    fitted on the log before it and rank its shoppers. What it picks is then scored on the test
-    week through that model's own test lists (the same tuned configuration fitted on the same
-    pre-test log), and with ``rail`` also as the returning-customer rail."""
+    replays a store's last week: the blend under the shipped ranker, the blend under the store's
+    own ranker (trained on the ``OWN_DAYS`` before that week, ledger D31) and each source alone
+    are fitted on the log before it and rank its shoppers. What a rule picks is then scored on the
+    test week through that model's own test lists (the same configuration fitted on the same
+    pre-test log), and with ``rail`` also as the returning-customer rail. Picks already scored
+    are kept, so adding a rule never changes an earlier one."""
     st, out, cfg = run.st, run.out, run.cfg
     assert run.val is not None and run.test is not None  # filled by __post_init__
-    rules = {GUARD: guard.choose, f"{GUARD}_strict": strict_choice}
-    names = [f"mitate_{r}{suffix}" for r in rules for suffix in ("", *([REPEAT] if rail else []))]
-    if all((out / "test" / f"{n}.npz").exists() for n in names):
+    rules = {
+        GUARD: guard.choose,
+        f"{GUARD}_strict": strict_choice,
+        f"{GUARD}_{guard.OWN}": guard.choose,
+    }
+    suffixes = ("", *([REPEAT] if rail else []))
+
+    def done(rule: str) -> bool:
+        return all((out / "test" / f"mitate_{rule}{x}.npz").exists() for x in suffixes)
+
+    if all(done(r) for r in rules):
         return
+    record = out / "guard.json"
+    picks: dict[str, str] = json.loads(record.read_text())["picks"] if record.exists() else {}
+    own = own_ranker.train(
+        Blend(sources=run.blend_sources(), n_cand=cfg["blend"]["n_cand"]),
+        st.log,
+        st.catalog,
+        st.t_val - OWN_DAYS * DAY,
+        st.t_val,
+        run.dcfg["task"],
+        cfg["tuning"]["val_units"],
+        st.seed,
+    )
+    rankers: dict[str, Any] = {guard.BLEND: booster}
+    if own is not None:
+        rankers[guard.OWN] = own
+        todo = [(Variant(f"{guard.OWN}{x}"), False) for x in suffixes]
+        score_mitate(run, {v.name: own for v, _ in todo}, todo)
     b = Blend(sources=run.blend_sources(), n_cand=cfg["blend"]["n_cand"], booster=booster)
     b.fit(st.log.until(st.t_val), st.catalog)
-    scores = guard.shopper_ndcg(b, run.val, run.avail)
-    picks = {rule: choose(scores) for rule, choose in rules.items()}
-    (out / "guard.json").write_text(
+    scores = guard.shopper_ndcg(b, run.val, run.avail, rankers)
+    shipped_only = {m: v for m, v in scores.items() if m != guard.OWN}
+    for rule, choose in rules.items():
+        if rule not in picks:
+            picks[rule] = choose(scores if rule.endswith(guard.OWN) else shipped_only)
+    record.write_text(
         json.dumps(
             {
                 "shipped": shipped,
+                "own_ranker": own is not None,
                 "picks": picks,
                 "n_shoppers": int(np.unique(run.val.unit).size),
                 "ndcg": {m: float(np.mean(v)) for m, v in scores.items()},
@@ -636,17 +670,20 @@ def score_guard(run: StoreRun, booster: TreeEnsemble, shipped: str, rail: bool) 
             indent=1,
         )
     )
+    lists = {guard.BLEND: f"mitate_{shipped}", guard.OWN: f"mitate_{guard.OWN}"}
     train_t = st.log.until(st.t_test)
     n_rep = round(cfg["blend"]["returning_rail"] * EngineConfig.returning_repeat_share)
     k = cfg["test"]["k"]
     for rule, pick in picks.items():
-        source = f"mitate_{shipped}" if pick == guard.BLEND else pick
+        if done(rule):
+            continue
+        source = lists.get(pick, pick)
         recs = np.load(out / "test" / f"{source}.npz")["recs"]
         run._save(f"mitate_{rule}", recs, train_t, {"pick": pick, "from": source})
         if not rail:
             continue
-        if pick == guard.BLEND:
-            recs = np.load(out / "test" / f"mitate_{shipped}{REPEAT}.npz")["recs"]
+        if pick in lists:
+            recs = np.load(out / "test" / f"{lists[pick]}{REPEAT}.npz")["recs"]
         else:
             m = next(s for s in run.blend_sources() if s.name == pick).fit(train_t, st.catalog)
             recs = np.full((len(run.test), k), -1, np.int32)

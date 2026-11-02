@@ -153,7 +153,9 @@ def _train(job: dict[str, Any]) -> dict[str, Any]:
         return lgb.Dataset(X, y, group=g, feature_name=names, reference=ref, free_raw_data=False)
 
     best: dict[str, Any] = {"num_boost_round": 300}
-    if int(job.get("trials", 0)) > 0 and job["Xva"].shape[0]:
+    if str(job.get("params", "")):  # a fixed configuration: no tuning
+        best = json.loads(str(job["params"]))
+    elif int(job.get("trials", 0)) > 0 and job["Xva"].shape[0]:
         dtr = ds(job["Xtr"], job["ytr"], job["gtr"])
         dva = ds(job["Xva"], job["yva"], job["gva"], dtr)
 
@@ -202,9 +204,11 @@ def train_isolated(
     seed: int = 0,
     trials: int = 0,
     valid_split: tuple[NDArray[Any], ...] | None = None,
+    params: dict[str, Any] | None = None,
 ) -> TreeEnsemble:
     """Write the job, train in a fresh interpreter without torch, load the dump for scoring.
-    ``valid_split`` = (Xtr, ytr, gtr, Xva, yva, gva) enables tuning with ``trials`` trials."""
+    ``valid_split`` = (Xtr, ytr, gtr, Xva, yva, gva) enables tuning with ``trials`` trials;
+    ``params`` (LightGBM parameters plus ``num_boost_round``) fixes the configuration instead."""
     empty = (np.zeros((0, X.shape[1]), np.float32), np.zeros(0), np.zeros(0, np.int64))
     tr = valid_split[:3] if valid_split else empty
     va = valid_split[3:] if valid_split else empty
@@ -222,6 +226,7 @@ def train_isolated(
         feature_names=np.array(feature_names),
         seed=seed,
         trials=trials,
+        params=json.dumps(params) if params else "",
     )
     subprocess.run([sys.executable, "-m", "mitate.ltr", str(path_job), str(path_model)], check=True)
     return TreeEnsemble.load(path_model)

@@ -1,8 +1,10 @@
 {
  "shipped": "otto_full",
+ "own_ranker": false,
  "picks": {
   "guard": "recpop",
-  "guard_strict": "blend"
+  "guard_strict": "blend",
+  "guard_own": "recpop"
  },
  "n_shoppers": 4,
  "ndcg": {

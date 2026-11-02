@@ -74,11 +74,20 @@ zero. The benchmark replays the validation week and serves the pick's own test l
 "Blend kept" counts the stores where the guard served the shipped ranker. On OTTO the shipped
 ranker was trained on these stores' validation weeks, so the replay favours it here.
 
+Since ledger D31 the guard has one more candidate: the blend under a ranker the store trains on its
+own 14 days before the replayed week (`mitate.own_ranker`). "Guard with the store's own ranker" is
+that system, and it is what the engine serves; the store's own ranker alone is scored beside it.
+
 {{otto_ndcg_10_guard}}
 
 **Finding.** The guard kept the shipped ranker on all 35 stores, so Mitate as shipped scores what
 the ranker alone does. The replay is in-sample here, so OTTO shows only that the guard does not
 discard a ranker that works; sections 2 and 3 test it where the ranker was never trained.
+
+The store's own ranker never trained on OTTO. With the test and validation weeks held out, the
+dataset's four weeks leave its 14 training days no earlier log to fit the sources on, so the guard
+with it is the guard above on every store. D31 registered the run on all three datasets; OTTO
+cannot test it.
 
 ### Cost
 
@@ -188,6 +197,16 @@ because a week of 10 to 20 shoppers sometimes points to the wrong source. It rem
 below the ranker trained on H&M, which cannot ship. The conservative rule kept the failing ranker
 on 3 of 5 stores at 1K and scores lower; the primary rule stands as registered.
 
+**Finding, with the store's own ranker (ledger D31).** It could not train on any 1K store or on 3
+of the 3K stores, and trained on the other 27. The guard served it on 17: every store from 100K
+events, and one each at 10K and 30K. From 100K, Mitate as shipped is ahead of the best single
+method chosen on test by 0.024, 0.016 and 0.014 NDCG@10 (24% to 38%; Holm p ≤ 3 × 10⁻⁹, every
+store at or above it), and Recall@20 agrees (+0.021 to +0.043, Holm p ≤ 0.011). That closes 39%
+to 73% of the gap to the ranker trained on H&M's stores, with nothing trained on H&M shipped.
+Below 100K the own ranker alone is 0.018 to 0.041 behind the best single method, the guard mostly
+turns it away, and those sizes stay where they were. As the returning-customer rail it adds less:
+0.002 to 0.007 from 100K, significant only at 300K.
+
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
 Grocery is repeat buying: across the whole dataset, 54% of the products in test-window baskets
@@ -249,6 +268,12 @@ significant: the price of choosing on a handful of shoppers when the ranker was 
 Without repurchases, Mitate as shipped is behind GP-TopFreq at 10K and 30K by 0.01, as the ranker
 alone is; with repurchases first, the rail returning customers actually get, it is level with
 GP-TopFreq at every size.
+
+**Finding, with the store's own ranker (ledger D31).** It trained on every store from 10K events
+and on none below. Alone, it is 0.022 to 0.028 behind GP-TopFreq (Holm p ≤ 2 × 10⁻⁵) and 0.010
+to 0.015 behind the shipped ranker, which already carries over to grocery. The guard served it on
+one store, at 30K, so Mitate as shipped is unchanged within 0.002: in grocery the own ranker adds
+nothing, and the guard keeps it from costing anything.
 
 ## 4. Product-page placements (Amazon Grocery)
 

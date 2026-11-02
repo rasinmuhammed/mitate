@@ -1,8 +1,10 @@
 {
  "shipped": "full",
+ "own_ranker": false,
  "picks": {
   "guard": "blend",
-  "guard_strict": "blend"
+  "guard_strict": "blend",
+  "guard_own": "blend"
  },
  "n_shoppers": 999,
  "ndcg": {

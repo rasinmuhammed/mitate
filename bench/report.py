@@ -135,6 +135,10 @@ GUARD_LABELS = {
     "mitate_guard_strict": "guard, conservative rule",
     "mitate_guard_repeat": "guard, as the rail",
     "mitate_guard_strict_repeat": "guard, conservative rule, as the rail",
+    "mitate_own": "store's own ranker alone",
+    "mitate_own_repeat": "store's own ranker alone, as the rail",
+    "mitate_guard_own": "guard with the store's own ranker",
+    "mitate_guard_own_repeat": "guard with the store's own ranker, as the rail",
 }
 
 
@@ -520,6 +524,63 @@ def crossover_figure(an: dict[str, Any], out: Path, title: str) -> None:
     plt.close(fig)
 
 
+SERVED = "mitate_guard_own"  # what the engine serves: the guard, the store's own ranker included
+
+
+def shipped_figure(analyses: dict[str, dict[str, Any]], out: Path) -> None:
+    """Mitate as it ships against the best single method chosen on the test week, one panel per
+    dataset: the guarded system with its paired 95% interval, and the shipped ranker without the
+    guard as a reference."""
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    fig, axes = plt.subplots(
+        1, len(analyses), figsize=(3.3 * len(analyses), 3.6), dpi=150, sharey=True
+    )
+    for ax, (ds, an) in zip(np.atleast_1d(axes), analyses.items(), strict=True):
+        buckets = sorted(an["buckets"], key=int)
+        models = {m for r in an["buckets"].values() for m in r["models"]}
+        shipped = "mitate_otto_full" if "mitate_otto_full" in models else "mitate_full"
+        served, bare = [], []
+        for b in buckets:
+            r = an["buckets"][b]
+            ms, best = r["models"], r.get("oracle_best_single")
+            if best and shipped in ms:
+                bare.append((int(b), ms[shipped]["mean"] - ms[best]["mean"]))
+            if o := r.get("guarded", {}).get(SERVED):
+                served.append((int(b), o["diff"], o["ci_low"], o["ci_high"]))
+        ax.axhline(0, color="#2b2a28", lw=0.9)
+        if bare:
+            ax.plot(*zip(*bare, strict=True), ls="--", lw=1.2, color="#9a9a9a", marker="o", ms=3)
+        if served:
+            x, d, lo, hi = zip(*served, strict=True)
+            ax.fill_between(x, lo, hi, color="#8a3b12", alpha=0.15, lw=0)
+            ax.plot(x, d, lw=2.4, color="#8a3b12", marker="o", ms=4, zorder=3)
+        xs = [int(b) for b in buckets]
+        ax.set_xscale("log")
+        ax.set_xticks(xs, [size_label(x) for x in xs], fontsize=7)
+        ax.minorticks_off()
+        ax.set_title(DATASET_NAMES.get(ds, ds), loc="left", fontsize=10)
+        ax.grid(axis="y", color="#e6e2da", lw=0.8)
+        for s in ("top", "right"):
+            ax.spines[s].set_visible(False)
+    first = np.atleast_1d(axes)[0]
+    first.set_ylabel(f"{analyses[next(iter(analyses))]['metric'].upper()} minus the best single")
+    first.plot([], [], lw=2.4, color="#8a3b12", label="Mitate as it ships, 95% CI")
+    first.plot([], [], ls="--", lw=1.2, color="#9a9a9a", label="shipped ranker, no guard")
+    fig.legend(frameon=False, fontsize=8, loc="upper center", ncol=2, bbox_to_anchor=(0.5, 1.06))
+    fig.supxlabel("Store size: interactions before the test week (log scale)", fontsize=8)
+    note = "Zero: the best of fifteen tuned methods, chosen on the test week itself."
+    fig.text(0.01, -0.04, note, fontsize=7, color="#6b6862")
+    fig.tight_layout()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out.with_suffix(".png"), bbox_inches="tight")
+    fig.savefig(out.with_suffix(".svg"), bbox_inches="tight")
+    plt.close(fig)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("config")
@@ -559,6 +620,14 @@ def main() -> None:
         stores = store_table(results / ds)
         if stores:
             (gen / f"{ds}_stores.md").write_text(stores + "\n")
+    served = {}
+    for ds in cfg["datasets"]:
+        p = results / ds / "analysis_ndcg_10.json"
+        an = json.loads(p.read_text()) if p.exists() else {"buckets": {}}
+        if any(SERVED in r.get("guarded", {}) for r in an["buckets"].values()):
+            served[ds] = an
+    if served:
+        shipped_figure(served, figs / "shipped")
     # buckets that ran on the M1 before moving to Kaggle (ledger D23)
     replication = replication_table(results / "otto-m1", results / "otto")
     if replication:

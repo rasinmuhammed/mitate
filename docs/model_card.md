@@ -91,8 +91,11 @@ ablations, and measured latency and memory on a stated laptop.
 * The shipped ranker was trained on session-heavy general e-commerce. It transfers to grocery
   (Dunnhumby: level with a ranker trained there) but not to fashion (H&M: below recent popularity
   in stores of up to 30K events). Before serving, the engine replays the store's last week and
-  serves a single source instead when one ranked it better (`mitate.guard`); on fashion that
-  brings it level with the best single method, not above it.
+  serves a single source instead when one ranked it better (`mitate.guard`). Among the candidates
+  is a ranker the store trains on its own 14 days before that week (`mitate.own_ranker`). On
+  fashion the guard serves it from 100K events, 0.014 to 0.024 NDCG@10 ahead of the best single
+  method; below that, Mitate is level with the best single method, not above it. A store needs
+  more than four weeks of history before its own ranker can train.
 * OTTO has no item text and no persistent customer ids, so content similarity and the
   returning-customer placement are not evaluated on it.
 * gSASRec's published defaults collapse on small catalogs in our implementation (ledger D16); its

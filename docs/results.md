@@ -138,26 +138,42 @@ zero. The benchmark replays the validation week and serves the pick's own test l
 "Blend kept" counts the stores where the guard served the shipped ranker. On OTTO the shipped
 ranker was trained on these stores' validation weeks, so the replay favours it here.
 
+Since ledger D31 the guard has one more candidate: the blend under a ranker the store trains on its
+own 14 days before the replayed week (`mitate.own_ranker`). "Guard with the store's own ranker" is
+that system, and it is what the engine serves; the store's own ranker alone is scored beside it.
+
 | Store size | Best single (chosen on test) | Shipped ranker alone | Served | Score | Blend kept | Δ vs best, 95% CI | p (Holm) |
 |---|---|---:|---|---:|---:|---:|---:|
 | 1K | Transition probe (PCTM) 0.1762 | 0.2467 | guard | 0.2467 | 5 of 5 | +0.0687 [+0.0345, +0.1030] | 0.000162 |
 | 1K | Transition probe (PCTM) 0.1762 | 0.2467 | guard, conservative rule | 0.2467 | 5 of 5 | +0.0687 [+0.0345, +0.1030] | 0.000162 |
+| 1K | Transition probe (PCTM) 0.1762 | 0.2467 | guard with the store's own ranker | 0.2467 | 5 of 5 | +0.0687 [+0.0345, +0.1030] | 0.000162 |
 | 3K | Session kNN (VSTAN) 0.2155 | 0.2803 | guard | 0.2803 | 5 of 5 | +0.0691 [+0.0527, +0.0857] | 1.59e-14 |
 | 3K | Session kNN (VSTAN) 0.2155 | 0.2803 | guard, conservative rule | 0.2803 | 5 of 5 | +0.0691 [+0.0527, +0.0857] | 1.59e-14 |
+| 3K | Session kNN (VSTAN) 0.2155 | 0.2803 | guard with the store's own ranker | 0.2803 | 5 of 5 | +0.0691 [+0.0527, +0.0857] | 1.59e-14 |
 | 10K | Session kNN (VSTAN) 0.2130 | 0.2751 | guard | 0.2751 | 5 of 5 | +0.0638 [+0.0547, +0.0733] | 8.19e-39 |
 | 10K | Session kNN (VSTAN) 0.2130 | 0.2751 | guard, conservative rule | 0.2751 | 5 of 5 | +0.0638 [+0.0547, +0.0733] | 8.19e-39 |
+| 10K | Session kNN (VSTAN) 0.2130 | 0.2751 | guard with the store's own ranker | 0.2751 | 5 of 5 | +0.0638 [+0.0547, +0.0733] | 8.19e-39 |
 | 30K | GRU4Rec 0.2160 | 0.2825 | guard | 0.2825 | 5 of 5 | +0.0663 [+0.0588, +0.0740] | 1.1e-60 |
 | 30K | GRU4Rec 0.2160 | 0.2825 | guard, conservative rule | 0.2825 | 5 of 5 | +0.0663 [+0.0588, +0.0740] | 1.1e-60 |
+| 30K | GRU4Rec 0.2160 | 0.2825 | guard with the store's own ranker | 0.2825 | 5 of 5 | +0.0663 [+0.0588, +0.0740] | 1.1e-60 |
 | 100K | iALS 0.2196 | 0.2864 | guard | 0.2864 | 5 of 5 | +0.0668 [+0.0637, +0.0698] | < 1e-300 |
 | 100K | iALS 0.2196 | 0.2864 | guard, conservative rule | 0.2864 | 5 of 5 | +0.0668 [+0.0637, +0.0698] | < 1e-300 |
+| 100K | iALS 0.2196 | 0.2864 | guard with the store's own ranker | 0.2864 | 5 of 5 | +0.0668 [+0.0637, +0.0698] | < 1e-300 |
 | 300K | SASRec (full softmax) 0.2202 | 0.2728 | guard | 0.2728 | 5 of 5 | +0.0526 [+0.0505, +0.0548] | < 1e-300 |
 | 300K | SASRec (full softmax) 0.2202 | 0.2728 | guard, conservative rule | 0.2728 | 5 of 5 | +0.0526 [+0.0505, +0.0548] | < 1e-300 |
+| 300K | SASRec (full softmax) 0.2202 | 0.2728 | guard with the store's own ranker | 0.2728 | 5 of 5 | +0.0526 [+0.0505, +0.0548] | < 1e-300 |
 | 1M | SASRec (full softmax) 0.2274 | 0.2721 | guard | 0.2721 | 5 of 5 | +0.0447 [+0.0428, +0.0466] | < 1e-300 |
 | 1M | SASRec (full softmax) 0.2274 | 0.2721 | guard, conservative rule | 0.2721 | 5 of 5 | +0.0447 [+0.0428, +0.0466] | < 1e-300 |
+| 1M | SASRec (full softmax) 0.2274 | 0.2721 | guard with the store's own ranker | 0.2721 | 5 of 5 | +0.0447 [+0.0428, +0.0466] | < 1e-300 |
 
 **Finding.** The guard kept the shipped ranker on all 35 stores, so Mitate as shipped scores what
 the ranker alone does. The replay is in-sample here, so OTTO shows only that the guard does not
 discard a ranker that works; sections 2 and 3 test it where the ranker was never trained.
+
+The store's own ranker never trained on OTTO. With the test and validation weeks held out, the
+dataset's four weeks leave its 14 training days no earlier log to fit the sources on, so the guard
+with it is the guard above on every store. D31 registered the run on all three datasets; OTTO
+cannot test it.
 
 ### Cost
 
@@ -433,30 +449,58 @@ The guard as in section 1, here choosing between the shipped OTTO ranker and the
 | 1K | Recent popularity 0.1645 | 0.0361 | guard, conservative rule | 0.0546 | 3 of 5 | -0.0656 [-0.1250, -0.0031] | 0.185 |
 | 1K | Recent popularity 0.1645 | 0.0361 | guard, as the rail | 0.0929 | 0 of 5 | -0.0201 [-0.0664, +0.0258] | 1 |
 | 1K | Recent popularity 0.1645 | 0.0361 | guard, conservative rule, as the rail | 0.0708 | 3 of 5 | -0.0505 [-0.1185, +0.0219] | 0.508 |
+| 1K | Recent popularity 0.1645 | 0.0361 | store's own ranker alone | – | – | – | – |
+| 1K | Recent popularity 0.1645 | 0.0361 | store's own ranker alone, as the rail | – | – | – | – |
+| 1K | Recent popularity 0.1645 | 0.0361 | guard with the store's own ranker | 0.0741 | 0 of 5 | -0.0393 [-0.0765, -0.0117] | 0.118 |
+| 1K | Recent popularity 0.1645 | 0.0361 | guard with the store's own ranker, as the rail | 0.0929 | 0 of 5 | -0.0201 [-0.0664, +0.0258] | 0.799 |
 | 3K | Recent popularity 0.3148 | 0.0503 | guard | 0.2350 | 0 of 5 | -0.0342 [-0.0789, +0.0048] | 0.575 |
 | 3K | Recent popularity 0.3148 | 0.0503 | guard, conservative rule | 0.2119 | 1 of 5 | -0.0705 [-0.1345, -0.0068] | 0.185 |
 | 3K | Recent popularity 0.3148 | 0.0503 | guard, as the rail | 0.2507 | 0 of 5 | -0.0299 [-0.0812, +0.0216] | 1 |
 | 3K | Recent popularity 0.3148 | 0.0503 | guard, conservative rule, as the rail | 0.2200 | 1 of 5 | -0.0782 [-0.1437, -0.0138] | 0.0882 |
+| 3K | Recent popularity 0.3148 | 0.0503 | store's own ranker alone | 0.2631 | – | -0.0407 [-0.1133, +0.0352] | 0.296 |
+| 3K | Recent popularity 0.3148 | 0.0503 | store's own ranker alone, as the rail | 0.2529 | – | -0.0510 [-0.1261, +0.0270] | 0.208 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard with the store's own ranker | 0.2350 | 0 of 5 | -0.0342 [-0.0789, +0.0048] | 0.23 |
+| 3K | Recent popularity 0.3148 | 0.0503 | guard with the store's own ranker, as the rail | 0.2507 | 0 of 5 | -0.0299 [-0.0812, +0.0216] | 0.791 |
 | 10K | Recent popularity 0.1650 | 0.0488 | guard | 0.1650 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
 | 10K | Recent popularity 0.1650 | 0.0488 | guard, conservative rule | 0.1650 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
 | 10K | Recent popularity 0.1650 | 0.0488 | guard, as the rail | 0.1823 | 0 of 5 | +0.0123 [-0.0056, +0.0331] | 1 |
 | 10K | Recent popularity 0.1650 | 0.0488 | guard, conservative rule, as the rail | 0.1823 | 0 of 5 | +0.0123 [-0.0056, +0.0331] | 0.508 |
+| 10K | Recent popularity 0.1650 | 0.0488 | store's own ranker alone | 0.1327 | – | -0.0282 [-0.0586, +0.0018] | 0.141 |
+| 10K | Recent popularity 0.1650 | 0.0488 | store's own ranker alone, as the rail | 0.1323 | – | -0.0312 [-0.0621, -0.0005] | 0.143 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard with the store's own ranker | 0.1778 | 0 of 5 | +0.0153 [+0.0007, +0.0318] | 0.154 |
+| 10K | Recent popularity 0.1650 | 0.0488 | guard with the store's own ranker, as the rail | 0.1838 | 0 of 5 | +0.0141 [-0.0064, +0.0367] | 0.791 |
 | 30K | Recent popularity 0.1296 | 0.0703 | guard | 0.1324 | 0 of 5 | +0.0026 [-0.0048, +0.0103] | 1 |
 | 30K | Recent popularity 0.1296 | 0.0703 | guard, conservative rule | 0.1324 | 0 of 5 | +0.0026 [-0.0048, +0.0103] | 1 |
 | 30K | Recent popularity 0.1296 | 0.0703 | guard, as the rail | 0.1296 | 0 of 5 | -0.0006 [-0.0131, +0.0123] | 1 |
 | 30K | Recent popularity 0.1296 | 0.0703 | guard, conservative rule, as the rail | 0.1296 | 0 of 5 | -0.0006 [-0.0131, +0.0123] | 0.923 |
+| 30K | Recent popularity 0.1296 | 0.0703 | store's own ranker alone | 0.1090 | – | -0.0183 [-0.0360, -0.0006] | 0.129 |
+| 30K | Recent popularity 0.1296 | 0.0703 | store's own ranker alone, as the rail | 0.1001 | – | -0.0277 [-0.0454, -0.0099] | 0.0158 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard with the store's own ranker | 0.1316 | 0 of 5 | +0.0018 [-0.0052, +0.0088] | 0.616 |
+| 30K | Recent popularity 0.1296 | 0.0703 | guard with the store's own ranker, as the rail | 0.1292 | 0 of 5 | -0.0010 [-0.0136, +0.0120] | 0.879 |
 | 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard | 0.0782 | 0 of 5 | +0.0006 [-0.0054, +0.0066] | 1 |
 | 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, conservative rule | 0.0745 | 1 of 5 | -0.0049 [-0.0091, -0.0009] | 0.0974 |
 | 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, as the rail | 0.0783 | 0 of 5 | -0.0012 [-0.0060, +0.0035] | 1 |
 | 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard, conservative rule, as the rail | 0.0744 | 1 of 5 | -0.0069 [-0.0108, -0.0029] | 0.00338 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | store's own ranker alone | 0.1030 | – | +0.0244 [+0.0167, +0.0319] | 2.44e-09 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | store's own ranker alone, as the rail | 0.0876 | – | +0.0071 [+0.0007, +0.0135] | 0.124 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard with the store's own ranker | 0.1030 | 0 of 5 | +0.0244 [+0.0167, +0.0319] | 3.05e-09 |
+| 100K | Session kNN (VSTAN) 0.0745 | 0.0566 | guard with the store's own ranker, as the rail | 0.0876 | 0 of 5 | +0.0071 [+0.0007, +0.0135] | 0.187 |
 | 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard | 0.0627 | 0 of 5 | +0.0025 [+0.0007, +0.0043] | 0.0362 |
 | 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, conservative rule | 0.0627 | 0 of 5 | +0.0025 [+0.0007, +0.0043] | 0.0362 |
 | 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, as the rail | 0.0600 | 0 of 5 | -0.0026 [-0.0045, -0.0007] | 0.0408 |
 | 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard, conservative rule, as the rail | 0.0600 | 0 of 5 | -0.0026 [-0.0045, -0.0007] | 0.034 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | store's own ranker alone | 0.0731 | – | +0.0164 [+0.0127, +0.0200] | 1.46e-17 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | store's own ranker alone, as the rail | 0.0614 | – | +0.0040 [+0.0012, +0.0069] | 0.023 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard with the store's own ranker | 0.0731 | 0 of 5 | +0.0164 [+0.0127, +0.0200] | 1.75e-17 |
+| 300K | Session kNN (VSTAN) 0.0559 | 0.0439 | guard with the store's own ranker, as the rail | 0.0614 | 0 of 5 | +0.0040 [+0.0012, +0.0069] | 0.0322 |
 | 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard | 0.0573 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
 | 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, conservative rule | 0.0573 | 0 of 5 | +0.0000 [+0.0000, +0.0000] | 1 |
 | 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, as the rail | 0.0507 | 0 of 5 | -0.0066 [-0.0077, -0.0055] | 3.88e-31 |
 | 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard, conservative rule, as the rail | 0.0507 | 0 of 5 | -0.0066 [-0.0077, -0.0055] | 3.88e-31 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | store's own ranker alone | 0.0713 | – | +0.0141 [+0.0122, +0.0160] | 1.36e-47 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | store's own ranker alone, as the rail | 0.0588 | – | +0.0016 [+0.0000, +0.0031] | 0.143 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard with the store's own ranker | 0.0713 | 0 of 5 | +0.0141 [+0.0122, +0.0160] | 1.59e-47 |
+| 1M | Session kNN (VSTAN) 0.0573 | 0.0481 | guard with the store's own ranker, as the rail | 0.0588 | 0 of 5 | +0.0016 [+0.0000, +0.0031] | 0.256 |
 
 **Finding.** The guard turned the shipped ranker away on all 35 stores: it served recent
 popularity or a transition model in small stores and session kNN from 100K events. Mitate as
@@ -466,6 +510,16 @@ to 0.04 behind, not significant after correction (at 1K the interval excludes ze
 because a week of 10 to 20 shoppers sometimes points to the wrong source. It remains 0.02 to 0.21
 below the ranker trained on H&M, which cannot ship. The conservative rule kept the failing ranker
 on 3 of 5 stores at 1K and scores lower; the primary rule stands as registered.
+
+**Finding, with the store's own ranker (ledger D31).** It could not train on any 1K store or on 3
+of the 3K stores, and trained on the other 27. The guard served it on 17: every store from 100K
+events, and one each at 10K and 30K. From 100K, Mitate as shipped is ahead of the best single
+method chosen on test by 0.024, 0.016 and 0.014 NDCG@10 (24% to 38%; Holm p ≤ 3 × 10⁻⁹, every
+store at or above it), and Recall@20 agrees (+0.021 to +0.043, Holm p ≤ 0.011). That closes 39%
+to 73% of the gap to the ranker trained on H&M's stores, with nothing trained on H&M shipped.
+Below 100K the own ranker alone is 0.018 to 0.041 behind the best single method, the guard mostly
+turns it away, and those sizes stay where they were. As the returning-customer rail it adds less:
+0.002 to 0.007 from 100K, significant only at 300K.
 
 ## 3. Ranking: grocery, next basket (Dunnhumby)
 
@@ -575,18 +629,34 @@ The guard as in section 1, here choosing between the shipped OTTO ranker and the
 | 1K | GP-TopFreq 0.3910 | 0.3996 | guard, conservative rule | 0.3996 | 5 of 5 | +0.0120 [-0.0131, +0.0373] | 0.689 |
 | 1K | GP-TopFreq 0.3910 | 0.3996 | guard, as the rail | 0.3843 | 3 of 5 | -0.0042 [-0.0270, +0.0192] | 1 |
 | 1K | GP-TopFreq 0.3910 | 0.3996 | guard, conservative rule, as the rail | 0.3896 | 5 of 5 | +0.0011 [-0.0207, +0.0237] | 1 |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | store's own ranker alone | – | – | – | – |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | store's own ranker alone, as the rail | – | – | – | – |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard with the store's own ranker | 0.3865 | 3 of 5 | -0.0025 [-0.0327, +0.0271] | 0.872 |
+| 1K | GP-TopFreq 0.3910 | 0.3996 | guard with the store's own ranker, as the rail | 0.3843 | 3 of 5 | -0.0042 [-0.0270, +0.0192] | 1 |
 | 3K | GP-TopFreq 0.3159 | 0.3099 | guard | 0.3030 | 3 of 5 | -0.0120 [-0.0313, +0.0065] | 0.419 |
 | 3K | GP-TopFreq 0.3159 | 0.3099 | guard, conservative rule | 0.3099 | 5 of 5 | -0.0049 [-0.0214, +0.0106] | 0.689 |
 | 3K | GP-TopFreq 0.3159 | 0.3099 | guard, as the rail | 0.3118 | 3 of 5 | -0.0044 [-0.0143, +0.0053] | 1 |
 | 3K | GP-TopFreq 0.3159 | 0.3099 | guard, conservative rule, as the rail | 0.3117 | 5 of 5 | -0.0044 [-0.0140, +0.0049] | 1 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | store's own ranker alone | – | – | – | – |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | store's own ranker alone, as the rail | – | – | – | – |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard with the store's own ranker | 0.3030 | 3 of 5 | -0.0120 [-0.0313, +0.0065] | 0.419 |
+| 3K | GP-TopFreq 0.3159 | 0.3099 | guard with the store's own ranker, as the rail | 0.3118 | 3 of 5 | -0.0044 [-0.0143, +0.0053] | 1 |
 | 10K | GP-TopFreq 0.3284 | 0.3165 | guard | 0.3165 | 5 of 5 | -0.0111 [-0.0194, -0.0028] | 0.028 |
 | 10K | GP-TopFreq 0.3284 | 0.3165 | guard, conservative rule | 0.3165 | 5 of 5 | -0.0111 [-0.0194, -0.0028] | 0.028 |
 | 10K | GP-TopFreq 0.3284 | 0.3165 | guard, as the rail | 0.3287 | 5 of 5 | +0.0006 [-0.0058, +0.0071] | 1 |
 | 10K | GP-TopFreq 0.3284 | 0.3165 | guard, conservative rule, as the rail | 0.3287 | 5 of 5 | +0.0006 [-0.0058, +0.0071] | 1 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | store's own ranker alone | 0.3014 | – | -0.0277 [-0.0404, -0.0150] | 1.76e-05 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | store's own ranker alone, as the rail | 0.3201 | – | -0.0082 [-0.0159, -0.0003] | 0.0785 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard with the store's own ranker | 0.3165 | 5 of 5 | -0.0111 [-0.0194, -0.0028] | 0.0373 |
+| 10K | GP-TopFreq 0.3284 | 0.3165 | guard with the store's own ranker, as the rail | 0.3287 | 5 of 5 | +0.0006 [-0.0058, +0.0071] | 1 |
 | 30K | GP-TopFreq 0.3199 | 0.3096 | guard | 0.3096 | 5 of 5 | -0.0096 [-0.0159, -0.0033] | 0.0105 |
 | 30K | GP-TopFreq 0.3199 | 0.3096 | guard, conservative rule | 0.3096 | 5 of 5 | -0.0096 [-0.0159, -0.0033] | 0.0105 |
 | 30K | GP-TopFreq 0.3199 | 0.3096 | guard, as the rail | 0.3242 | 5 of 5 | +0.0048 [+0.0007, +0.0089] | 0.0888 |
 | 30K | GP-TopFreq 0.3199 | 0.3096 | guard, conservative rule, as the rail | 0.3242 | 5 of 5 | +0.0048 [+0.0007, +0.0089] | 0.0888 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | store's own ranker alone | 0.3000 | – | -0.0221 [-0.0310, -0.0132] | 1.54e-06 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | store's own ranker alone, as the rail | 0.3220 | – | +0.0020 [-0.0031, +0.0071] | 0.443 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard with the store's own ranker | 0.3111 | 4 of 5 | -0.0086 [-0.0151, -0.0020] | 0.0373 |
+| 30K | GP-TopFreq 0.3199 | 0.3096 | guard with the store's own ranker, as the rail | 0.3247 | 4 of 5 | +0.0051 [+0.0009, +0.0093] | 0.0671 |
 
 **Finding.** From 10K events the guard kept the shipped ranker on every store. At 1K and 3K it
 switched on 2 of 5 stores each and lost about 0.01 against the shipped ranker alone, not
@@ -594,6 +664,12 @@ significant: the price of choosing on a handful of shoppers when the ranker was 
 Without repurchases, Mitate as shipped is behind GP-TopFreq at 10K and 30K by 0.01, as the ranker
 alone is; with repurchases first, the rail returning customers actually get, it is level with
 GP-TopFreq at every size.
+
+**Finding, with the store's own ranker (ledger D31).** It trained on every store from 10K events
+and on none below. Alone, it is 0.022 to 0.028 behind GP-TopFreq (Holm p ≤ 2 × 10⁻⁵) and 0.010
+to 0.015 behind the shipped ranker, which already carries over to grocery. The guard served it on
+one store, at 30K, so Mitate as shipped is unchanged within 0.002: in grocery the own ranker adds
+nothing, and the guard keeps it from costing anything.
 
 ## 4. Product-page placements (Amazon Grocery)
 

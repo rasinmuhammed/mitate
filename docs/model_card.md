@@ -95,7 +95,8 @@ ablations, and measured latency and memory on a stated laptop.
   is a ranker the store trains on its own 14 days before that week (`mitate.own_ranker`). On
   fashion the guard serves it from 100K events, 0.014 to 0.024 NDCG@10 ahead of the best single
   method; below that, Mitate is level with the best single method, not above it. A store needs
-  more than four weeks of history before its own ranker can train.
+  more than three weeks of history (the replayed week, 14 days, and older log to fit the sources
+  on) before its own ranker can train.
 * OTTO has no item text and no persistent customer ids, so content similarity and the
   returning-customer placement are not evaluated on it.
 * gSASRec's published defaults collapse on small catalogs in our implementation (ledger D16); its
